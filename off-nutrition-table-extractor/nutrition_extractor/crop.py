@@ -21,11 +21,6 @@ def crop(image_obj, coords, saved_location, extend_ratio=0, SAVE=False):
     )
     # cropped_image = image_obj.crop(modified_coords)
     cropped_image = image_obj[modified_coords[1]:modified_coords[3], modified_coords[0]:modified_coords[2]]
-    print(cropped_image.shape)
-    #cv2.imshow('img_before', image_obj)
-    #cv2.waitKey(0)
-    #cv2.imshow('img_crop', cropped_image)
-    #cv2.waitKey(0)
     if(SAVE):
         if (cropped_image.shape[0]>0 & cropped_image.shape[1]>0):
             cv2.imwrite(saved_location, cropped_image_save)
