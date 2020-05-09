@@ -1,0 +1,3424 @@
+{
+    "version": "V2",
+    "requestId": "sample_id",
+    "timestamp": 1589009585521,
+    "images": [
+        {
+            "uid": "ca5d978ef695484baf30331fee16c2f6",
+            "name": "./images/test3.jpg",
+            "inferResult": "SUCCESS",
+            "message": "SUCCESS",
+            "validationResult": {
+                "result": "NO_REQUESTED"
+            },
+            "fields": [
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 83.396736,
+                                "y": 38.724594
+                            },
+                            {
+                                "x": 373.8406,
+                                "y": -18.002726
+                            },
+                            {
+                                "x": 390.14813,
+                                "y": 65.491905
+                            },
+                            {
+                                "x": 99.70426,
+                                "y": 122.21922
+                            }
+                        ]
+                    },
+                    "inferText": "now",
+                    "inferConfidence": 0.9820866,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 425.0,
+                                "y": 0.0
+                            },
+                            {
+                                "x": 738.3333,
+                                "y": 0.0
+                            },
+                            {
+                                "x": 738.3333,
+                                "y": 66.666664
+                            },
+                            {
+                                "x": 425.0,
+                                "y": 66.666664
+                            }
+                        ]
+                    },
+                    "inferText": "carp",
+                    "inferConfidence": 0.87992364,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 886.3094,
+                                "y": -30.407257
+                            },
+                            {
+                                "x": 1174.93,
+                                "y": 38.468124
+                            },
+                            {
+                                "x": 1149.0381,
+                                "y": 146.96742
+                            },
+                            {
+                                "x": 860.4175,
+                                "y": 78.09203
+                            }
+                        ]
+                    },
+                    "inferText": "Keto\u00b7",
+                    "inferConfidence": 0.9085436,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 0.0,
+                                "y": 110.0
+                            },
+                            {
+                                "x": 78.333336,
+                                "y": 110.0
+                            },
+                            {
+                                "x": 78.333336,
+                                "y": 198.33333
+                            },
+                            {
+                                "x": 0.0,
+                                "y": 198.33333
+                            }
+                        ]
+                    },
+                    "inferText": "t \u00b7",
+                    "inferConfidence": 0.8895148,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 420.29868,
+                                "y": 126.63786
+                            },
+                            {
+                                "x": 740.2348,
+                                "y": 115.8535
+                            },
+                            {
+                                "x": 744.3918,
+                                "y": 239.17781
+                            },
+                            {
+                                "x": 424.45566,
+                                "y": 249.96219
+                            }
+                        ]
+                    },
+                    "inferText": "carb",
+                    "inferConfidence": 0.99930716,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": -17.044538,
+                                "y": 197.12682
+                            },
+                            {
+                                "x": 381.35034,
+                                "y": 132.17113
+                            },
+                            {
+                                "x": 399.33862,
+                                "y": 242.49913
+                            },
+                            {
+                                "x": 0.94371796,
+                                "y": 307.45483
+                            }
+                        ]
+                    },
+                    "inferText": "at\u00b7low",
+                    "inferConfidence": 0.88103914,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 781.6667,
+                                "y": 163.33333
+                            },
+                            {
+                                "x": 833.3333,
+                                "y": 163.33333
+                            },
+                            {
+                                "x": 833.3333,
+                                "y": 211.66667
+                            },
+                            {
+                                "x": 781.6667,
+                                "y": 211.66667
+                            }
+                        ]
+                    },
+                    "inferText": "\u00b7",
+                    "inferConfidence": 0.9995667,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 880.33234,
+                                "y": 134.5877
+                            },
+                            {
+                                "x": 1228.3706,
+                                "y": 210.52338
+                            },
+                            {
+                                "x": 1203.6879,
+                                "y": 323.65317
+                            },
+                            {
+                                "x": 855.64954,
+                                "y": 247.71748
+                            }
+                        ]
+                    },
+                    "inferText": "keto\u00b7no",
+                    "inferConfidence": 0.9937746,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 280.06155,
+                                "y": 485.3211
+                            },
+                            {
+                                "x": 682.541,
+                                "y": 475.58365
+                            },
+                            {
+                                "x": 684.7325,
+                                "y": 566.16235
+                            },
+                            {
+                                "x": 282.25302,
+                                "y": 575.8998
+                            }
+                        ]
+                    },
+                    "inferText": "Nutrition",
+                    "inferConfidence": 0.9999235,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 703.3333,
+                                "y": 473.33334
+                            },
+                            {
+                                "x": 936.6667,
+                                "y": 473.33334
+                            },
+                            {
+                                "x": 936.6667,
+                                "y": 563.3333
+                            },
+                            {
+                                "x": 703.3333,
+                                "y": 563.3333
+                            }
+                        ]
+                    },
+                    "inferText": "Facts",
+                    "inferConfidence": 0.9998748,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 290.3884,
+                                "y": 585.82465
+                            },
+                            {
+                                "x": 411.27188,
+                                "y": 592.0773
+                            },
+                            {
+                                "x": 409.4352,
+                                "y": 627.5857
+                            },
+                            {
+                                "x": 288.55173,
+                                "y": 621.33307
+                            }
+                        ]
+                    },
+                    "inferText": "Serving",
+                    "inferConfidence": 0.9998574,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 416.66666,
+                                "y": 585.0
+                            },
+                            {
+                                "x": 491.66666,
+                                "y": 585.0
+                            },
+                            {
+                                "x": 491.66666,
+                                "y": 618.3333
+                            },
+                            {
+                                "x": 416.66666,
+                                "y": 618.3333
+                            }
+                        ]
+                    },
+                    "inferText": "Size",
+                    "inferConfidence": 0.99937797,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 500.0,
+                                "y": 585.0
+                            },
+                            {
+                                "x": 556.6667,
+                                "y": 585.0
+                            },
+                            {
+                                "x": 556.6667,
+                                "y": 616.6667
+                            },
+                            {
+                                "x": 500.0,
+                                "y": 616.6667
+                            }
+                        ]
+                    },
+                    "inferText": "1/2",
+                    "inferConfidence": 0.9999793,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 563.3333,
+                                "y": 588.3333
+                            },
+                            {
+                                "x": 628.3333,
+                                "y": 588.3333
+                            },
+                            {
+                                "x": 628.3333,
+                                "y": 621.6667
+                            },
+                            {
+                                "x": 563.3333,
+                                "y": 621.6667
+                            }
+                        ]
+                    },
+                    "inferText": "cup",
+                    "inferConfidence": 0.99966955,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 633.3333,
+                                "y": 578.3333
+                            },
+                            {
+                                "x": 730.0,
+                                "y": 578.3333
+                            },
+                            {
+                                "x": 730.0,
+                                "y": 621.6667
+                            },
+                            {
+                                "x": 633.3333,
+                                "y": 621.6667
+                            }
+                        ]
+                    },
+                    "inferText": "(73g)",
+                    "inferConfidence": 0.99955237,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 295.18564,
+                                "y": 627.5208
+                            },
+                            {
+                                "x": 432.62155,
+                                "y": 633.6747
+                            },
+                            {
+                                "x": 430.99753,
+                                "y": 669.9452
+                            },
+                            {
+                                "x": 293.5616,
+                                "y": 663.7914
+                            }
+                        ]
+                    },
+                    "inferText": "Servings",
+                    "inferConfidence": 0.99972576,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 438.33334,
+                                "y": 626.6667
+                            },
+                            {
+                                "x": 500.0,
+                                "y": 626.6667
+                            },
+                            {
+                                "x": 500.0,
+                                "y": 660.0
+                            },
+                            {
+                                "x": 438.33334,
+                                "y": 660.0
+                            }
+                        ]
+                    },
+                    "inferText": "Per",
+                    "inferConfidence": 0.99908787,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 505.0,
+                                "y": 625.0
+                            },
+                            {
+                                "x": 675.0,
+                                "y": 625.0
+                            },
+                            {
+                                "x": 675.0,
+                                "y": 660.0
+                            },
+                            {
+                                "x": 505.0,
+                                "y": 660.0
+                            }
+                        ]
+                    },
+                    "inferText": "Container",
+                    "inferConfidence": 0.9999207,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 680.0,
+                                "y": 625.0
+                            },
+                            {
+                                "x": 705.0,
+                                "y": 625.0
+                            },
+                            {
+                                "x": 705.0,
+                                "y": 655.0
+                            },
+                            {
+                                "x": 680.0,
+                                "y": 655.0
+                            }
+                        ]
+                    },
+                    "inferText": "4",
+                    "inferConfidence": 0.9999711,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 88.333336,
+                                "y": 645.0
+                            },
+                            {
+                                "x": 88.333336,
+                                "y": 661.6667
+                            },
+                            {
+                                "x": 76.666664,
+                                "y": 661.6667
+                            },
+                            {
+                                "x": 76.666664,
+                                "y": 645.0
+                            }
+                        ]
+                    },
+                    "inferText": "4",
+                    "inferConfidence": 0.64514583,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 303.33334,
+                                "y": 706.6667
+                            },
+                            {
+                                "x": 406.66666,
+                                "y": 706.6667
+                            },
+                            {
+                                "x": 406.66666,
+                                "y": 730.0
+                            },
+                            {
+                                "x": 303.33334,
+                                "y": 730.0
+                            }
+                        ]
+                    },
+                    "inferText": "Amount",
+                    "inferConfidence": 0.999437,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 411.66666,
+                                "y": 706.6667
+                            },
+                            {
+                                "x": 460.0,
+                                "y": 706.6667
+                            },
+                            {
+                                "x": 460.0,
+                                "y": 733.3333
+                            },
+                            {
+                                "x": 411.66666,
+                                "y": 733.3333
+                            }
+                        ]
+                    },
+                    "inferText": "Per",
+                    "inferConfidence": 0.99198806,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 465.17783,
+                                "y": 705.4644
+                            },
+                            {
+                                "x": 575.85724,
+                                "y": 709.8048
+                            },
+                            {
+                                "x": 574.776,
+                                "y": 737.37683
+                            },
+                            {
+                                "x": 464.0966,
+                                "y": 733.03644
+                            }
+                        ]
+                    },
+                    "inferText": "Serving",
+                    "inferConfidence": 0.9988148,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 308.59796,
+                                "y": 752.5121
+                            },
+                            {
+                                "x": 442.79037,
+                                "y": 758.6117
+                            },
+                            {
+                                "x": 441.27832,
+                                "y": 791.8763
+                            },
+                            {
+                                "x": 307.08594,
+                                "y": 785.7766
+                            }
+                        ]
+                    },
+                    "inferText": "Calories",
+                    "inferConfidence": 0.9993629,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 446.66666,
+                                "y": 756.6667
+                            },
+                            {
+                                "x": 510.0,
+                                "y": 756.6667
+                            },
+                            {
+                                "x": 510.0,
+                                "y": 788.3333
+                            },
+                            {
+                                "x": 446.66666,
+                                "y": 788.3333
+                            }
+                        ]
+                    },
+                    "inferText": "210",
+                    "inferConfidence": 0.9999567,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 585.0,
+                                "y": 753.3333
+                            },
+                            {
+                                "x": 721.6667,
+                                "y": 753.3333
+                            },
+                            {
+                                "x": 721.6667,
+                                "y": 786.6667
+                            },
+                            {
+                                "x": 585.0,
+                                "y": 786.6667
+                            }
+                        ]
+                    },
+                    "inferText": "Calories",
+                    "inferConfidence": 0.99976385,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 723.3333,
+                                "y": 748.3333
+                            },
+                            {
+                                "x": 796.6667,
+                                "y": 748.3333
+                            },
+                            {
+                                "x": 796.6667,
+                                "y": 780.0
+                            },
+                            {
+                                "x": 723.3333,
+                                "y": 780.0
+                            }
+                        ]
+                    },
+                    "inferText": "from",
+                    "inferConfidence": 0.9998774,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 803.3333,
+                                "y": 741.6667
+                            },
+                            {
+                                "x": 856.6667,
+                                "y": 741.6667
+                            },
+                            {
+                                "x": 856.6667,
+                                "y": 776.6667
+                            },
+                            {
+                                "x": 803.3333,
+                                "y": 776.6667
+                            }
+                        ]
+                    },
+                    "inferText": "Fat",
+                    "inferConfidence": 0.9999199,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 856.6667,
+                                "y": 736.6667
+                            },
+                            {
+                                "x": 910.0,
+                                "y": 736.6667
+                            },
+                            {
+                                "x": 910.0,
+                                "y": 770.0
+                            },
+                            {
+                                "x": 856.6667,
+                                "y": 770.0
+                            }
+                        ]
+                    },
+                    "inferText": "170",
+                    "inferConfidence": 0.99998087,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 743.3333,
+                                "y": 810.0
+                            },
+                            {
+                                "x": 768.3333,
+                                "y": 810.0
+                            },
+                            {
+                                "x": 768.3333,
+                                "y": 833.3333
+                            },
+                            {
+                                "x": 743.3333,
+                                "y": 833.3333
+                            }
+                        ]
+                    },
+                    "inferText": "%",
+                    "inferConfidence": 0.99969,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 773.3333,
+                                "y": 805.0
+                            },
+                            {
+                                "x": 835.0,
+                                "y": 805.0
+                            },
+                            {
+                                "x": 835.0,
+                                "y": 831.6667
+                            },
+                            {
+                                "x": 773.3333,
+                                "y": 831.6667
+                            }
+                        ]
+                    },
+                    "inferText": "Daily",
+                    "inferConfidence": 0.9998989,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 835.6091,
+                                "y": 801.86115
+                            },
+                            {
+                                "x": 896.252,
+                                "y": 797.5295
+                            },
+                            {
+                                "x": 897.8426,
+                                "y": 819.7969
+                            },
+                            {
+                                "x": 837.19965,
+                                "y": 824.12854
+                            }
+                        ]
+                    },
+                    "inferText": "Value",
+                    "inferConfidence": 0.9986107,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 837.06274,
+                                "y": 843.96045
+                            },
+                            {
+                                "x": 900.9241,
+                                "y": 837.5743
+                            },
+                            {
+                                "x": 904.373,
+                                "y": 872.0628
+                            },
+                            {
+                                "x": 840.5116,
+                                "y": 878.4489
+                            }
+                        ]
+                    },
+                    "inferText": "31%",
+                    "inferConfidence": 0.99922025,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 97.66665,
+                                "y": 710.3332
+                            },
+                            {
+                                "x": 113.266655,
+                                "y": 819.5332
+                            },
+                            {
+                                "x": 100.66666,
+                                "y": 821.33325
+                            },
+                            {
+                                "x": 85.06666,
+                                "y": 712.13324
+                            }
+                        ]
+                    },
+                    "inferText": "00803",
+                    "inferConfidence": 0.9967481,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 317.09232,
+                                "y": 857.33844
+                            },
+                            {
+                                "x": 396.3846,
+                                "y": 861.7436
+                            },
+                            {
+                                "x": 394.6359,
+                                "y": 893.2204
+                            },
+                            {
+                                "x": 315.3436,
+                                "y": 888.8153
+                            }
+                        ]
+                    },
+                    "inferText": "Total",
+                    "inferConfidence": 0.9995428,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 398.33334,
+                                "y": 861.6667
+                            },
+                            {
+                                "x": 455.0,
+                                "y": 861.6667
+                            },
+                            {
+                                "x": 455.0,
+                                "y": 893.3333
+                            },
+                            {
+                                "x": 398.33334,
+                                "y": 893.3333
+                            }
+                        ]
+                    },
+                    "inferText": "Fat",
+                    "inferConfidence": 0.9999587,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 456.66666,
+                                "y": 863.3333
+                            },
+                            {
+                                "x": 521.6667,
+                                "y": 863.3333
+                            },
+                            {
+                                "x": 521.6667,
+                                "y": 903.3333
+                            },
+                            {
+                                "x": 456.66666,
+                                "y": 903.3333
+                            }
+                        ]
+                    },
+                    "inferText": "20g",
+                    "inferConfidence": 0.9999854,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 833.08813,
+                                "y": 896.81366
+                            },
+                            {
+                                "x": 896.17633,
+                                "y": 891.96075
+                            },
+                            {
+                                "x": 898.7059,
+                                "y": 924.843
+                            },
+                            {
+                                "x": 835.6176,
+                                "y": 929.6959
+                            }
+                        ]
+                    },
+                    "inferText": "50%",
+                    "inferConfidence": 0.99697906,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 371.89636,
+                                "y": 916.00024
+                            },
+                            {
+                                "x": 517.5354,
+                                "y": 921.9046
+                            },
+                            {
+                                "x": 516.2674,
+                                "y": 953.18207
+                            },
+                            {
+                                "x": 370.6284,
+                                "y": 947.2777
+                            }
+                        ]
+                    },
+                    "inferText": "Saturated",
+                    "inferConfidence": 0.99925005,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 521.6667,
+                                "y": 918.3333
+                            },
+                            {
+                                "x": 578.3333,
+                                "y": 918.3333
+                            },
+                            {
+                                "x": 578.3333,
+                                "y": 950.0
+                            },
+                            {
+                                "x": 521.6667,
+                                "y": 950.0
+                            }
+                        ]
+                    },
+                    "inferText": "Fat",
+                    "inferConfidence": 0.999914,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 583.3333,
+                                "y": 916.6667
+                            },
+                            {
+                                "x": 645.0,
+                                "y": 916.6667
+                            },
+                            {
+                                "x": 645.0,
+                                "y": 956.6667
+                            },
+                            {
+                                "x": 583.3333,
+                                "y": 956.6667
+                            }
+                        ]
+                    },
+                    "inferText": "10g",
+                    "inferConfidence": 0.99997663,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 149.70822,
+                                "y": 949.2351
+                            },
+                            {
+                                "x": 155.76498,
+                                "y": 999.7084
+                            },
+                            {
+                                "x": 146.43271,
+                                "y": 1000.8281
+                            },
+                            {
+                                "x": 140.37595,
+                                "y": 950.3549
+                            }
+                        ]
+                    },
+                    "inferText": "Fruit",
+                    "inferConfidence": 0.9996841,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 374.64105,
+                                "y": 967.8719
+                            },
+                            {
+                                "x": 460.7949,
+                                "y": 978.6412
+                            },
+                            {
+                                "x": 457.1282,
+                                "y": 1007.9744
+                            },
+                            {
+                                "x": 370.97437,
+                                "y": 997.2052
+                            }
+                        ]
+                    },
+                    "inferText": "Trans",
+                    "inferConfidence": 0.999729,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 463.33334,
+                                "y": 971.6667
+                            },
+                            {
+                                "x": 518.3333,
+                                "y": 971.6667
+                            },
+                            {
+                                "x": 518.3333,
+                                "y": 1005.0
+                            },
+                            {
+                                "x": 463.33334,
+                                "y": 1005.0
+                            }
+                        ]
+                    },
+                    "inferText": "Fat",
+                    "inferConfidence": 0.99997574,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 520.0,
+                                "y": 975.0
+                            },
+                            {
+                                "x": 565.0,
+                                "y": 975.0
+                            },
+                            {
+                                "x": 565.0,
+                                "y": 1013.3333
+                            },
+                            {
+                                "x": 520.0,
+                                "y": 1013.3333
+                            }
+                        ]
+                    },
+                    "inferText": "0g",
+                    "inferConfidence": 0.9999293,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 826.6666,
+                                "y": 1001.66656
+                            },
+                            {
+                                "x": 887.5665,
+                                "y": 992.9666
+                            },
+                            {
+                                "x": 892.03326,
+                                "y": 1024.2333
+                            },
+                            {
+                                "x": 831.13336,
+                                "y": 1032.9332
+                            }
+                        ]
+                    },
+                    "inferText": "19%",
+                    "inferConfidence": 0.9978982,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 184.69513,
+                                "y": 960.5896
+                            },
+                            {
+                                "x": 190.52846,
+                                "y": 1013.0896
+                            },
+                            {
+                                "x": 179.73576,
+                                "y": 1014.28876
+                            },
+                            {
+                                "x": 173.90244,
+                                "y": 961.78876
+                            }
+                        ]
+                    },
+                    "inferText": "Root",
+                    "inferConfidence": 0.9641271,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 335.55664,
+                                "y": 1015.2658
+                            },
+                            {
+                                "x": 508.38028,
+                                "y": 1030.294
+                            },
+                            {
+                                "x": 505.70358,
+                                "y": 1061.0756
+                            },
+                            {
+                                "x": 332.87994,
+                                "y": 1046.0475
+                            }
+                        ]
+                    },
+                    "inferText": "Cholesterol",
+                    "inferConfidence": 0.99982345,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 512.4169,
+                                "y": 1022.1644
+                            },
+                            {
+                                "x": 602.0338,
+                                "y": 1029.2394
+                            },
+                            {
+                                "x": 599.35315,
+                                "y": 1063.1945
+                            },
+                            {
+                                "x": 509.73624,
+                                "y": 1056.1195
+                            }
+                        ]
+                    },
+                    "inferText": "60mg",
+                    "inferConfidence": 0.99991673,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 841.6667,
+                                "y": 1045.0
+                            },
+                            {
+                                "x": 885.0,
+                                "y": 1045.0
+                            },
+                            {
+                                "x": 885.0,
+                                "y": 1076.6666
+                            },
+                            {
+                                "x": 841.6667,
+                                "y": 1076.6666
+                            }
+                        ]
+                    },
+                    "inferText": "4%",
+                    "inferConfidence": 0.99785626,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 166.35121,
+                                "y": 955.7045
+                            },
+                            {
+                                "x": 177.62881,
+                                "y": 1049.6847
+                            },
+                            {
+                                "x": 167.50789,
+                                "y": 1050.8993
+                            },
+                            {
+                                "x": 156.23029,
+                                "y": 956.9191
+                            }
+                        ]
+                    },
+                    "inferText": "Glycerin",
+                    "inferConfidence": 0.998651,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 206.22144,
+                                "y": 965.98663
+                            },
+                            {
+                                "x": 210.80515,
+                                "y": 1041.6179
+                            },
+                            {
+                                "x": 197.21869,
+                                "y": 1042.4413
+                            },
+                            {
+                                "x": 192.63498,
+                                "y": 966.81
+                            }
+                        ]
+                    },
+                    "inferText": "Cocoa",
+                    "inferConfidence": 0.97958887,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 229.77437,
+                                "y": 970.9384
+                            },
+                            {
+                                "x": 234.15898,
+                                "y": 1049.8616
+                            },
+                            {
+                                "x": 218.55896,
+                                "y": 1050.7283
+                            },
+                            {
+                                "x": 214.17435,
+                                "y": 971.8051
+                            }
+                        ]
+                    },
+                    "inferText": "Cocoa",
+                    "inferConfidence": 0.98846036,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 253.01971,
+                                "y": 975.714
+                            },
+                            {
+                                "x": 259.05228,
+                                "y": 1058.1589
+                            },
+                            {
+                                "x": 242.67654,
+                                "y": 1059.3572
+                            },
+                            {
+                                "x": 236.64398,
+                                "y": 976.91235
+                            }
+                        ]
+                    },
+                    "inferText": "Peanut",
+                    "inferConfidence": 0.9988183,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 339.23828,
+                                "y": 1063.296
+                            },
+                            {
+                                "x": 452.28644,
+                                "y": 1075.5175
+                            },
+                            {
+                                "x": 449.14322,
+                                "y": 1104.5922
+                            },
+                            {
+                                "x": 336.09506,
+                                "y": 1092.3707
+                            }
+                        ]
+                    },
+                    "inferText": "Sodium",
+                    "inferConfidence": 0.9990167,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 456.39108,
+                                "y": 1068.6398
+                            },
+                            {
+                                "x": 561.415,
+                                "y": 1081.4999
+                            },
+                            {
+                                "x": 557.2829,
+                                "y": 1115.2456
+                            },
+                            {
+                                "x": 452.259,
+                                "y": 1102.3855
+                            }
+                        ]
+                    },
+                    "inferText": "100mg",
+                    "inferConfidence": 0.99800444,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 833.13727,
+                                "y": 1100.8824
+                            },
+                            {
+                                "x": 878.6275,
+                                "y": 1089.51
+                            },
+                            {
+                                "x": 886.0785,
+                                "y": 1119.3138
+                            },
+                            {
+                                "x": 840.58826,
+                                "y": 1130.6863
+                            }
+                        ]
+                    },
+                    "inferText": "4%",
+                    "inferConfidence": 0.99940616,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 194.80461,
+                                "y": 1020.9886
+                            },
+                            {
+                                "x": 199.70116,
+                                "y": 1079.7471
+                            },
+                            {
+                                "x": 189.08047,
+                                "y": 1080.6321
+                            },
+                            {
+                                "x": 184.18393,
+                                "y": 1021.8736
+                            }
+                        ]
+                    },
+                    "inferText": "Fiber",
+                    "inferConfidence": 0.98736924,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 183.58086,
+                                "y": 1060.8086
+                            },
+                            {
+                                "x": 187.78877,
+                                "y": 1102.888
+                            },
+                            {
+                                "x": 177.06271,
+                                "y": 1103.9604
+                            },
+                            {
+                                "x": 172.8548,
+                                "y": 1061.8812
+                            }
+                        ]
+                    },
+                    "inferText": "Salt",
+                    "inferConfidence": 0.94445115,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 264.42624,
+                                "y": 1062.0219
+                            },
+                            {
+                                "x": 268.0055,
+                                "y": 1101.3934
+                            },
+                            {
+                                "x": 248.92082,
+                                "y": 1103.1284
+                            },
+                            {
+                                "x": 245.34157,
+                                "y": 1063.757
+                            }
+                        ]
+                    },
+                    "inferText": "Oil,",
+                    "inferConfidence": 0.9981039,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 343.33493,
+                                "y": 1112.6566
+                            },
+                            {
+                                "x": 416.5984,
+                                "y": 1124.104
+                            },
+                            {
+                                "x": 412.14175,
+                                "y": 1152.6263
+                            },
+                            {
+                                "x": 338.8783,
+                                "y": 1141.179
+                            }
+                        ]
+                    },
+                    "inferText": "Total",
+                    "inferConfidence": 0.9992267,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 416.94437,
+                                "y": 1119.3755
+                            },
+                            {
+                                "x": 629.1919,
+                                "y": 1127.4612
+                            },
+                            {
+                                "x": 627.74457,
+                                "y": 1165.4539
+                            },
+                            {
+                                "x": 415.49704,
+                                "y": 1157.368
+                            }
+                        ]
+                    },
+                    "inferText": "Carbohydrate",
+                    "inferConfidence": 0.99846596,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 633.3333,
+                                "y": 1123.3334
+                            },
+                            {
+                                "x": 690.0,
+                                "y": 1123.3334
+                            },
+                            {
+                                "x": 690.0,
+                                "y": 1158.3334
+                            },
+                            {
+                                "x": 633.3333,
+                                "y": 1158.3334
+                            }
+                        ]
+                    },
+                    "inferText": "12g",
+                    "inferConfidence": 0.9999302,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 815.9615,
+                                "y": 1151.4744
+                            },
+                            {
+                                "x": 875.25635,
+                                "y": 1139.6155
+                            },
+                            {
+                                "x": 881.4102,
+                                "y": 1170.3848
+                            },
+                            {
+                                "x": 822.11536,
+                                "y": 1182.2437
+                            }
+                        ]
+                    },
+                    "inferText": "12%",
+                    "inferConfidence": 0.9997971,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 276.2821,
+                                "y": 978.5899
+                            },
+                            {
+                                "x": 294.28207,
+                                "y": 1122.59
+                            },
+                            {
+                                "x": 273.9744,
+                                "y": 1125.1284
+                            },
+                            {
+                                "x": 255.97443,
+                                "y": 981.12836
+                            }
+                        ]
+                    },
+                    "inferText": "Ingredients:",
+                    "inferConfidence": 0.99860686,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 203.20691,
+                                "y": 1091.1838
+                            },
+                            {
+                                "x": 205.68393,
+                                "y": 1133.2931
+                            },
+                            {
+                                "x": 194.7414,
+                                "y": 1133.9368
+                            },
+                            {
+                                "x": 192.26437,
+                                "y": 1091.8276
+                            }
+                        ]
+                    },
+                    "inferText": "Egg",
+                    "inferConfidence": 0.9980248,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 217.9169,
+                                "y": 1055.7318
+                            },
+                            {
+                                "x": 225.80533,
+                                "y": 1136.5881
+                            },
+                            {
+                                "x": 213.44333,
+                                "y": 1137.7942
+                            },
+                            {
+                                "x": 205.55489,
+                                "y": 1056.9379
+                            }
+                        ]
+                    },
+                    "inferText": "Natural",
+                    "inferConfidence": 0.9995528,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 269.45395,
+                                "y": 1108.6918
+                            },
+                            {
+                                "x": 275.9727,
+                                "y": 1164.1013
+                            },
+                            {
+                                "x": 258.75998,
+                                "y": 1166.1263
+                            },
+                            {
+                                "x": 252.24121,
+                                "y": 1110.7168
+                            }
+                        ]
+                    },
+                    "inferText": "Salt),",
+                    "inferConfidence": 0.9980773,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 578.3333,
+                                "y": 1178.3334
+                            },
+                            {
+                                "x": 620.0,
+                                "y": 1178.3334
+                            },
+                            {
+                                "x": 620.0,
+                                "y": 1215.0
+                            },
+                            {
+                                "x": 578.3333,
+                                "y": 1215.0
+                            }
+                        ]
+                    },
+                    "inferText": "3g",
+                    "inferConfidence": 0.9999811,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 241.06526,
+                                "y": 1060.1031
+                            },
+                            {
+                                "x": 254.29199,
+                                "y": 1167.8062
+                            },
+                            {
+                                "x": 236.49028,
+                                "y": 1169.9923
+                            },
+                            {
+                                "x": 223.26355,
+                                "y": 1062.2892
+                            }
+                        ]
+                    },
+                    "inferText": "Erythritol,",
+                    "inferConfidence": 0.99136144,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 211.3028,
+                                "y": 1142.2708
+                            },
+                            {
+                                "x": 218.68271,
+                                "y": 1197.62
+                            },
+                            {
+                                "x": 208.52985,
+                                "y": 1198.9738
+                            },
+                            {
+                                "x": 201.14993,
+                                "y": 1143.6245
+                            }
+                        ]
+                    },
+                    "inferText": "Yolks",
+                    "inferConfidence": 0.98951197,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 396.83374,
+                                "y": 1168.4735
+                            },
+                            {
+                                "x": 496.6188,
+                                "y": 1184.3484
+                            },
+                            {
+                                "x": 492.10495,
+                                "y": 1212.7212
+                            },
+                            {
+                                "x": 392.3199,
+                                "y": 1196.8463
+                            }
+                        ]
+                    },
+                    "inferText": "Dietary",
+                    "inferConfidence": 0.9989197,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 498.87933,
+                                "y": 1177.385
+                            },
+                            {
+                                "x": 576.3563,
+                                "y": 1181.9425
+                            },
+                            {
+                                "x": 574.64954,
+                                "y": 1210.9598
+                            },
+                            {
+                                "x": 497.1725,
+                                "y": 1206.4023
+                            }
+                        ]
+                    },
+                    "inferText": "Fiber",
+                    "inferConfidence": 0.99998254,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 189.86665,
+                                "y": 1112.3999
+                            },
+                            {
+                                "x": 202.59998,
+                                "y": 1201.5332
+                            },
+                            {
+                                "x": 193.26663,
+                                "y": 1202.8666
+                            },
+                            {
+                                "x": 180.53331,
+                                "y": 1113.7333
+                            }
+                        ]
+                    },
+                    "inferText": "Peruvian",
+                    "inferConfidence": 0.9482392,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 296.36322,
+                                "y": 1131.0524
+                            },
+                            {
+                                "x": 300.6191,
+                                "y": 1209.7863
+                            },
+                            {
+                                "x": 283.55185,
+                                "y": 1210.709
+                            },
+                            {
+                                "x": 279.29596,
+                                "y": 1131.975
+                            }
+                        ]
+                    },
+                    "inferText": "Cream",
+                    "inferConfidence": 0.9871796,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 229.65202,
+                                "y": 1143.9697
+                            },
+                            {
+                                "x": 238.33163,
+                                "y": 1211.2368
+                            },
+                            {
+                                "x": 227.54352,
+                                "y": 1212.6288
+                            },
+                            {
+                                "x": 218.8639,
+                                "y": 1145.3617
+                            }
+                        ]
+                    },
+                    "inferText": "Vanilla",
+                    "inferConfidence": 0.96568185,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 222.61661,
+                                "y": 1207.2412
+                            },
+                            {
+                                "x": 227.58817,
+                                "y": 1249.4995
+                            },
+                            {
+                                "x": 217.1445,
+                                "y": 1250.7281
+                            },
+                            {
+                                "x": 212.17293,
+                                "y": 1208.4698
+                            }
+                        ]
+                    },
+                    "inferText": "Milk",
+                    "inferConfidence": 0.9977353,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 400.7537,
+                                "y": 1219.8322
+                            },
+                            {
+                                "x": 499.45322,
+                                "y": 1234.2258
+                            },
+                            {
+                                "x": 494.73795,
+                                "y": 1266.5591
+                            },
+                            {
+                                "x": 396.03842,
+                                "y": 1252.1653
+                            }
+                        ]
+                    },
+                    "inferText": "Sugars",
+                    "inferConfidence": 0.99817413,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 501.1585,
+                                "y": 1229.5732
+                            },
+                            {
+                                "x": 560.42676,
+                                "y": 1236.1586
+                            },
+                            {
+                                "x": 557.0122,
+                                "y": 1266.8904
+                            },
+                            {
+                                "x": 497.7439,
+                                "y": 1260.305
+                            }
+                        ]
+                    },
+                    "inferText": "<1g",
+                    "inferConfidence": 0.99972713,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 488.49466,
+                                "y": 1281.1814
+                            },
+                            {
+                                "x": 592.2774,
+                                "y": 1284.2336
+                            },
+                            {
+                                "x": 591.4693,
+                                "y": 1311.71
+                            },
+                            {
+                                "x": 487.68655,
+                                "y": 1308.6575
+                            }
+                        ]
+                    },
+                    "inferText": "Alcohol",
+                    "inferConfidence": 0.99867356,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 593.3333,
+                                "y": 1280.0
+                            },
+                            {
+                                "x": 633.3333,
+                                "y": 1280.0
+                            },
+                            {
+                                "x": 633.3333,
+                                "y": 1313.3334
+                            },
+                            {
+                                "x": 593.3333,
+                                "y": 1313.3334
+                            }
+                        ]
+                    },
+                    "inferText": "7g",
+                    "inferConfidence": 0.9999413,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 204.52847,
+                                "y": 1210.5985
+                            },
+                            {
+                                "x": 214.9596,
+                                "y": 1271.0989
+                            },
+                            {
+                                "x": 205.8622,
+                                "y": 1272.6675
+                            },
+                            {
+                                "x": 195.43109,
+                                "y": 1212.1671
+                            }
+                        ]
+                    },
+                    "inferText": "Caroo",
+                    "inferConfidence": 0.6901971,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 277.57626,
+                                "y": 1170.3577
+                            },
+                            {
+                                "x": 290.08417,
+                                "y": 1274.5901
+                            },
+                            {
+                                "x": 272.33966,
+                                "y": 1276.7194
+                            },
+                            {
+                                "x": 259.8318,
+                                "y": 1172.4869
+                            }
+                        ]
+                    },
+                    "inferText": "Erythritol,",
+                    "inferConfidence": 0.9860597,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 405.78925,
+                                "y": 1270.7155
+                            },
+                            {
+                                "x": 487.3208,
+                                "y": 1285.7344
+                            },
+                            {
+                                "x": 481.85083,
+                                "y": 1315.4286
+                            },
+                            {
+                                "x": 400.31927,
+                                "y": 1300.4097
+                            }
+                        ]
+                    },
+                    "inferText": "Sugar",
+                    "inferConfidence": 0.99900115,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 254.41028,
+                                "y": 1175.2821
+                            },
+                            {
+                                "x": 267.87183,
+                                "y": 1282.9744
+                            },
+                            {
+                                "x": 254.33337,
+                                "y": 1284.6666
+                            },
+                            {
+                                "x": 240.87181,
+                                "y": 1176.9744
+                            }
+                        ]
+                    },
+                    "inferText": "Sunflower",
+                    "inferConfidence": 0.99414176,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 241.26973,
+                                "y": 1220.8986
+                            },
+                            {
+                                "x": 247.45015,
+                                "y": 1284.763
+                            },
+                            {
+                                "x": 236.95705,
+                                "y": 1285.7783
+                            },
+                            {
+                                "x": 230.77663,
+                                "y": 1221.914
+                            }
+                        ]
+                    },
+                    "inferText": "Flavor",
+                    "inferConfidence": 0.9844959,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 306.98898,
+                                "y": 1219.4567
+                            },
+                            {
+                                "x": 310.52026,
+                                "y": 1286.5516
+                            },
+                            {
+                                "x": 295.38675,
+                                "y": 1287.3481
+                            },
+                            {
+                                "x": 291.85547,
+                                "y": 1220.2532
+                            }
+                        ]
+                    },
+                    "inferText": "Water,",
+                    "inferConfidence": 0.9980709,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 365.76514,
+                                "y": 1310.9556
+                            },
+                            {
+                                "x": 461.04837,
+                                "y": 1328.982
+                            },
+                            {
+                                "x": 456.696,
+                                "y": 1351.9874
+                            },
+                            {
+                                "x": 361.41275,
+                                "y": 1333.9609
+                            }
+                        ]
+                    },
+                    "inferText": "Protein",
+                    "inferConfidence": 0.9974703,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 463.33334,
+                                "y": 1328.3334
+                            },
+                            {
+                                "x": 500.0,
+                                "y": 1328.3334
+                            },
+                            {
+                                "x": 500.0,
+                                "y": 1358.3334
+                            },
+                            {
+                                "x": 463.33334,
+                                "y": 1358.3334
+                            }
+                        ]
+                    },
+                    "inferText": "3g",
+                    "inferConfidence": 0.99993193,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 795.0,
+                                "y": 1363.3334
+                            },
+                            {
+                                "x": 816.6667,
+                                "y": 1363.3334
+                            },
+                            {
+                                "x": 816.6667,
+                                "y": 1386.6666
+                            },
+                            {
+                                "x": 795.0,
+                                "y": 1386.6666
+                            }
+                        ]
+                    },
+                    "inferText": "C",
+                    "inferConfidence": 0.8190244,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 814.3139,
+                                "y": 1360.5885
+                            },
+                            {
+                                "x": 856.6669,
+                                "y": 1350.0002
+                            },
+                            {
+                                "x": 862.7452,
+                                "y": 1374.3141
+                            },
+                            {
+                                "x": 820.39233,
+                                "y": 1384.9022
+                            }
+                        ]
+                    },
+                    "inferText": "0%",
+                    "inferConfidence": 0.9996802,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 292.927,
+                                "y": 1282.4421
+                            },
+                            {
+                                "x": 297.45953,
+                                "y": 1348.164
+                            },
+                            {
+                                "x": 282.24454,
+                                "y": 1349.2134
+                            },
+                            {
+                                "x": 277.71204,
+                                "y": 1283.4915
+                            }
+                        ]
+                    },
+                    "inferText": "Fudge",
+                    "inferConfidence": 0.99962974,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 251.4018,
+                                "y": 1293.7898
+                            },
+                            {
+                                "x": 259.76367,
+                                "y": 1349.5354
+                            },
+                            {
+                                "x": 249.41322,
+                                "y": 1351.0879
+                            },
+                            {
+                                "x": 241.05136,
+                                "y": 1295.3423
+                            }
+                        ]
+                    },
+                    "inferText": "Monk",
+                    "inferConfidence": 0.966456,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 697.19653,
+                                "y": 1384.0444
+                            },
+                            {
+                                "x": 789.1125,
+                                "y": 1369.4215
+                            },
+                            {
+                                "x": 792.80347,
+                                "y": 1392.6222
+                            },
+                            {
+                                "x": 700.8875,
+                                "y": 1407.2451
+                            }
+                        ]
+                    },
+                    "inferText": "Vitamin",
+                    "inferConfidence": 0.9990951,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 269.36212,
+                                "y": 1287.042
+                            },
+                            {
+                                "x": 280.50177,
+                                "y": 1367.8043
+                            },
+                            {
+                                "x": 268.3761,
+                                "y": 1369.4769
+                            },
+                            {
+                                "x": 257.23648,
+                                "y": 1288.7146
+                            }
+                        ]
+                    },
+                    "inferText": "Lecithin",
+                    "inferConfidence": 0.99933624,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 314.50165,
+                                "y": 1292.5189
+                            },
+                            {
+                                "x": 320.5551,
+                                "y": 1363.143
+                            },
+                            {
+                                "x": 307.03537,
+                                "y": 1364.3018
+                            },
+                            {
+                                "x": 300.9819,
+                                "y": 1293.6777
+                            }
+                        ]
+                    },
+                    "inferText": "Peanut",
+                    "inferConfidence": 0.99739003,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 370.86533,
+                                "y": 1369.3312
+                            },
+                            {
+                                "x": 463.0426,
+                                "y": 1389.2614
+                            },
+                            {
+                                "x": 458.08328,
+                                "y": 1412.1982
+                            },
+                            {
+                                "x": 365.90604,
+                                "y": 1392.268
+                            }
+                        ]
+                    },
+                    "inferText": "Vitamin",
+                    "inferConfidence": 0.9983727,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 465.0,
+                                "y": 1386.6666
+                            },
+                            {
+                                "x": 485.0,
+                                "y": 1386.6666
+                            },
+                            {
+                                "x": 485.0,
+                                "y": 1410.0
+                            },
+                            {
+                                "x": 465.0,
+                                "y": 1410.0
+                            }
+                        ]
+                    },
+                    "inferText": "A",
+                    "inferConfidence": 0.99997014,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 495.75204,
+                                "y": 1388.2317
+                            },
+                            {
+                                "x": 543.8618,
+                                "y": 1393.5771
+                            },
+                            {
+                                "x": 541.11786,
+                                "y": 1418.2722
+                            },
+                            {
+                                "x": 493.00812,
+                                "y": 1412.9268
+                            }
+                        ]
+                    },
+                    "inferText": "7%",
+                    "inferConfidence": 0.9984962,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 763.88293,
+                                "y": 1417.3694
+                            },
+                            {
+                                "x": 811.1262,
+                                "y": 1409.9099
+                            },
+                            {
+                                "x": 814.3694,
+                                "y": 1430.4504
+                            },
+                            {
+                                "x": 767.12616,
+                                "y": 1437.9099
+                            }
+                        ]
+                    },
+                    "inferText": "Iron",
+                    "inferConfidence": 0.9985948,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 813.3019,
+                                "y": 1404.0568
+                            },
+                            {
+                                "x": 850.94336,
+                                "y": 1393.302
+                            },
+                            {
+                                "x": 857.1698,
+                                "y": 1415.0944
+                            },
+                            {
+                                "x": 819.52826,
+                                "y": 1425.8492
+                            }
+                        ]
+                    },
+                    "inferText": "7%",
+                    "inferConfidence": 0.99984497,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 240.0901,
+                                "y": 1333.8739
+                            },
+                            {
+                                "x": 250.13516,
+                                "y": 1394.144
+                            },
+                            {
+                                "x": 240.67569,
+                                "y": 1395.7206
+                            },
+                            {
+                                "x": 230.63062,
+                                "y": 1335.4504
+                            }
+                        ]
+                    },
+                    "inferText": "Nolate",
+                    "inferConfidence": 0.93791515,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 262.92883,
+                                "y": 1357.4197
+                            },
+                            {
+                                "x": 267.73785,
+                                "y": 1407.9141
+                            },
+                            {
+                                "x": 257.04126,
+                                "y": 1408.9329
+                            },
+                            {
+                                "x": 252.23224,
+                                "y": 1358.4385
+                            }
+                        ]
+                    },
+                    "inferText": "Fruit!",
+                    "inferConfidence": 0.9415527,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 286.33334,
+                                "y": 1379.0
+                            },
+                            {
+                                "x": 289.21567,
+                                "y": 1416.4705
+                            },
+                            {
+                                "x": 275.32352,
+                                "y": 1417.5392
+                            },
+                            {
+                                "x": 272.44116,
+                                "y": 1380.0686
+                            }
+                        ]
+                    },
+                    "inferText": "Salt",
+                    "inferConfidence": 0.9537794,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 376.96085,
+                                "y": 1412.157
+                            },
+                            {
+                                "x": 474.6079,
+                                "y": 1436.5688
+                            },
+                            {
+                                "x": 468.72552,
+                                "y": 1460.0983
+                            },
+                            {
+                                "x": 371.0785,
+                                "y": 1435.6864
+                            }
+                        ]
+                    },
+                    "inferText": "Calcium",
+                    "inferConfidence": 0.99881476,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 476.0514,
+                                "y": 1429.9232
+                            },
+                            {
+                                "x": 522.41034,
+                                "y": 1435.718
+                            },
+                            {
+                                "x": 519.3591,
+                                "y": 1460.1283
+                            },
+                            {
+                                "x": 473.00012,
+                                "y": 1454.3334
+                            }
+                        ]
+                    },
+                    "inferText": "4%",
+                    "inferConfidence": 0.99604553,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 805.566,
+                                "y": 1453.6477
+                            },
+                            {
+                                "x": 838.80505,
+                                "y": 1444.1509
+                            },
+                            {
+                                "x": 842.95593,
+                                "y": 1458.6793
+                            },
+                            {
+                                "x": 809.7169,
+                                "y": 1468.1761
+                            }
+                        ]
+                    },
+                    "inferText": "det",
+                    "inferConfidence": 0.9233312,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 326.4245,
+                                "y": 1369.4309
+                            },
+                            {
+                                "x": 329.20126,
+                                "y": 1433.2957
+                            },
+                            {
+                                "x": 313.94022,
+                                "y": 1433.959
+                            },
+                            {
+                                "x": 311.16348,
+                                "y": 1370.0942
+                            }
+                        ]
+                    },
+                    "inferText": "Butter",
+                    "inferConfidence": 0.9992898,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 749.2158,
+                                "y": 1468.5297
+                            },
+                            {
+                                "x": 804.11774,
+                                "y": 1454.8041
+                            },
+                            {
+                                "x": 807.6472,
+                                "y": 1468.9218
+                            },
+                            {
+                                "x": 752.74524,
+                                "y": 1482.6473
+                            }
+                        ]
+                    },
+                    "inferText": "calorie",
+                    "inferConfidence": 0.99734205,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 302.12866,
+                                "y": 1352.0503
+                            },
+                            {
+                                "x": 311.06165,
+                                "y": 1448.0797
+                            },
+                            {
+                                "x": 295.5755,
+                                "y": 1449.5204
+                            },
+                            {
+                                "x": 286.64252,
+                                "y": 1353.491
+                            }
+                        ]
+                    },
+                    "inferText": "(Coconut",
+                    "inferConfidence": 0.99950695,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 300.3465,
+                                "y": 1453.4653
+                            },
+                            {
+                                "x": 314.53793,
+                                "y": 1452.0461
+                            },
+                            {
+                                "x": 317.82178,
+                                "y": 1484.8845
+                            },
+                            {
+                                "x": 303.63034,
+                                "y": 1486.3036
+                            }
+                        ]
+                    },
+                    "inferText": "Oil",
+                    "inferConfidence": 0.85277885,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 597.4739,
+                                "y": 1485.064
+                            },
+                            {
+                                "x": 653.03326,
+                                "y": 1480.9484
+                            },
+                            {
+                                "x": 654.2338,
+                                "y": 1497.1556
+                            },
+                            {
+                                "x": 598.67444,
+                                "y": 1501.2712
+                            }
+                        ]
+                    },
+                    "inferText": "based",
+                    "inferConfidence": 0.99886584,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 657.2822,
+                                "y": 1483.2566
+                            },
+                            {
+                                "x": 679.43604,
+                                "y": 1480.4873
+                            },
+                            {
+                                "x": 680.795,
+                                "y": 1491.3591
+                            },
+                            {
+                                "x": 658.6412,
+                                "y": 1494.1283
+                            }
+                        ]
+                    },
+                    "inferText": "on",
+                    "inferConfidence": 0.9929708,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 683.3333,
+                                "y": 1480.0
+                            },
+                            {
+                                "x": 696.6667,
+                                "y": 1480.0
+                            },
+                            {
+                                "x": 696.6667,
+                                "y": 1493.3334
+                            },
+                            {
+                                "x": 683.3333,
+                                "y": 1493.3334
+                            }
+                        ]
+                    },
+                    "inferText": "a",
+                    "inferConfidence": 0.9993358,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 697.919,
+                                "y": 1474.8071
+                            },
+                            {
+                                "x": 749.0172,
+                                "y": 1466.9458
+                            },
+                            {
+                                "x": 751.6762,
+                                "y": 1484.2291
+                            },
+                            {
+                                "x": 700.578,
+                                "y": 1492.0905
+                            }
+                        ]
+                    },
+                    "inferText": "2,000",
+                    "inferConfidence": 0.9996325,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 380.72775,
+                                "y": 1460.1105
+                            },
+                            {
+                                "x": 450.401,
+                                "y": 1475.8431
+                            },
+                            {
+                                "x": 447.42075,
+                                "y": 1489.0411
+                            },
+                            {
+                                "x": 377.74753,
+                                "y": 1473.3085
+                            }
+                        ]
+                    },
+                    "inferText": "*Percent",
+                    "inferConfidence": 0.9801445,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 454.20584,
+                                "y": 1473.3894
+                            },
+                            {
+                                "x": 498.79752,
+                                "y": 1481.2584
+                            },
+                            {
+                                "x": 495.79416,
+                                "y": 1498.2775
+                            },
+                            {
+                                "x": 451.20248,
+                                "y": 1490.4084
+                            }
+                        ]
+                    },
+                    "inferText": "Daily",
+                    "inferConfidence": 0.9979134,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 501.76575,
+                                "y": 1480.6765
+                            },
+                            {
+                                "x": 561.1717,
+                                "y": 1486.6172
+                            },
+                            {
+                                "x": 559.68646,
+                                "y": 1501.4686
+                            },
+                            {
+                                "x": 500.28055,
+                                "y": 1495.5281
+                            }
+                        ]
+                    },
+                    "inferText": "Values",
+                    "inferConfidence": 0.99680966,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 563.3333,
+                                "y": 1486.6666
+                            },
+                            {
+                                "x": 593.3333,
+                                "y": 1486.6666
+                            },
+                            {
+                                "x": 593.3333,
+                                "y": 1500.0
+                            },
+                            {
+                                "x": 563.3333,
+                                "y": 1500.0
+                            }
+                        ]
+                    },
+                    "inferText": "are",
+                    "inferConfidence": 0.99989915,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 797.0,
+                                "y": 1521.0001
+                            },
+                            {
+                                "x": 846.5,
+                                "y": 1504.5001
+                            },
+                            {
+                                "x": 855.50006,
+                                "y": 1531.5
+                            },
+                            {
+                                "x": 806.0,
+                                "y": 1548.0001
+                            }
+                        ]
+                    },
+                    "inferText": "LLC",
+                    "inferConfidence": 0.9995526,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 251.87291,
+                                "y": 1410.9568
+                            },
+                            {
+                                "x": 261.93375,
+                                "y": 1484.7363
+                            },
+                            {
+                                "x": 251.5213,
+                                "y": 1486.1562
+                            },
+                            {
+                                "x": 241.46046,
+                                "y": 1412.3767
+                            }
+                        ]
+                    },
+                    "inferText": "Vogetab",
+                    "inferConfidence": 0.88763624,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 270.9081,
+                                "y": 1417.5632
+                            },
+                            {
+                                "x": 276.79315,
+                                "y": 1488.184
+                            },
+                            {
+                                "x": 266.58624,
+                                "y": 1489.0347
+                            },
+                            {
+                                "x": 260.7012,
+                                "y": 1418.414
+                            }
+                        ]
+                    },
+                    "inferText": "Chicory",
+                    "inferConfidence": 0.9420823,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 289.29663,
+                                "y": 1424.0916
+                            },
+                            {
+                                "x": 299.28824,
+                                "y": 1508.0212
+                            },
+                            {
+                                "x": 288.48892,
+                                "y": 1509.3069
+                            },
+                            {
+                                "x": 278.4973,
+                                "y": 1425.3772
+                            }
+                        ]
+                    },
+                    "inferText": "Dutched",
+                    "inferConfidence": 0.9954172,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 679.2579,
+                                "y": 1547.5426
+                            },
+                            {
+                                "x": 801.24976,
+                                "y": 1528.9336
+                            },
+                            {
+                                "x": 804.8545,
+                                "y": 1552.5646
+                            },
+                            {
+                                "x": 682.8626,
+                                "y": 1571.1736
+                            }
+                        ]
+                    },
+                    "inferText": "Creamery",
+                    "inferConfidence": 0.9993223,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 334.01953,
+                                "y": 1433.9214
+                            },
+                            {
+                                "x": 340.74506,
+                                "y": 1521.3528
+                            },
+                            {
+                                "x": 325.57837,
+                                "y": 1522.5194
+                            },
+                            {
+                                "x": 318.85287,
+                                "y": 1435.088
+                            }
+                        ]
+                    },
+                    "inferText": "(Peanuts,",
+                    "inferConfidence": 0.9985519,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 384.14572,
+                                "y": 1529.3768
+                            },
+                            {
+                                "x": 557.4919,
+                                "y": 1554.4156
+                            },
+                            {
+                                "x": 553.6348,
+                                "y": 1581.1178
+                            },
+                            {
+                                "x": 380.2887,
+                                "y": 1556.0789
+                            }
+                        ]
+                    },
+                    "inferText": "Manufactured",
+                    "inferConfidence": 0.9996004,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 561.6667,
+                                "y": 1555.0
+                            },
+                            {
+                                "x": 596.6667,
+                                "y": 1555.0
+                            },
+                            {
+                                "x": 596.6667,
+                                "y": 1583.3334
+                            },
+                            {
+                                "x": 561.6667,
+                                "y": 1583.3334
+                            }
+                        ]
+                    },
+                    "inferText": "by",
+                    "inferConfidence": 0.9998574,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 600.62616,
+                                "y": 1553.5635
+                            },
+                            {
+                                "x": 678.0433,
+                                "y": 1549.489
+                            },
+                            {
+                                "x": 679.3002,
+                                "y": 1573.3702
+                            },
+                            {
+                                "x": 601.88306,
+                                "y": 1577.4448
+                            }
+                        ]
+                    },
+                    "inferText": "Rebel",
+                    "inferConfidence": 0.9998912,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 503.33334,
+                                "y": 1585.0
+                            },
+                            {
+                                "x": 606.6667,
+                                "y": 1585.0
+                            },
+                            {
+                                "x": 606.6667,
+                                "y": 1598.3334
+                            },
+                            {
+                                "x": 503.33334,
+                                "y": 1598.3334
+                            }
+                        ]
+                    },
+                    "inferText": "Midwov",
+                    "inferConfidence": 0.83574104,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 611.6667,
+                                "y": 1583.3334
+                            },
+                            {
+                                "x": 651.6667,
+                                "y": 1583.3334
+                            },
+                            {
+                                "x": 651.6667,
+                                "y": 1598.3334
+                            },
+                            {
+                                "x": 611.6667,
+                                "y": 1598.3334
+                            }
+                        ]
+                    },
+                    "inferText": "UT",
+                    "inferConfidence": 0.805698,
+                    "type": "NORMAL"
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 652.6,
+                                "y": 1581.5332
+                            },
+                            {
+                                "x": 737.2999,
+                                "y": 1569.4332
+                            },
+                            {
+                                "x": 740.76666,
+                                "y": 1593.7
+                            },
+                            {
+                                "x": 656.06665,
+                                "y": 1605.7999
+                            }
+                        ]
+                    },
+                    "inferText": "84049",
+                    "inferConfidence": 0.9994249,
+                    "type": "NORMAL"
+                }
+            ]
+        }
+    ]
+}

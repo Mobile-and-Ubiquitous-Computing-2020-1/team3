@@ -1,0 +1,6 @@
+{
+    "code": "0011",
+    "message": "Request invalid: {images[0].data=반드시 최소값 0과(와) 최대값 4194304 사이의 크기이어야 합니다.}",
+    "path": "/external/v1/1755/e615e362b1e89d1821da5df6d37b0ece23079314626183a3aa1c8707e5505adc/general",
+    "timestamp": 1589009701549
+}
