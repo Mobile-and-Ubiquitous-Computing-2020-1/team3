@@ -5,6 +5,7 @@
 #### Back Eunsu, Kim Juhee, Park Seokhyeon
 
 Nutrition facts label extractor for blind people
+
 ---
 
 ## REQUIREMENTS
