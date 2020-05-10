@@ -1,0 +1,1 @@
+These inos work with hm-10 modules. (Bluetooth Low Energy 4.x) 
