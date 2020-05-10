@@ -13,9 +13,9 @@ see `./requirements.txt` (All may not be necessary)
 
 ## HOWTO
 
-test images in `./test_images`
+test images in `./test_images`\\
 crop test images and apply OCR to get nutrition fact information
 
-``cd script && ./1-crop_ocr.sh`
+`cd script && ./1-crop_ocr.sh`
 
 
