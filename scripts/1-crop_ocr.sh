@@ -6,25 +6,26 @@ RES_DIR=${PWD}/../result
 
 NT_MSG="No table!!"
 
-pushd $EXT_DIR
+pushd $EXT_DIR > /dev/null
 
 for img in ${IMG_DIR}/image_*
 do
     bname=$(basename $img)
     img_name=${bname%.*}
-    echo "processing $img_name"
+    echo -n "processing $img_name ... "
     res=$(python detection.py -i $img -c 2>/dev/null)
     #echo $res
     if [[ "$res" == *"$NT_MSG"* ]]; then
-        echo "no table"
+        echo "Failed: no table"
         continue
     fi
 
-    pushd $OCR_DIR
+    pushd $OCR_DIR > /dev/null
     python3 ocr.py --image ${EXT_DIR}/data/result/cropped.jpg
-    popd
+    echo "Succeed"
+    popd > /dev/null
     mv ${EXT_DIR}/data/result/cropped.jpg ${RES_DIR}/${img_name}_crop.jpg
     mv ${EXT_DIR}/data/result/cropped.jpg.txt ${RES_DIR}/${img_name}_res.txt
 done
 
-popd
+popd > /dev/null
