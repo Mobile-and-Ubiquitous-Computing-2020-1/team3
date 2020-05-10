@@ -19,7 +19,7 @@ def load_model():
     obj = NutritionTableDetector()
     print ("Weights Loaded!")
 
-def detect(img_path, debug):
+def detect(img_path, debug, crop_return):
     """
     @param img_path: Pathto the image for which labels to be extracted
     """
@@ -47,11 +47,18 @@ def detect(img_path, debug):
     ymax = boxes[0][0][2]*height
     xmax = boxes[0][0][3]*width
 
-    # print(xmin, ymin, xmax, ymax, scores[0][0])
+    print(xmin, ymin, xmax, ymax, scores[0][0])
     coords = (xmin, ymin, xmax, ymax)
 
     #Crop the image with the given bounding box
     cropped_image = crop(image, coords, "./data/result/output.jpg", 0, True)
+
+    if crop_return:
+        print("size: "+str(cropped_image.shape))
+        print("Cropped image and save it to ./data/result/cropped.jpg")
+        cv2.imwrite("./data/result/cropped.jpg", cropped_image)
+        return "crop and return!\n"
+
 
     #Apply several filters to the image for better results in OCR
     cropped_image = preprocess_for_ocr(cropped_image, 3)
@@ -131,12 +138,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("-i", "--image", required=True, help="path to the input image")
     ap.add_argument("-d", "--debug", action='store_true', help="print some debug info")
+    ap.add_argument("-c", "--crop", action='store_true', help="crop image and exit")
     args = ap.parse_args()
 
     load_model()
     load_text_model()
 
-    print(detect(args.image, args.debug))
+    print(detect(args.image, args.debug, args.crop))
 
 if __name__ == '__main__':
     main()
