@@ -105,7 +105,7 @@ def extract_nutri(resultdict, vlist):
             else:
                 isname = False
         else:
-            if val[0].isdigit() and not val.isdigit():
+            if (val[0].isdigit() or val[0] == '<') and not val.isdigit():
                 for unit in unit_list:
                     if val.endswith(unit):
                         values.append(val)
@@ -114,13 +114,15 @@ def extract_nutri(resultdict, vlist):
             elif val.isdigit():
                 values.append(val)
                 idx += 1
-            else:
+            elif val[0].isalpha():
                 isname = True
                 if not incl:
                     resultdict[nutriname] = values
                     values = []
                     nutriname = ""
                 incl = False
+            else:
+                idx += 1
             if idx == len(vlist):
                 resultdict[nutriname] = values
 
@@ -161,7 +163,7 @@ def extract(ocrlist):
         #print(vlist)
         extract_nutri(resultdict, vlist)
     postprocess(resultdict)
-    print(resultdict)
+    return resultdict
 
 
 

@@ -11,4 +11,9 @@ args = vars(ap.parse_args())
 img_path = args["image"]
 
 ocrdict = ocr(img_path)
-extract(ocrdict)
+resdict = extract(ocrdict)
+#print(resdict)
+with open(img_path+'.txt','w',encoding='utf-8') as outtext:
+    for key in resdict:
+        outtext.write(key + ": ")
+        outtext.write(repr(resdict[key])+"\n")

@@ -14,14 +14,14 @@ do
     img_name=${bname%.*}
     echo -n "processing $img_name ... "
     res=$(python detection.py -i $img -c 2>/dev/null)
-    #echo $res
+    echo $res
     if [[ "$res" == *"$NT_MSG"* ]]; then
         echo "Failed: no table"
         continue
     fi
 
     pushd $OCR_DIR > /dev/null
-    python3 ocr.py --image ${EXT_DIR}/data/result/cropped.jpg
+    python3 ocr_wrap.py --image ${EXT_DIR}/data/result/cropped.jpg
     echo "Succeed"
     popd > /dev/null
     mv ${EXT_DIR}/data/result/cropped.jpg ${RES_DIR}/${img_name}_crop.jpg
