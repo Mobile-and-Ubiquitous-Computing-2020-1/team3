@@ -2,6 +2,7 @@
 import argparse
 import time
 import cv2
+import sys
 
 from detect_table_class import NutritionTableDetector
 from crop import crop
@@ -10,6 +11,10 @@ from process import *
 from regex import *
 from nutrient_list import *
 from spacial_map import *
+
+# threshold to check if the image has nutrition facts table
+threshold = 0.96
+
 
 def load_model():
     """
@@ -48,6 +53,9 @@ def detect(img_path, debug, crop_return):
     xmax = boxes[0][0][3]*width
 
     print(xmin, ymin, xmax, ymax, scores[0][0])
+    if scores[0][0]<threshold:
+        print("No table!!")
+        sys.exit(0)
     coords = (xmin, ymin, xmax, ymax)
 
     #Crop the image with the given bounding box
