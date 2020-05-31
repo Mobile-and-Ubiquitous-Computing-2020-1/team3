@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#97FAF8C9"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="238dp"
+        android:layout_height="57dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="NutriSeeON"
+        android:textAlignment="center"
+        android:textColor="#255551"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35" />
+
+    <Button
+        android:id="@+id/settingButton"
+        android:layout_width="243dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="162dp"
+        android:layout_marginTop="95dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginBottom="516dp"
+        android:background="#FFC107"
+        android:fontFamily="monospace"
+        android:text="Settings"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.203" />
+
+    <Button
+        android:id="@+id/nutriButton"
+        android:layout_width="246dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="162dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginBottom="244dp"
+        android:background="#F44336"
+        android:fontFamily="monospace"
+        android:text="Get Nutritions!"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

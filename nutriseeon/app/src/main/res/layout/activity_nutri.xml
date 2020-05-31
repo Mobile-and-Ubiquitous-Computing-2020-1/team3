@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D8D0D0"
+    tools:context=".NutriActivity">
+
+    <CheckBox
+        android:id="@+id/checkBox6"
+        android:layout_width="217dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="97dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="97dp"
+        android:layout_marginBottom="16dp"
+        android:text="Protein"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox7" />
+
+    <CheckBox
+        android:id="@+id/checkBox7"
+        android:layout_width="217dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="97dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="97dp"
+        android:layout_marginBottom="16dp"
+        android:text="Carbohydrate"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+
+    <CheckBox
+        android:id="@+id/checkBox5"
+        android:layout_width="217dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="97dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="97dp"
+        android:layout_marginBottom="249dp"
+        android:text="Fat"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox6" />
+    <EditText
+        android:id="@+id/editTextTextPersonName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="66dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="66dp"
+        android:layout_marginBottom="44dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="I care about ..."
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
+
+
