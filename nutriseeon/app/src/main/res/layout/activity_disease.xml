@@ -8,7 +8,7 @@
     tools:context=".DiseaseActivity">
 
     <CheckBox
-        android:id="@+id/checkBox6"
+        android:id="@+id/checkBox2"
         android:layout_width="217dp"
         android:layout_height="40dp"
         android:layout_marginStart="97dp"
@@ -17,13 +17,13 @@
         android:layout_marginBottom="16dp"
         android:text="Obesity"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox5"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox7" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBox1" />
 
     <CheckBox
-        android:id="@+id/checkBox7"
+        android:id="@+id/checkBox1"
         android:layout_width="217dp"
         android:layout_height="40dp"
         android:layout_marginStart="97dp"
@@ -32,14 +32,14 @@
         android:layout_marginBottom="16dp"
         android:text="Diabetes"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox6"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
     <CheckBox
-        android:id="@+id/checkBox5"
+        android:id="@+id/checkBox3"
         android:layout_width="217dp"
         android:layout_height="40dp"
         android:layout_marginStart="97dp"
@@ -51,23 +51,50 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox6" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="66dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="200dp"
-        android:layout_marginEnd="66dp"
+        android:layout_marginEnd="60dp"
         android:layout_marginBottom="44dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="I have ..."
+        android:textAlignment="center"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox7"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="160dp"
+        android:text="Save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="172dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="30dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSave" />
 
 </android.support.constraint.ConstraintLayout>

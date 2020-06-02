@@ -7,8 +7,21 @@
     android:background="#D8D0D0"
     tools:context=".NutriActivity">
 
+    <Button
+        android:id="@+id/buttonSave2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="168dp"
+        android:layout_marginEnd="160dp"
+        android:text="Save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+
     <CheckBox
-        android:id="@+id/checkBox6"
+        android:id="@+id/checkBox2"
         android:layout_width="217dp"
         android:layout_height="40dp"
         android:layout_marginStart="97dp"
@@ -17,13 +30,13 @@
         android:layout_marginBottom="16dp"
         android:text="Protein"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox5"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox7" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBox1" />
 
     <CheckBox
-        android:id="@+id/checkBox7"
+        android:id="@+id/checkBox1"
         android:layout_width="217dp"
         android:layout_height="40dp"
         android:layout_marginStart="97dp"
@@ -32,14 +45,14 @@
         android:layout_marginBottom="16dp"
         android:text="Carbohydrate"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox6"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
     <CheckBox
-        android:id="@+id/checkBox5"
+        android:id="@+id/checkBox3"
         android:layout_width="217dp"
         android:layout_height="40dp"
         android:layout_marginStart="97dp"
@@ -50,8 +63,41 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox6" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+
+    <CheckBox
+        android:id="@+id/checkBox4"
+        android:layout_width="217dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="98dp"
+        android:layout_marginBottom="172dp"
+        android:text="Sodium"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+
+    <CheckBox
+        android:id="@+id/checkBox5"
+        android:layout_width="217dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="98dp"
+        android:layout_marginBottom="100dp"
+        android:text="Sugar"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox4" />
+
     <EditText
         android:id="@+id/editTextTextPersonName2"
         android:layout_width="wrap_content"
@@ -64,7 +110,7 @@
         android:inputType="textPersonName"
         android:text="I care about ..."
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox7"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
