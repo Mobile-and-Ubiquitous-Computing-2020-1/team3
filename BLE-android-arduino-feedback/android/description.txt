@@ -1,3 +1,4 @@
-This application can send feedbacks of 4 directions ( right, left, up, down) with BLE communication with HM-10 module.
+ControllerLE application can send feedbacks of 4 directions ( right, left, up, down) with BLE communication with HM-10 module.
 As a result, this app can remote arduino's 4 motors.
 It will extend to connecting 2 ble modules( watch module for a hand with product, flat board module for a hand with mobile)
+WatchController application can send feedbacks of 3 directions( far/close , flip, rotate) with auditory materials.

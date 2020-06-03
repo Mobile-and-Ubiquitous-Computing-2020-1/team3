@@ -1,0 +1,2 @@
+rootProject.name='WatchContoller'
+include ':app'
