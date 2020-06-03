@@ -17,6 +17,7 @@
         <activity android:name=".NutriActivity"></activity>
         <activity android:name=".DiseaseActivity" />
         <activity android:name=".SettingActivity" />
+        <activity android:name=".CameraActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

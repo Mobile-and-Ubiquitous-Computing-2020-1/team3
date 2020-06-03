@@ -22,13 +22,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = (Button) findViewById(R.id.settingButton);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button settingButton = (Button) findViewById(R.id.settingButton);
+        settingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
                 startActivityForResult(intent, REQUEST_CODE);
                 intent.putExtra("num", num);
+            }
+        });
+
+        Button nutriButton = (Button) findViewById(R.id.nutriButton);
+        nutriButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CameraActivity.class);
+                startActivity(intent);
             }
         });
     }
