@@ -1,6 +1,7 @@
 package com.example.nutriseeon;
 
 
+import android.content.Intent;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraManager;
@@ -15,11 +16,14 @@ public class CameraActivity extends AppCompatActivity
 
     private TextureView mTextureView;
     private Camera2APIs mCamera;
-
+    public boolean[] nutriSet;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+
+        Intent intent = getIntent();
+        nutriSet = intent.getExtras().getBooleanArray("nutriSet");
 
         mTextureView = (TextureView)findViewById(R.id.cameraView);
         mTextureView.setSurfaceTextureListener(this);

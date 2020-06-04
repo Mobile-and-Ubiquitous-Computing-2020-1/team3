@@ -13,6 +13,7 @@ import android.view.View;
 import android.content.Intent;
 import android.widget.Toast;
 
+
 public class MainActivity extends AppCompatActivity {
     private int REQUEST_CODE = 1;
     private int PERMISSION_REQUEST_CAMERA = 1001;
@@ -44,6 +45,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        Button testButton = (Button) findViewById(R.id.testButton);
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), testActivity.class);
+                intent.putExtra("nutriSet", nutriSet);
+                startActivity(intent);
+            }
+        });
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -52,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
                 Log.e("LOG", "main received");
-                boolean[] nutriSet = data.getBooleanArrayExtra("result_setting");
+                nutriSet = data.getBooleanArrayExtra("result_setting");
                 String result = "Target nutritions: \n";
                 if(nutriSet[0]) result += "\nCarbohydrate";
                 if(nutriSet[1]) result += "\nProtein";
@@ -70,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.CAMERA, Manifest.permission.BLUETOOTH,
-                    Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.ACCESS_FINE_LOCATION},
+                    Manifest.permission.BLUETOOTH_ADMIN},
                     PERMISSION_REQUEST_CAMERA);
             Toast.makeText(this,"Need permissions",Toast.LENGTH_LONG).show();
         }
