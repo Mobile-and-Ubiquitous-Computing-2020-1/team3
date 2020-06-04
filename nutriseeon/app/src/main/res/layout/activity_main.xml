@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#97FAF8C9"
+    android:background="#97EDE7AC"
     tools:context=".MainActivity">
 
     <TextView
@@ -49,16 +49,16 @@
         android:layout_width="246dp"
         android:layout_height="43dp"
         android:layout_marginStart="162dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="162dp"
-        android:layout_marginBottom="244dp"
         android:background="#F44336"
         android:fontFamily="monospace"
         android:text="Get Nutritions!"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingButton" />
 
 </android.support.constraint.ConstraintLayout>
