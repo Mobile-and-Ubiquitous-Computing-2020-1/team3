@@ -1,6 +1,10 @@
 package com.example.nutriseeon;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,17 +15,16 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private int REQUEST_CODE = 1;
+    private int PERMISSION_REQUEST_CAMERA = 1001;
     public int num = 5;
     public boolean[] nutriSet = new boolean[num];
-    private boolean[] nutriSetFromD = new boolean[num];
-    private boolean[] nutriSetFromN = new boolean[num];
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        setPermission();
         Button settingButton = (Button) findViewById(R.id.settingButton);
         settingButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), CameraActivity.class);
+                intent.putExtra("nutriSet", nutriSet);
                 startActivity(intent);
             }
         });
@@ -48,16 +52,27 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
                 Log.e("LOG", "main received");
-                boolean[] resSet = data.getBooleanArrayExtra("result_setting");
+                boolean[] nutriSet = data.getBooleanArrayExtra("result_setting");
                 String result = "Target nutritions: \n";
-                if(resSet[0]) result += "\nCarbohydrate";
-                if(resSet[1]) result += "\nProtein";
-                if(resSet[2]) result += "\nFat";
-                if(resSet[3]) result += "\nSodium";
-                if(resSet[4]) result += "\nSugar";
+                if(nutriSet[0]) result += "\nCarbohydrate";
+                if(nutriSet[1]) result += "\nProtein";
+                if(nutriSet[2]) result += "\nFat";
+                if(nutriSet[3]) result += "\nSodium";
+                if(nutriSet[4]) result += "\nSugar";
                 Log.e("LOG", "main res: "+result);
                 Toast.makeText(MainActivity.this, result, Toast.LENGTH_LONG).show();
             }
+        }
+    }
+
+    void setPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA, Manifest.permission.BLUETOOTH,
+                    Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.ACCESS_FINE_LOCATION},
+                    PERMISSION_REQUEST_CAMERA);
+            Toast.makeText(this,"Need permissions",Toast.LENGTH_LONG).show();
         }
     }
 }
