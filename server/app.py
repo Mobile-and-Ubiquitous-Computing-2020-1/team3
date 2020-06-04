@@ -6,25 +6,40 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 
-@app.route('/')
-def hello():
-    return 'API Server Test'
-    
-@app.route('/api/return')
-def hello2():
-    return 'API Server Test2'
-
-# TODO: OCR CONNECT
+# TODO: IMAGE CONNECT
 # input: image
 # output: text
 
-# @app.route('/ocr/', methods=['POST'])
-# def ocr():
-#     req = request.get_json()
+# 나중에 아래 주석처리한 걸로 세개로 나누어 질 예정
+@app.route('/image', methods=['POST'])
+def image():
+    if request.method == 'POST':
+        f = request.files['files']
+        f.save(f.filename)
+        print("Saving...")
+        return "SAVED"
+    req = request.files.get('imagefile', '')
+    print(request.get_data())
+    print(request.files)
+    request.file
+    return ("DATA: ?")
 
-# TODO: OBJECT SEGMENTATION CONNECT
-# input: image
-# output: location information
+"""
+@app.route('/ObjDet', methods=['POST'])
+def objDet():
+    # 사진 받아 오브젝트 디텍션 후 결과 리턴 (성공 결과 혹은 피드백 결과)
+    return "objDet"
+
+@app.route('/TableDet', methods=['POST'])
+def image():
+    # 사진 받아 테이블 디텍션 후 결과 리턴 (성공 결과 혹은 피드백 결과)
+    return "TableDet"
+
+@app.route('/OCR', methods=['POST'])
+def OCR():
+    # 사진 받아 OCR 후 요약 결과 리턴
+    return "OCR"
+"""
 
 if __name__=='__main__':
     # app.run() # production
