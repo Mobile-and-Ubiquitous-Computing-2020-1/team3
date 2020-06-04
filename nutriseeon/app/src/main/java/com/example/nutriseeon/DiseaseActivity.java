@@ -32,18 +32,12 @@ public class DiseaseActivity extends AppCompatActivity {
         cb3.setChecked(pref.getBoolean("check3", false));
 
         Button b = (Button)findViewById(R.id.buttonSave);
-        final TextView tv = (TextView)findViewById(R.id.textView2);
         Log.e("LOG", "setDisease created");
 
         b.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.e("LOG", "setDisease click");
-                String result = "";
-                if(cb1.isChecked()) result += cb1.getText().toString() + "\n";
-                if(cb2.isChecked()) result += cb2.getText().toString() + "\n";
-                if(cb3.isChecked()) result += cb3.getText().toString() + "\n";
-                tv.setText("Results:\n" + result);
 
                 Intent intent = new Intent();
                 if (cb1.isChecked()) {
