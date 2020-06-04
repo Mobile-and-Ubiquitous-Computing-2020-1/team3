@@ -2,6 +2,7 @@ package com.example.nutriseeon;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
@@ -12,7 +13,12 @@ import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.CaptureResult;
 import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
+import android.media.Image;
+import android.media.ImageReader;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.util.Size;
 import android.view.Surface;
 
@@ -119,7 +125,7 @@ public class Camera2APIs {
 
     public void CaptureRequest_5(CameraDevice cameraDevice, Surface surface) {
         try {
-            mPreviewRequestBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
+            mPreviewRequestBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
             mPreviewRequestBuilder.addTarget(surface);
         } catch (CameraAccessException e) {
             e.printStackTrace();
@@ -134,9 +140,15 @@ public class Camera2APIs {
 
         @Override
         public void onCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result) {
+
+
+
             super.onCaptureCompleted(session, request, result);
+
         }
     };
+
+
 
     public void closeCamera() {
         if (null != mCaptureSession) {
