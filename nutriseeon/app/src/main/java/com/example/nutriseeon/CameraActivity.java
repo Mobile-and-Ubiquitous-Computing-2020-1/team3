@@ -1,14 +1,11 @@
 package com.example.nutriseeon;
 
-<<<<<<< HEAD
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.ImageFormat;
-=======
 
 import android.content.Intent;
->>>>>>> c2a1c2c148c7cbe95a924fe45da8b6cf0c6326dd
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
@@ -56,7 +53,6 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okio.Buffer;
 
-<<<<<<< HEAD
 
 public class CameraActivity extends AppCompatActivity {
     private static final String TAG = "CameraActivity";
@@ -81,16 +77,11 @@ public class CameraActivity extends AppCompatActivity {
     private boolean mFlashSupported;
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
-=======
-    private TextureView mTextureView;
-    private Camera2APIs mCamera;
     public boolean[] nutriSet;
->>>>>>> c2a1c2c148c7cbe95a924fe45da8b6cf0c6326dd
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
-<<<<<<< HEAD
         textureView = (TextureView) findViewById(R.id.texture);
         assert textureView != null;
         textureView.setSurfaceTextureListener(textureListener);
@@ -102,16 +93,10 @@ public class CameraActivity extends AppCompatActivity {
                 takePicture();
             }
         });
-=======
 
         Intent intent = getIntent();
         nutriSet = intent.getExtras().getBooleanArray("nutriSet");
 
-        mTextureView = (TextureView)findViewById(R.id.cameraView);
-        mTextureView.setSurfaceTextureListener(this);
-
-        mCamera = new Camera2APIs(this);
->>>>>>> c2a1c2c148c7cbe95a924fe45da8b6cf0c6326dd
     }
     TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {
         @Override

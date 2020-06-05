@@ -2,14 +2,11 @@ package com.example.nutriseeon;
 
 import android.Manifest;
 import android.app.Activity;
-<<<<<<< HEAD
 import android.content.Intent;
-=======
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
->>>>>>> c2a1c2c148c7cbe95a924fe45da8b6cf0c6326dd
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
