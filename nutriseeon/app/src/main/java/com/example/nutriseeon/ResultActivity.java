@@ -5,11 +5,14 @@ import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Locale;
 
-public class ResultActivity extends AppCompatActivity {
+public class ResultActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
     private boolean[] nutriSet;
     private String[] nutriName;
@@ -30,10 +33,37 @@ public class ResultActivity extends AppCompatActivity {
 
         initialize();
         nutriText();
-        nutriTTS();
+
+        Button ttsButton = (Button) findViewById(R.id.ttsButton);
+        ttsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nutriTTS();
+            }
+        });
 
     }
+    // setup TTS
+    public void onInit(int initStatus) {
 
+        // check for successful instantiation
+        if (initStatus == TextToSpeech.SUCCESS) {
+            if (tts.isLanguageAvailable(Locale.US) == TextToSpeech.LANG_AVAILABLE)
+                tts.setLanguage(Locale.US);
+        } else if (initStatus == TextToSpeech.ERROR) {
+            Toast.makeText(this, "Sorry! Text To Speech failed...",
+                    Toast.LENGTH_LONG).show();
+        }
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if(tts !=null){
+            tts.stop();
+            tts.shutdown();
+        }
+    }
     protected void initialize() {
         tv_nutriName = (TextView) findViewById(R.id.tv_nutriName);
         tv_nutriVal = (TextView) findViewById(R.id.tv_nutriVal);
@@ -45,6 +75,14 @@ public class ResultActivity extends AppCompatActivity {
         nutriVal = intent.getStringArrayExtra("nutriVal");
         otherName = intent.getStringArrayExtra("otherName");
         otherVal = intent.getStringArrayExtra("otherVal");
+        tts=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    tts.setLanguage(Locale.ENGLISH);
+                }
+            }
+        });
     }
     protected void nutriText() {
         String nutriNameStr = "";
@@ -82,16 +120,14 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     protected void nutriTTS() {
+        Log.e("LOG", "nutriTTS");
+
         TextView tv_important = (TextView) findViewById(R.id.tv_important);
         TextView tv_other = (TextView) findViewById(R.id.tv_other);
-        tts=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if(status != TextToSpeech.ERROR) {
-                    tts.setLanguage(Locale.ENGLISH);
-                }
-            }
-        });
+
+        tts.setPitch(1.5f);
+        tts.setSpeechRate(1.0f);
+
         int nutriNum = nutriSet.length;
         int otherNum = otherName.length;
         String utteranceId=this.hashCode() + "";

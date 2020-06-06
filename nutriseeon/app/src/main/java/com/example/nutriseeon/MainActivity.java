@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private int REQUEST_CODE = 1;
     private int DEVICE_REQUEST_CODE = 10;
     private int PERMISSION_REQUEST_CAMERA = 1001;
+    private int PERMISSION_REQUEST_BLUETOOTH = 1002;
+
     public int num = 5;
     public boolean[] nutriSet = new boolean[num];
     public static final String EXTRAS_DEVICE_NAME = "DEVICE_NAME";
@@ -106,9 +108,16 @@ public class MainActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.CAMERA, Manifest.permission.BLUETOOTH,
-                    Manifest.permission.BLUETOOTH_ADMIN},
+                    new String[]{Manifest.permission.CAMERA},
                     PERMISSION_REQUEST_CAMERA);
+            Toast.makeText(this,"Need permissions",Toast.LENGTH_LONG).show();
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.BLUETOOTH, Manifest.permission.BLUETOOTH_ADMIN},
+                    PERMISSION_REQUEST_BLUETOOTH);
+
             Toast.makeText(this,"Need permissions",Toast.LENGTH_LONG).show();
         }
     }
