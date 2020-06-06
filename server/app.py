@@ -9,41 +9,45 @@ app = Flask(__name__)
 def init():
     # app.run() 실행 전에 필요한 코드 여기서 작성하기
     # 필요하다면 global variable
+    return None
 
-# TODO: IMAGE CONNECT
-# input: image
-# output: text
+# @app.route('/image', methods=['POST'])
+# def image():
+#     if request.method == 'POST':
+#         f = request.files['files']
+#         f.save(f.filename)
+#         print("Saving...")
+#         return "SAVED"
+#     req = request.files.get('imagefile', '')
+#     print(request.get_data())
+#     print(request.files)
+#     request.file
+#     return ("Feedback content", "STAGE_NAME")
 
-# 나중에 아래 주석처리한 걸로 세개로 나누어 질 예정
-@app.route('/image', methods=['POST'])
-def image():
+@app.route('/detHand', methods=['POST'])
+def detHand():
     if request.method == 'POST':
         f = request.files['files']
-        f.save(f.filename)
-        print("Saving...")
-        return "SAVED"
-    req = request.files.get('imagefile', '')
-    print(request.get_data())
-    print(request.files)
-    request.file
-    return ("DATA: ?")
+    retVal = {'feedback': 'feedback_string', 'stage': 'stage_name'}
+    return jsonify(retVal)
 
-"""
-@app.route('/ObjDet', methods=['POST'])
-def objDet():
-    # 사진 받아 오브젝트 디텍션 후 결과 리턴 (성공 결과 혹은 피드백 결과)
-    return "objDet"
+@app.route('/locHand', methods=['POST'])
+def locHand():
 
-@app.route('/TableDet', methods=['POST'])
-def image():
-    # 사진 받아 테이블 디텍션 후 결과 리턴 (성공 결과 혹은 피드백 결과)
-    return "TableDet"
+    retVal = {'feedback': 'feedback_string', 'stage': 'stage_name'}
+    return jsonify(retVal)
 
-@app.route('/OCR', methods=['POST'])
-def OCR():
-    # 사진 받아 OCR 후 요약 결과 리턴
-    return "OCR"
-"""
+@app.route('/rotate', methods=['POST'])
+def rotate():
+
+    retVal = {'feedback': 'feedback_string', 'stage': 'stage_name'}
+    return jsonify(retVal)
+
+@app.route('/flip', methods=['POST'])
+def flip():
+    
+    retVal = {'feedback': 'feedback_string', 'stage': 'stage_name'}
+    return jsonify(retVal)
 
 if __name__=='__main__':
     # app.run() # production
