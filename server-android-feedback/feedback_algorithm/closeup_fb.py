@@ -3,6 +3,8 @@
 # hand find
 # hand size control
 
+import sys
+sys.path.append('/root/Edwin/server-android-feedback/feedback_algorithm')
 from handpicker import HandPicker
 
 CLOSE = 'close'

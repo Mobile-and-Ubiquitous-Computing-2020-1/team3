@@ -1,6 +1,11 @@
 # stage 2
 
-from Box.Point import Point
+
+import sys
+sys.path.append('/root/Edwin/server-android-feedback/feedback_algorithm')
+from handpicker import HandPicker
+sys.path.append('/root/Edwin/server-android-feedback/feedback_algorithm/Box')
+from Box.point import Point
 from Box.boundary_info import BoundaryInfo
 from handpicker import HandPicker
 from Box.targetbox import TargetBox
