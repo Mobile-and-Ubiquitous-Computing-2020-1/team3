@@ -79,7 +79,8 @@ public class CameraActivity extends AppCompatActivity {
     private HandlerThread mBackgroundThread;
     public boolean[] nutriSet;
     public int camRequestTime = 10;
-
+    private String device_name = "";
+    private String device_address = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +114,8 @@ public class CameraActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         nutriSet = intent.getExtras().getBooleanArray("nutriSet");
+        device_name = intent.getStringExtra(MainActivity.EXTRAS_DEVICE_NAME);
+        device_address = intent.getStringExtra(MainActivity.EXTRAS_DEVICE_ADDRESS);
 
     }
     TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {

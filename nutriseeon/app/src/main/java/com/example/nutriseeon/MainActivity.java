@@ -54,6 +54,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), CameraActivity.class);
+                if (device_name == "" | device_address == "") {
+                    Log.e("LOG", "device_address: null");
+                    Toast.makeText(MainActivity.this, "No connected device!", Toast.LENGTH_LONG).show();
+                } else {
+                    intent.putExtra(EXTRAS_DEVICE_NAME, device_name);
+                    intent.putExtra(EXTRAS_DEVICE_ADDRESS, device_address);
+                }
                 intent.putExtra("nutriSet", nutriSet);
                 startActivity(intent);
             }
