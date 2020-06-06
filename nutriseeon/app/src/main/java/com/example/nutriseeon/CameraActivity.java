@@ -2,10 +2,9 @@ package com.example.nutriseeon;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.ImageFormat;
-
-import android.content.Intent;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
@@ -33,6 +32,9 @@ import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -89,6 +91,8 @@ public class CameraActivity extends AppCompatActivity {
         DETECT_HAND, LOCATE_HAND, ROTATE, FLIP, DONE
     }
     public ServiceState stage;
+    public JSONObject retVal = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -214,11 +218,17 @@ public class CameraActivity extends AppCompatActivity {
 
         switch(stage){
             case DETECT_HAND:
-                RequestURL = BASE_URL + "image";
+                RequestURL = BASE_URL + "detHand";
+                break;
             case LOCATE_HAND:
+                RequestURL = BASE_URL + "locHand";
+                break;
             case ROTATE:
+                RequestURL = BASE_URL + "rotate";
+                break;
             case FLIP:
-            case DONE:
+                RequestURL = BASE_URL + "flip";
+                break;
         }
 
         Request request = new Request.Builder().url(RequestURL)  // Flask server URL
@@ -242,21 +252,43 @@ public class CameraActivity extends AppCompatActivity {
             @Override public void onResponse(Call call, Response response) throws IOException {
                 netState = NetworkState.RECEIVED;
                 Log.d("NETSTATE RECEIVED : ", String.valueOf(netState));
-                Log.d("TEST : ", response.body().string());
-                // 여기서 response 받아서 처리
 
-                switch(stage){
-                    case DETECT_HAND:
-                        Log.e("STAGE?", "DETECTHAND");
-                    case LOCATE_HAND:
-                    case ROTATE:
-                    case FLIP:
-                    case DONE:
+                try {
+                    retVal = new JSONObject(response.body().string());
+                    Log.e("retFeedback", (String) retVal.get("feedback"));
+                    Log.e("retStage", (String) retVal.get("stage"));
+
+                    stage = ServiceState.valueOf((String) retVal.get("stage"));
+                    Log.e("changedStage", String.valueOf(stage));
+
+                    switch(stage) {
+                        case DETECT_HAND:
+                            Log.e("STAGE?", "DETECTHAND");
+                            break;
+                        case LOCATE_HAND:
+                            Log.e("STAGE?", "LOCATEHAND");
+                            break;
+                        case ROTATE:
+                            Log.e("STAGE?", "ROTATE");
+                            break;
+                        case FLIP:
+                            Log.e("STAGE?", "FLIP");
+                            break;
+                        case DONE:
+                            Log.e("STAGE?", "DONE");
+                            break;
+                        // result
+                    }
+
+                    netState = NetworkState.NONE;
+                    Log.d("NETSTATE RESETED : ", String.valueOf(netState));
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
 
-                netState = NetworkState.NONE;
-                Log.d("NETSTATE RESETED : ", String.valueOf(netState));
-            }
+}
         });
 
 
