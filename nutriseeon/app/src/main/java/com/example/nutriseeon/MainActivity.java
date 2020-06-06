@@ -17,23 +17,35 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private int REQUEST_CODE = 1;
+    private int DEVICE_REQUEST_CODE = 10;
     private int PERMISSION_REQUEST_CAMERA = 1001;
     public int num = 5;
     public boolean[] nutriSet = new boolean[num];
-
+    public static final String EXTRAS_DEVICE_NAME = "DEVICE_NAME";
+    public static final String EXTRAS_DEVICE_ADDRESS = "DEVICE_ADDRESS";
+    private String device_name = "";
+    private String device_address = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setPermission();
+        Button BleButton = (Button) findViewById(R.id.bleButton);
+        BleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), DeviceScanActivity.class);
+                startActivityForResult(intent, DEVICE_REQUEST_CODE);
+            }
+        });
         Button settingButton = (Button) findViewById(R.id.settingButton);
         settingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
-                startActivityForResult(intent, REQUEST_CODE);
                 intent.putExtra("num", num);
+                startActivityForResult(intent, REQUEST_CODE);
             }
         });
 
@@ -55,12 +67,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 1) {
+        if (requestCode == REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 Log.e("LOG", "main received");
                 nutriSet = data.getBooleanArrayExtra("result_setting");
@@ -72,6 +85,12 @@ public class MainActivity extends AppCompatActivity {
                 if(nutriSet[4]) result += "\nSugar";
                 Log.e("LOG", "main res: "+result);
                 Toast.makeText(MainActivity.this, result, Toast.LENGTH_LONG).show();
+            }
+        } else if (requestCode == DEVICE_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                Log.e("LOG", "main: device connected");
+                device_name = data.getStringExtra(this.EXTRAS_DEVICE_NAME);
+                device_address = data.getStringExtra(this.EXTRAS_DEVICE_ADDRESS);
             }
         }
     }
