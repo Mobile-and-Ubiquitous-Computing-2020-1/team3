@@ -81,6 +81,14 @@ public class CameraActivity extends AppCompatActivity {
     public int camRequestTime = 10;
     private String device_name = "";
     private String device_address = "";
+    public enum NetworkState{
+        NONE, REQUESTED, RECEIVED
+    }
+    public NetworkState netState;
+    public enum ServiceState{
+        DETECT_HAND, LOCATE_HAND, ROTATE, FLIP, DONE
+    }
+    public ServiceState stage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,11 +100,15 @@ public class CameraActivity extends AppCompatActivity {
         takePictureButton = (Button) findViewById(R.id.btn_takepicture);
         assert takePictureButton != null;
 
+        netState = NetworkState.NONE;
+        stage = ServiceState.DETECT_HAND;
 
         takePictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                takePicture();
+                if (netState == NetworkState.NONE) {
+                    takePicture();
+                }
             }
         });
 
@@ -106,9 +118,10 @@ public class CameraActivity extends AppCompatActivity {
             @Override
             public void run(){
                 Log.e("trigger", "every 1 sec");
-                takePicture();
+                if(netState == NetworkState.NONE){
+                    takePicture();
+                }
                 camHandler.postDelayed(this,camRequestTime * 1000);
-
             }
         }, camRequestTime * 1000);
 
@@ -189,12 +202,26 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
-    public static void send2Server(File file) {
+    // 네트워크 통신 보내는 모듈. request 보내고 response 받아서 처리 하면 될 구간
+    public void send2Server(File file) {
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("files", file.getName(), RequestBody.create(MultipartBody.FORM, file))
                 .build();
-        Request request = new Request.Builder().url("http://27.96.134.241:8080/image")  // Flask server URL
+
+        String BASE_URL = "http://27.96.134.241:8080/";
+        String RequestURL = "";
+
+        switch(stage){
+            case DETECT_HAND:
+                RequestURL = BASE_URL + "image";
+            case LOCATE_HAND:
+            case ROTATE:
+            case FLIP:
+            case DONE:
+        }
+
+        Request request = new Request.Builder().url(RequestURL)  // Flask server URL
                 .post(requestBody)
                 .build();
 
@@ -202,14 +229,38 @@ public class CameraActivity extends AppCompatActivity {
 
         OkHttpClient client = new OkHttpClient();
 
+        netState = NetworkState.REQUESTED;
+        Log.d("NETSTATE REQUESTED : ", String.valueOf(netState));
+
+
+
+
         client.newCall(request).enqueue(new Callback() {
             @Override public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
             }
             @Override public void onResponse(Call call, Response response) throws IOException {
+                netState = NetworkState.RECEIVED;
+                Log.d("NETSTATE RECEIVED : ", String.valueOf(netState));
                 Log.d("TEST : ", response.body().string());
+                // 여기서 response 받아서 처리
+
+                switch(stage){
+                    case DETECT_HAND:
+                        Log.e("STAGE?", "DETECTHAND");
+                    case LOCATE_HAND:
+                    case ROTATE:
+                    case FLIP:
+                    case DONE:
+                }
+
+                netState = NetworkState.NONE;
+                Log.d("NETSTATE RESETED : ", String.valueOf(netState));
             }
         });
+
+
+
     }
 
 
