@@ -5,6 +5,10 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
+@app.before_first_request
+def init():
+    # app.run() 실행 전에 필요한 코드 여기서 작성하기
+    # 필요하다면 global variable
 
 # TODO: IMAGE CONNECT
 # input: image
