@@ -78,6 +78,9 @@ public class CameraActivity extends AppCompatActivity {
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
     public boolean[] nutriSet;
+    public int camRequestTime = 10;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,12 +90,26 @@ public class CameraActivity extends AppCompatActivity {
         textureView.setSurfaceTextureListener(textureListener);
         takePictureButton = (Button) findViewById(R.id.btn_takepicture);
         assert takePictureButton != null;
+
+
         takePictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 takePicture();
             }
         });
+
+        final Handler camHandler = new Handler();
+
+        camHandler.postDelayed(new Runnable() {
+            @Override
+            public void run(){
+                Log.e("trigger", "every 1 sec");
+                takePicture();
+                camHandler.postDelayed(this,camRequestTime * 1000);
+
+            }
+        }, camRequestTime * 1000);
 
         Intent intent = getIntent();
         nutriSet = intent.getExtras().getBooleanArray("nutriSet");
