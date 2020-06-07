@@ -27,7 +27,6 @@ MODEL_ROOT_PATH="./pretrain/"
 IMG_PATH = os.path.join(PWD ,'hand/5.jpg')
 IMG_NAME = '5.jpg'
 DST_DIR = os.path.join(PWD ,'result')
-RESULT_FILE = ''
 
 #Load Model
 def preprocess_img(img):
