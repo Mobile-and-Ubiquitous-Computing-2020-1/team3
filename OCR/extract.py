@@ -37,6 +37,11 @@ def find(text, valdict):
         if text == word:
             return valdict[text]
     return 0
+def find_endswith(text, valdict):
+    for word in valdict:
+        if text.endswith(word):
+            return True
+    return False
 
 def find_nutri(extlist, item):
     text = item[0]
@@ -105,11 +110,15 @@ def extract_nutri(resultdict, vlist):
             else:
                 isname = False
         else:
-            if (val[0].isdigit() or val[0] == '<') and not val.isdigit():
-                for unit in unit_list:
-                    if val.endswith(unit):
-                        values.append(val)
-                        break
+            if (find_endswith(val, unit_list)):
+                if (val[0].isdigit() or val[0] == '<'):
+                    values.append(val)
+                elif (len(values) >0):
+                    prev = values.pop()
+                    if (prev.isdigit()
+                      or (prev[0] == '<' and prev[1:].isdigit())):
+                        prev += val
+                    values.append(prev)
                 idx += 1
             elif val.isdigit():
                 values.append(val)
@@ -154,6 +163,7 @@ def extract(ocrlist):
 
     update_offset(extlist)
 
+
     while len(ocrlist)>0:
         item = ocrlist.pop()
         find_sameline(extlist, item)
@@ -162,6 +172,8 @@ def extract(ocrlist):
         #    print(values[0])
         #print(vlist)
         extract_nutri(resultdict, vlist)
+
+    #find_kcal_kor(ocrlist, extlist);
     postprocess(resultdict)
     return resultdict
 

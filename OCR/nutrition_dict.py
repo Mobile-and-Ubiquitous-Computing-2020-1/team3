@@ -18,8 +18,19 @@ nutri_dict = {
     #"Calories from Fat" : 'CalroriesFromFat',
     #'Calories' : 'Calories',
 
+    '열량' : 'Calories',
+    '탄수화물' : 'Carbohydrate',
+    '단백질': 'Protein',
+    '지방': 'Fat',
+    '포화지방': 'SaturatedFat',
+    '트랜스지방': 'TransFat',
+    '식이섬유':'Fiber',
+    '당류' : 'Sugars',
+    '콜레스테롤': 'Cholestrerol',
+    '나트륨': 'Sodium',
+    '칼슘':'Calcium',
     'Fat' : 'Fat',
-    'fat' : 'fat',
+    'fat' : 'Fat',
     'Carb.' : 'Carbohydrate',
     'Carbohydrate' : 'Carbohydrate',
     'Sugars' : 'Sugars',
@@ -30,7 +41,8 @@ nutri_dict = {
     'Cholestrerol' : 'Cholestrerol',
     #'Dietary Fiber' : 'DietaryFiber',
     'Fiber' : 'Fiber',
-    'Calories' : 'Calories'
+    'Calories' : 'Calories',
+    'Calcium':'Calcium'
 }
 
 unit_list = ['mg', 'g', '%']
