@@ -16,7 +16,7 @@ def load_model():
     """
     global obj
     obj = NutritionTableDetector()
-    #print ("Weights Loaded!")
+    print ("Weights Loaded!")
 
 def detect_server(image):
     """
@@ -46,7 +46,7 @@ def detect_server(image):
     print(xmin, ymin, xmax, ymax, scores[0][0])
     if scores[0][0]<threshold:
         print("No table!!")
-        return 0
+        return False, 0
     coords = (xmin, ymin, xmax, ymax)
 
     #Crop the image with the given bounding box
@@ -56,5 +56,5 @@ def detect_server(image):
     print("Cropped image and save it to ./data/result/cropped.jpg")
 
 
-    return cropped_image
+    return True, cropped_image
 

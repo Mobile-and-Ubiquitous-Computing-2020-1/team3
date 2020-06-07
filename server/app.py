@@ -10,17 +10,18 @@ from load_hdmodel import *
 from get_interpretation import *
 import cv2
 
-sys.path.append('/root/team3/off-nutrition-table-extractor/nutrition-extractor')
+sys.path.append('/root/team3/off-nutrition-table-extractor/nutrition_extractor')
 from detection_server import *
-
+sys.path.append('/root/team3/OCR')
+from ocr_server import *
 
 app = Flask(__name__)
 model_hand = None
 
 @app.before_first_request
 def init():
-    global model_hand
-    model_hand = load_hdmodel()
+    #global model_hand
+    #model_hand = load_hdmodel()
 
     # model load check code
     '''
@@ -37,6 +38,7 @@ def init():
     print(out2)
     '''
 
+    load_model()
     # app.run() 실행 전에 필요한 코드 여기서 작성하기
     # 필요하다면 global variable
     return None
@@ -82,32 +84,41 @@ def rotate():
 
     f = request.files['files']
     img = Image.open(f.stream)
-    print(type(img))
-
+    img = img.rotate(-90)
+    img.save('pic.jpg')
+    opencv_img = cv2.cvtColor(numpy.array(img), cv2.COLOR_RGB2BGR)
+    cv2.imwrite('opencv.jpg', opencv_img)
     feedback_string = ""
     stage_name = ""
-    cropped_image = detect_server(img)
-    if (cropped_image == 0):
+    found, cropped_image = detect_server(opencv_img)
+    if not found:
         print("No table")
         feedback_string = "No table"
-        stage_name = "FLIP"
+        stage_name = "ROTATE"
         retVal = {'feedback': feedback_string, 'stage': stage_name}
         return jsonify(retVal)
 
     print("Found table")
     stage_name = "DONE"
-
-    resdict = ocr_server(img_path)
+    cropped_path = 'crop.jpg' # TODO: random name
+    cv2.imwrite(cropped_path, cropped_image)
+    
+    resdict = ocr_server(cropped_path)
+    print(resdict)
     retVal = {'feedback': json.dumps(resdict), 'stage': stage_name}
 
     return jsonify(retVal)
 
 @app.route('/flip', methods=['POST'])
 def flip():
+    f = request.files['files']
+    img = Image.open(f.stream)
+    opencv_img = numpy.array(img)
+    
     feedback_string = ""
     stage_name = ""
-    cropped_image = detect_server(image)
-    if (cropped_image == 0):
+    found, cropped_image = detect_server(image)
+    if not found:
         print("No table")
         feedback_string = "No table"
         stage_name = "FLIP"
@@ -117,11 +128,11 @@ def flip():
     print("Found table")
     stage_name = "DONE"
 
-    resdict = ocr_server(img_path)
+    resdict = ocr_server(cropped_image)
     retVal = {'feedback': json.dumps(resdict), 'stage': stage_name}
     return jsonify(retVal)
 
 if __name__=='__main__':
     # app.run() # production
     # app.run(debug=True) # for debugging purpose
-    app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8081)))
+    app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8081)), debug=True)
