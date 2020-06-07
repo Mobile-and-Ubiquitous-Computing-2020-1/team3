@@ -56,6 +56,10 @@
             </intent-filter>
 
         </activity>
+        <activity android:name=".DeviceControlActivity"
+            android:screenOrientation="fullSensor"
+            android:theme="@android:style/Theme.Holo.Light"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <service
             android:name=".BluetoothLeService"
             android:enabled="true" />
