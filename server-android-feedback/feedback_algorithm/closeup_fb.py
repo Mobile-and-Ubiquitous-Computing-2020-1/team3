@@ -31,6 +31,20 @@ def generate_closeup_fb(results, frame_size):
     else:
         return generate_sizecontrol_fb(stable_results, frame_area)
 
+def generate_closeup_fb_wb(results, frame_size):
+    assert isinstance(results, list)
+    # frame_size assert 추가
+    frame_area = frame_size[0]*frame_size[1]
+
+    # confidence 기준으로 0.6 넘는 result 만 일단 걸러내야함.
+    stable_results = HAND_PICKER.filter_uncertainty(results)
+    
+    if len(stable_results) == 0:
+        return CLOSE, stable_results
+    else:
+        return generate_sizecontrol_fb(stable_results, frame_area), stable_results
+
+
 def generate_sizecontrol_fb(stable_results, frame_area):
     hand_box, max_area = HAND_PICKER.find_hand_box(stable_results)
     upper_bound = frame_area*SIZE_UPPER_BOUND 

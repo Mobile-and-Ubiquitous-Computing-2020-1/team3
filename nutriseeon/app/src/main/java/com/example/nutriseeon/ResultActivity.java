@@ -131,23 +131,23 @@ public class ResultActivity extends AppCompatActivity implements TextToSpeech.On
         int nutriNum = nutriSet.length;
         int otherNum = otherName.length;
         String utteranceId=this.hashCode() + "";
-        tts.speak(tv_important.getText().toString(), TextToSpeech.QUEUE_FLUSH, null, utteranceId);
+        tts.speak(tv_important.getText().toString(), TextToSpeech.QUEUE_ADD, null, utteranceId);
         for (int i=0; i<nutriNum; i++) {
             if (nutriSet[i]) {
-                tts.speak(nutriName[i], TextToSpeech.QUEUE_FLUSH, null, utteranceId);
-                tts.speak(nutriVal[i], TextToSpeech.QUEUE_FLUSH, null, utteranceId);
+                tts.speak(nutriName[i], TextToSpeech.QUEUE_ADD, null, utteranceId);
+                tts.speak(nutriVal[i], TextToSpeech.QUEUE_ADD, null, utteranceId);
             }
         }
-        tts.speak(tv_other.getText().toString(), TextToSpeech.QUEUE_FLUSH, null, utteranceId);
+        tts.speak(tv_other.getText().toString(), TextToSpeech.QUEUE_ADD, null, utteranceId);
         for (int i=0; i<nutriNum; i++) {
             if (!nutriSet[i]) {
-                tts.speak(nutriName[i], TextToSpeech.QUEUE_FLUSH, null, utteranceId);
-                tts.speak(nutriVal[i], TextToSpeech.QUEUE_FLUSH, null, utteranceId);
+                tts.speak(nutriName[i], TextToSpeech.QUEUE_ADD, null, utteranceId);
+                tts.speak(nutriVal[i], TextToSpeech.QUEUE_ADD, null, utteranceId);
             }
         }
         for (int i=0; i<otherNum; i++) {
-            tts.speak(otherName[i], TextToSpeech.QUEUE_FLUSH, null, utteranceId);
-            tts.speak(otherVal[i], TextToSpeech.QUEUE_FLUSH, null, utteranceId);
+            tts.speak(otherName[i], TextToSpeech.QUEUE_ADD, null, utteranceId);
+            tts.speak(otherVal[i], TextToSpeech.QUEUE_ADD, null, utteranceId);
         }
     }
 

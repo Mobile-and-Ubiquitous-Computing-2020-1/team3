@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/ltxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp" />
+
+    <TextView
+        android:id="@+id/rtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/timeHolding"
+            android:layout_marginEnd="83dp"
+            android:text="Status:" />
+
+        <TextView
+            android:id="@+id/stateShoot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView"
+            android:text="@string/no_action" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/timeHolding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="102dp"
+        android:text="@string/timeHolding" />
+
+    <TextView
+        android:id="@+id/Slide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="527dp"
+        android:layout_marginTop="0dp"
+        android:text="/" />
+
+    <TextView
+        android:id="@+id/Inner_max_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_toEndOf="@+id/Slide"
+        android:text="--" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/right_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="right"/>
+
+        <Button
+            android:id="@+id/left_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="left"/>
+
+        <Button
+            android:id="@+id/up_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="up"/>
+
+        <Button
+            android:id="@+id/down_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="down"/>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
