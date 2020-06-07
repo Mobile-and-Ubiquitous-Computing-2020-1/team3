@@ -54,13 +54,23 @@ def init():
 def detHand():
     if request.method == 'POST':
         f = request.files['files']
-    retVal = {'feedback': 'feedback_string', 'stage': 'stage_name'}
-    return jsonify(retVal)
-
-@app.route('/locHand', methods=['POST'])
-def locHand():
-
-    retVal = {'feedback': 'feedback_string', 'stage': 'stage_name'}
+        f.save('det_'+f.filename)
+        
+        print('*********file type from app:',type(f))
+        print(f)
+        img = Image.open(f.stream)
+        oven_cv_image = numpy.array(img)
+        preprocessed_img , img_cv = preprocess_img(oven_cv_image)
+        out2 = model_hand.predict(preprocessed_img)[0]
+        results = interpret_output_yolov2(out2, oven_cv_image.shape[1], oven_cv_image.shape[0])
+        frame_size = img_cv.shape
+        fb_str = generate_closeup_fb(results,frame_size)
+        print(results)
+        print('*********file type from app:',type(f))
+        print(f)
+        print(type(fb_str))
+        print('fb_str:',fb_str)
+    retVal = {'feedback': fb_str, 'stage': 'DETECT_HAND'}
     return jsonify(retVal)
 
 @app.route('/rotate', methods=['POST'])
