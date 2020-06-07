@@ -138,6 +138,7 @@ public class ResultActivity extends AppCompatActivity implements TextToSpeech.On
                 tts.speak(nutriVal[i], TextToSpeech.QUEUE_FLUSH, null, utteranceId);
             }
         }
+
         tts.speak(tv_other.getText().toString(), TextToSpeech.QUEUE_FLUSH, null, utteranceId);
         for (int i=0; i<nutriNum; i++) {
             if (!nutriSet[i]) {
@@ -145,10 +146,10 @@ public class ResultActivity extends AppCompatActivity implements TextToSpeech.On
                 tts.speak(nutriVal[i], TextToSpeech.QUEUE_FLUSH, null, utteranceId);
             }
         }
-        for (int i=0; i<otherNum; i++) {
+        /*for (int i=0; i<otherNum; i++) {
             tts.speak(otherName[i], TextToSpeech.QUEUE_FLUSH, null, utteranceId);
             tts.speak(otherVal[i], TextToSpeech.QUEUE_FLUSH, null, utteranceId);
-        }
+        }*/
     }
 
 }

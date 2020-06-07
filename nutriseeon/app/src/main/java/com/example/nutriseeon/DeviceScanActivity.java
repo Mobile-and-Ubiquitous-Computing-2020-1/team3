@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -140,17 +141,23 @@ public class DeviceScanActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         final BluetoothDevice device = mLeDeviceListAdapter.getDevice(position);
         if (device == null) return;
-        final Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra(MainActivity.EXTRAS_DEVICE_NAME, device.getName());
-        intent.putExtra(MainActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
+//        final Intent intent = new Intent(this, MainActivity.class);
+//        intent.putExtra(MainActivity.EXTRAS_DEVICE_NAME, device.getName());
+//        intent.putExtra(MainActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
+
+        Log.e("LOG", "Device Clicked!");
+
+        final Intent intent = new Intent(this, DeviceControlActivity.class);
+        intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, device.getName());
+        intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
 
         if (mScanning) {
             mBLEScanner.stopScan(mScanCallback);
             mScanning = false;
         }
-        setResult(RESULT_OK, intent);
-        finish();
-        //startActivity(intent);
+        //setResult(RESULT_OK, intent);
+        //finish();
+        startActivity(intent);
     }
 
     private void scanLeDevice(final boolean enable) {
