@@ -44,8 +44,8 @@ def ocr(img_path):
         data = json.dumps(data)
         response = requests.post(URL, data=data, headers=headers)
         res = json.loads(response.text)
-        with open(img_path+'.json', 'w', encoding='utf-8') as outfile:
-            json.dump(res, outfile, indent=4, ensure_ascii=False)
+        #with open(img_path+'.json', 'w', encoding='utf-8') as outfile:
+        #    json.dump(res, outfile, indent=4, ensure_ascii=False)
 
         ocrdict=[]
         textlist=[]

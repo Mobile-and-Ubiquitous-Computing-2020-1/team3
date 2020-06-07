@@ -20,12 +20,16 @@ do
         continue
     fi
 
-    pushd $OCR_DIR > /dev/null
-    python3 ocr_wrap.py --image ${EXT_DIR}/data/result/cropped.jpg
-    echo "Succeed"
-    popd > /dev/null
     mv ${EXT_DIR}/data/result/cropped.jpg ${RES_DIR}/${img_name}_crop.jpg
-    mv ${EXT_DIR}/data/result/cropped.jpg.txt ${RES_DIR}/${img_name}_res.txt
+done
+
+success=0
+for img in ${RES_DIR}/image_*
+do
+    pushd $OCR_DIR > /dev/null
+    python3 ocr_wrap.py --image $img -e
+    popd > /dev/null
+    break
 done
 
 popd > /dev/null
