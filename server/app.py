@@ -10,6 +10,10 @@ from load_hdmodel import *
 from get_interpretation import *
 import cv2
 
+sys.path.append('/root/team3/off-nutrition-table-extractor/nutrition-extractor')
+from detection_server import *
+
+
 app = Flask(__name__)
 model_hand = None
 
@@ -17,7 +21,7 @@ model_hand = None
 def init():
     global model_hand
     model_hand = load_hdmodel()
-    
+
     # model load check code
     '''
     img_path = '/root/Edwin/hand-detection-YoloKeras/hand/5.jpg'
@@ -32,7 +36,7 @@ def init():
     print('prediction time:',end-start)
     print(out2)
     '''
-    
+
     # app.run() 실행 전에 필요한 코드 여기서 작성하기
     # 필요하다면 global variable
     return None
@@ -55,7 +59,7 @@ def detHand():
     if request.method == 'POST':
         f = request.files['files']
         f.save('det_'+f.filename)
-        
+
         print('*********file type from app:',type(f))
         print(f)
         img = Image.open(f.stream)
@@ -76,16 +80,48 @@ def detHand():
 @app.route('/rotate', methods=['POST'])
 def rotate():
 
-    retVal = {'feedback': 'feedback_string', 'stage': 'stage_name'}
+    f = request.files['files']
+    img = Image.open(f.stream)
+    print(type(img))
+
+    feedback_string = ""
+    stage_name = ""
+    cropped_image = detect_server(img)
+    if (cropped_image == 0):
+        print("No table")
+        feedback_string = "No table"
+        stage_name = "FLIP"
+        retVal = {'feedback': feedback_string, 'stage': stage_name}
+        return jsonify(retVal)
+
+    print("Found table")
+    stage_name = "DONE"
+
+    resdict = ocr_server(img_path)
+    retVal = {'feedback': json.dumps(resdict), 'stage': stage_name}
+
     return jsonify(retVal)
 
 @app.route('/flip', methods=['POST'])
 def flip():
-    
-    retVal = {'feedback': 'feedback_string', 'stage': 'stage_name'}
+    feedback_string = ""
+    stage_name = ""
+    cropped_image = detect_server(image)
+    if (cropped_image == 0):
+        print("No table")
+        feedback_string = "No table"
+        stage_name = "FLIP"
+        retVal = {'feedback': feedback_string, 'stage': stage_name}
+        return jsonify(retVal)
+
+    print("Found table")
+    stage_name = "DONE"
+
+    resdict = ocr_server(img_path)
+    retVal = {'feedback': json.dumps(resdict), 'stage': stage_name}
     return jsonify(retVal)
 
 if __name__=='__main__':
     # app.run() # production
     # app.run(debug=True) # for debugging purpose
-    app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8080)))
+    app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8081)))
