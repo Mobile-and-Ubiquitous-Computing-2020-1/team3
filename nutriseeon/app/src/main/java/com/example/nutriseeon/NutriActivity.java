@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 public class NutriActivity extends AppCompatActivity {
+    MainActivity.Nutritions[] nutritions = MainActivity.Nutritions.values();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +42,15 @@ public class NutriActivity extends AppCompatActivity {
 
                 Intent intent = new Intent();
                 if (cb1.isChecked())
-                    intent.putExtra("Carbohydrate", true);
+                    intent.putExtra(String.valueOf(MainActivity.Nutritions.CARBOHYDRATES), true);
                 if (cb2.isChecked())
-                    intent.putExtra("Protein", true);
+                    intent.putExtra(String.valueOf(MainActivity.Nutritions.PROTEIN), true);
                 if (cb3.isChecked())
-                    intent.putExtra("Fat", true);
+                    intent.putExtra(String.valueOf(MainActivity.Nutritions.FAT), true);
                 if (cb4.isChecked())
-                    intent.putExtra("Sodium", true);
+                    intent.putExtra(String.valueOf(MainActivity.Nutritions.SODIUM), true);
                 if (cb5.isChecked())
-                    intent.putExtra("Sugar", true);
+                    intent.putExtra(String.valueOf(MainActivity.Nutritions.SUGARS), true);
                 setResult(RESULT_OK, intent);
                 finish();
             } // end onClick

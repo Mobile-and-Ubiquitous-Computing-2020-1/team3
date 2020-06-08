@@ -15,14 +15,14 @@ import java.util.Locale;
 public class ResultActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
     private boolean[] nutriSet;
-    private String[] nutriName;
     private String[] nutriVal;
-    private String[] otherName;
-    private String[] otherVal;
     private TextView tv_nutriName;
     private TextView tv_nutriVal;
     private TextView tv_otherName;
     private TextView tv_otherVal;
+    private int numSummary = 0;
+    MainActivity.Nutritions[] nutritions = MainActivity.Nutritions.values();
+
     TextToSpeech tts;
 
     @Override
@@ -59,7 +59,7 @@ public class ResultActivity extends AppCompatActivity implements TextToSpeech.On
     protected void onDestroy() {
         super.onDestroy();
 
-        if(tts !=null){
+        if(tts != null){
             tts.stop();
             tts.shutdown();
         }
@@ -70,12 +70,9 @@ public class ResultActivity extends AppCompatActivity implements TextToSpeech.On
         tv_otherName = (TextView) findViewById(R.id.tv_otherName);
         tv_otherVal = (TextView) findViewById(R.id.tv_otherVal);
         Intent intent = getIntent();
-        nutriSet = intent.getBooleanArrayExtra("nutriSet");
-        nutriName = intent.getStringArrayExtra("nutriName");
+        nutriSet = SettingActivity.nutriSet;
         nutriVal = intent.getStringArrayExtra("nutriVal");
-        otherName = intent.getStringArrayExtra("otherName");
-        otherVal = intent.getStringArrayExtra("otherVal");
-        tts=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+        tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
                 if(status != TextToSpeech.ERROR) {
@@ -91,27 +88,24 @@ public class ResultActivity extends AppCompatActivity implements TextToSpeech.On
         String otherValStr = "";
         String spaces = "      ";
         int nutriNum = nutriSet.length;
-        int otherNum = otherName.length;
 
         for (int i=0; i<nutriNum; i++) {
-            if (nutriSet[i]) {
-                nutriNameStr += nutriName[i];
-                nutriNameStr += "\n";
-                nutriValStr += nutriVal[i];
-                nutriValStr += "\n";
-            } else {
-                otherNameStr += nutriName[i];
-                otherNameStr += "\n";
-                otherValStr += nutriVal[i];
-                otherValStr += "\n";
+            if (nutriVal[i] != "") {
+                if (nutriSet[i]) {
+                    nutriNameStr += nutritions[i].getName();
+                    nutriNameStr += "\n";
+                    nutriValStr += nutriVal[i];
+                    nutriValStr += "\n";
+                    numSummary += 1;
+                } else {
+                    otherNameStr += nutritions[i].getName();
+                    otherNameStr += "\n";
+                    otherValStr += nutriVal[i];
+                    otherValStr += "\n";
+                }
             }
         }
-        for (int i=0; i<otherNum; i++) {
-            otherNameStr += otherName[i];
-            otherNameStr += "\n";
-            otherValStr += otherVal[i];
-            otherValStr += "\n";
-        }
+
 
         tv_nutriName.setText(nutriNameStr);
         tv_nutriVal.setText(nutriValStr);
@@ -128,27 +122,23 @@ public class ResultActivity extends AppCompatActivity implements TextToSpeech.On
         tts.setPitch(1.5f);
         tts.setSpeechRate(1.0f);
 
-        int nutriNum = nutriSet.length;
-        int otherNum = otherName.length;
+        int numNutri = nutriSet.length;
         String utteranceId=this.hashCode() + "";
         tts.speak(tv_important.getText().toString(), TextToSpeech.QUEUE_ADD, null, utteranceId);
-        for (int i=0; i<nutriNum; i++) {
-            if (nutriSet[i]) {
-                tts.speak(nutriName[i], TextToSpeech.QUEUE_ADD, null, utteranceId);
+        for (int i=0; i<numNutri; i++) {
+            if (nutriSet[i] && nutriVal[i] != "") {
+                tts.speak(nutritions[i].getName(), TextToSpeech.QUEUE_ADD, null, utteranceId);
                 tts.speak(nutriVal[i], TextToSpeech.QUEUE_ADD, null, utteranceId);
             }
         }
         tts.speak(tv_other.getText().toString(), TextToSpeech.QUEUE_ADD, null, utteranceId);
-        for (int i=0; i<nutriNum; i++) {
-            if (!nutriSet[i]) {
-                tts.speak(nutriName[i], TextToSpeech.QUEUE_ADD, null, utteranceId);
+        for (int i=0; i<numNutri; i++) {
+            if (!nutriSet[i] && nutriVal[i] != "") {
+                tts.speak(nutritions[i].getName(), TextToSpeech.QUEUE_ADD, null, utteranceId);
                 tts.speak(nutriVal[i], TextToSpeech.QUEUE_ADD, null, utteranceId);
             }
         }
-        for (int i=0; i<otherNum; i++) {
-            tts.speak(otherName[i], TextToSpeech.QUEUE_ADD, null, utteranceId);
-            tts.speak(otherVal[i], TextToSpeech.QUEUE_ADD, null, utteranceId);
-        }
+
     }
 
 }

@@ -27,7 +27,7 @@ def generate_closeup_fb(results, frame_size):
     stable_results = HAND_PICKER.filter_uncertainty(results)
     
     if len(stable_results) == 0:
-        return CLOSE
+        return FAR
     else:
         return generate_sizecontrol_fb(stable_results, frame_area)
 
@@ -40,7 +40,7 @@ def generate_closeup_fb_wb(results, frame_size):
     stable_results = HAND_PICKER.filter_uncertainty(results)
     
     if len(stable_results) == 0:
-        return CLOSE, stable_results
+        return FAR, stable_results
     else:
         return generate_sizecontrol_fb(stable_results, frame_area), stable_results
 

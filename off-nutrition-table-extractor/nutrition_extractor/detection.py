@@ -6,11 +6,7 @@ import sys
 import os.path
 from detect_table_class import NutritionTableDetector
 from crop import crop
-from text_detection import text_detection, load_text_model
-from process import *
-from regex import *
 from nutrient_list import *
-from spacial_map import *
 
 # threshold to check if the image has nutrition facts table
 threshold = 0.96

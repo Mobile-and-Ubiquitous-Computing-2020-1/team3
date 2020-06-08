@@ -15,13 +15,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class SettingActivity extends AppCompatActivity {
+    MainActivity.Nutritions[] nutritions = MainActivity.Nutritions.values();
+    public static boolean[] nutriSet = new boolean[MainActivity.Nutritions.values().length];
     private int REQUEST_DISEASE = 2;
     private int REQUEST_NUTRI = 3;
 
-    private int num = 5;
-    private boolean[] nutriSet = new boolean[num];
-    private boolean[] nutriSetFromD = new boolean[num];
-    private boolean[] nutriSetFromN = new boolean[num];
+    private boolean[] nutriSetFromD = new boolean[nutriSet.length];
+    private boolean[] nutriSetFromN = new boolean[nutriSet.length];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,22 +55,17 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     private void mergeResults() {
-        for (int i=0; i<num; i++) {
+        for (int i=0; i<nutriSet.length; i++) {
             nutriSet[i] = nutriSetFromD[i] || nutriSetFromN[i];
         }
     }
     private void updateFromResult(boolean[] resArr, Intent data) {
         Arrays.fill(resArr, false);
-        if (data.getBooleanExtra("Carbohydrate", false))
-            resArr[0] = true;
-        if (data.getBooleanExtra("Protein", false))
-            resArr[1] = true;
-        if (data.getBooleanExtra("Fat", false))
-            resArr[2] = true;
-        if (data.getBooleanExtra("Sodium", false))
-            resArr[3] = true;
-        if (data.getBooleanExtra("Sugar", false))
-            resArr[4] = true;
+        for (int i=0; i<nutriSet.length; i++) {
+            if (data.getBooleanExtra(String.valueOf(nutritions[i]),
+                    false))
+                resArr[i] = true;
+        }
         mergeResults();
     }
     @Override
@@ -96,11 +91,12 @@ public class SettingActivity extends AppCompatActivity {
 
     void printNutri() {
         String result = "Target nutritions: \n";
-        if(nutriSet[0]) result += "\nCarbohydrate";
-        if(nutriSet[1]) result += "\nProtein";
-        if(nutriSet[2]) result += "\nFat";
-        if(nutriSet[3]) result += "\nSodium";
-        if(nutriSet[4]) result += "\nSugar";
+        for(int i=0; i<nutriSet.length; i++){
+            if (nutriSet[i]) {
+                result += "\n";
+                result += nutritions[i].getName();
+            }
+        }
         Log.e("LOG", "main res: "+result);
         Toast.makeText(SettingActivity.this, result, Toast.LENGTH_LONG).show();
     }
@@ -108,24 +104,12 @@ public class SettingActivity extends AppCompatActivity {
         Log.e("LOG", "setting return");
         SharedPreferences pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
-        editor.putBoolean("nutri0", nutriSet[0]);
-        editor.putBoolean("nutri1", nutriSet[1]);
-        editor.putBoolean("nutri2", nutriSet[2]);
-        editor.putBoolean("nutri3", nutriSet[3]);
-        editor.putBoolean("nutri4", nutriSet[4]);
+        for (int i=0; i<nutriSet.length; i++) {
+            editor.putBoolean(String.valueOf(nutritions[i]), nutriSet[i]);
+        }
         editor.apply();
+        printNutri();
         Intent intentSetting = new Intent();
-
-        String result = "";
-        if(nutriSet[0]) result += "Carbohydrate\n";
-        if(nutriSet[1]) result += "Protein\n";
-        if(nutriSet[2]) result += "Fat\n";
-        if(nutriSet[3]) result += "Sodium\n";
-        if(nutriSet[4]) result += "Sugar\n";
-        Log.e("LOG", "setting res: "+result);
-
-        intentSetting.putExtra("result_msg", "here it goes");
-        intentSetting.putExtra("result_setting", nutriSet);
         setResult(RESULT_OK, intentSetting);
         finish();
     }
