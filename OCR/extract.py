@@ -136,25 +136,22 @@ def extract_nutri(resultdict, vlist):
                 resultdict[nutriname] = values
 
 # Remove wrong fields
-def postprocess(resultdict):
+def postprocess(inputdict):
 
-    removekey = []
-    for val in resultdict:
-        found = False
+    print(inputdict)
+    resultdict = {}
+    for val in inputdict:
         for nutrival in nutri_dict:
             if val.find(nutri_dict[nutrival])>=0:
-                found = True
+                resultdict[nutri_dict[nutrival]] = inputdict[val][0]
                 break
-        if not found:
-            removekey.append(val)
-    for key in removekey:
-        #print("delete " +repr(key))
 
-        del resultdict[key]
 
     print(resultdict)
-    for val in resultdict:
-        resultdict[val] = resultdict[val][0]
+    #for val in resultdict:
+    #    resultdict[val] = resultdict[val][0]
+
+    return resultdict
 
 
 def extract(ocrlist):
