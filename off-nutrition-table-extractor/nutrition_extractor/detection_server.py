@@ -8,6 +8,8 @@ from nutrient_list import *
 
 # threshold to check if the image has nutrition facts table
 threshold = 0.96
+left_threshold = 0.05
+bot_threshold = 0.01
 test = 1
 
 def table_load_model():
@@ -39,9 +41,9 @@ def detect_server(image):
 
     #Select the bounding box with most confident output
     ymin = boxes[0][0][0]*height
-    xmin = boxes[0][0][1]*width
+    xmin = boxes[0][0][1]*width*(1-left_threshold)
     ymax = boxes[0][0][2]*height
-    xmax = boxes[0][0][3]*width
+    xmax = boxes[0][0][3]*width*(1+bot_threshold)
 
     print(xmin, ymin, xmax, ymax, scores[0][0])
     if scores[0][0]<threshold:

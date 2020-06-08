@@ -136,4 +136,4 @@ def flip():
 if __name__=='__main__':
     # app.run() # production
     # app.run(debug=True) # for debugging purpose
-    app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8081)) ,debug = False, threaded = False)
+    app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8080)) ,debug = False, threaded = False)

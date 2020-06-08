@@ -227,7 +227,7 @@ public class CameraActivity extends AppCompatActivity {
                 .addFormDataPart("files", file.getName(), RequestBody.create(MultipartBody.FORM, file))
                 .build();
 
-        String BASE_URL = "http://27.96.134.241:8081/";
+        String BASE_URL = "http://27.96.134.241:8080/";
         String RequestURL = "";
 
         switch (stage) {
