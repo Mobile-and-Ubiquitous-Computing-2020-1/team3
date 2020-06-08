@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private String device_address = "";
 
     public enum Nutritions implements CharSequence {
-        CARBOHYDRATES("Carbohydrates"),
+        CARBOHYDRATES("Carbohydrate"),
         PROTEIN("Protein"),
         FAT("Fat"),
         SODIUM("Sodium"),

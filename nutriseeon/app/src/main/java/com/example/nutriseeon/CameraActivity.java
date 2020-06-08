@@ -292,8 +292,10 @@ public class CameraActivity extends AppCompatActivity {
                             break;
                         case DONE:
                             Log.e("STAGE?", "DONE");
+                            
+                            JSONObject nutriObj = new JSONObject((String) retVal.get("feedback"));
                             camHandler.removeCallbacksAndMessages(null);
-                            String[] nutriVal = androidResponse.Done(SettingActivity.nutriSet, retVal);
+                            String[] nutriVal = androidResponse.Done(SettingActivity.nutriSet, nutriObj);
                             Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
                             intent.putExtra("nutriVal", nutriVal);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
