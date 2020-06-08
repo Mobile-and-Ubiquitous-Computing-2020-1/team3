@@ -10,7 +10,7 @@ from nutrient_list import *
 threshold = 0.96
 test = 1
 
-def load_model():
+def table_load_model():
     """
     load trained weights for the model
     """

@@ -152,6 +152,7 @@ def postprocess(resultdict):
 
         del resultdict[key]
 
+    print(resultdict)
     for val in resultdict:
         resultdict[val] = resultdict[val][0]
 

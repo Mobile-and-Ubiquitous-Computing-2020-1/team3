@@ -12,7 +12,7 @@ from nutrient_list import *
 threshold = 0.96
 test = 1
 
-def load_model():
+def table_load_model():
     """
     load trained weights for the model
     """
@@ -88,7 +88,7 @@ def main():
     ap.add_argument("-e", "--eval", action='store_true', help="print elapsed time info")
     args = ap.parse_args()
 
-    load_model()
+    table_load_model()
 
 
     if (args.eval):

@@ -33,6 +33,9 @@ def init():
     # model load check code
     # app.run() 실행 전에 필요한 코드 여기서 작성하기
     # 필요하다면 global variable
+
+    table_load_model()
+
     return None
 
 # @app.route('/image', methods=['POST'])
@@ -133,4 +136,4 @@ def flip():
 if __name__=='__main__':
     # app.run() # production
     # app.run(debug=True) # for debugging purpose
-    app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8080)) ,debug = False, threaded = False)
+    app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8081)) ,debug = False, threaded = False)
