@@ -6,6 +6,7 @@ import tensorflow as tf
 import sys
 sys.path.append('/root/Edwin/server-android-feedback')
 from feedback_algorithm.closeup_fb import *
+from feedback_algorithm.locateframe_fb import *
 sys.path.append('/root/Edwin/hand-detection-YoloKeras')
 from load_hdmodel import *
 from get_interpretation import *
@@ -33,7 +34,7 @@ def init():
     # model load check code
     # app.run() 실행 전에 필요한 코드 여기서 작성하기
     # 필요하다면 global variable
-
+    load_model()
     table_load_model()
 
     return None
@@ -74,10 +75,15 @@ def detHand():
  
         results = interpret_output_yolov2(out2, oven_cv_image.shape[1], oven_cv_image.shape[0])
         frame_size = img_cv.shape
-        fb_str = generate_closeup_fb(results,frame_size)
+        fb_str = generate_closeup_fb(results,frame_size) # 'CLOSE', 'FAR' 
+        if fb_str == 'Stage 1 clear':
+            fb_str = generate_locateframe_fb(results,frame_size) # 'LEFT', 'RIGHT' , 'DOWN' ,'UP', 'location clear'
         print('fb_str:',fb_str)
         
     retVal = {'feedback': fb_str, 'stage': 'DETECT_HAND'}
+    if fb_str == 'location clear':
+        retVal['stage'] = "ROTATE"
+    print(retVal)
     return jsonify(retVal)
 
 @app.route('/rotate', methods=['POST'])

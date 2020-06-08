@@ -7,8 +7,8 @@ import sys
 sys.path.append('/root/Edwin/server-android-feedback/feedback_algorithm')
 from handpicker import HandPicker
 
-CLOSE = 'close'
-FAR = 'far'
+CLOSE = 'CLOSE'
+FAR = 'FAR'
 STAGE_CLEAR = 'Stage 1 clear'
 
 CONFIDENCE_HAND = 0.6 # 데이터 실험해보고 바꿔야 함.
