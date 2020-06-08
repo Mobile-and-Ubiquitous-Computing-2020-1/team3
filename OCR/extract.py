@@ -135,6 +135,7 @@ def extract_nutri(resultdict, vlist):
             if idx == len(vlist):
                 resultdict[nutriname] = values
 
+# Remove wrong fields
 def postprocess(resultdict):
 
     removekey = []
@@ -150,6 +151,9 @@ def postprocess(resultdict):
         #print("delete " +repr(key))
 
         del resultdict[key]
+
+    for val in resultdict:
+        resultdict[val] = resultdict[val][0]
 
 
 def extract(ocrlist):
