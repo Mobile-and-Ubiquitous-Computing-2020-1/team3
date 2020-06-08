@@ -19,10 +19,10 @@ Y_LOWER_BOUND = 0.6
 
 STAGE_CLEAR = 'location clear'
 STAGE_BACK = 'go stage 1'
-LEFT = 'left'
-RIGHT ='right'
-SOUTH = 'down'
-NORTH = 'up'
+LEFT = 'LEFT'
+RIGHT ='RIGHT'
+SOUTH = 'DOWN'
+NORTH = 'UP'
 
 BOUNDARIES = BoundaryInfo(X_LOWER_BOUND, Y_LOWER_BOUND, X_UPPER_BOUND, Y_UPPER_BOUND)
 HAND_PICKER = HandPicker(CONFIDENCE_HAND)
