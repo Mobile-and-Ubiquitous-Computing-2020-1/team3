@@ -25,9 +25,11 @@ public class AndroidResponse {
         this.ctx = context;
     }
 
-    void Done(boolean[] nutriSet, JSONObject retVal) throws JSONException {
+    String[] Done(boolean[] nutriSet, JSONObject retVal) throws JSONException {
+        Log.e("LOG", "Response Done");
 
         String[] nutriVal = new String[MainActivity.Nutritions.values().length];
+
         for (int i=0; i<nutritions.length; i++){
             try {
                 nutriVal[i] = retVal.getString(nutritions[i].getName());
@@ -35,10 +37,7 @@ public class AndroidResponse {
                 nutriVal[i] = "";
             }
         }
-
-        Intent intent = new Intent(ctx, ResultActivity.class);
-        intent.putExtra("nutriVal", nutriVal);
-        ctx.startActivity(intent);
+        return nutriVal;
 
     }
 }

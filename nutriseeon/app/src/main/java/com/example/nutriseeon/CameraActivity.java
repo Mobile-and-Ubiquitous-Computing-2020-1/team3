@@ -98,6 +98,7 @@ public class CameraActivity extends AppCompatActivity {
 
     public ServiceState stage;
     public JSONObject retVal = null;
+    Handler camHandler;
 
 
     @Override
@@ -122,13 +123,13 @@ public class CameraActivity extends AppCompatActivity {
             }
         });
 
-        final Handler camHandler = new Handler();
+        camHandler = new Handler();
 
         camHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 Log.e("trigger", "every 1 sec");
-                if (netState == NetworkState.NONE) {
+                if (netState == NetworkState.NONE ) {
                     takePicture();
                 }
                 camHandler.postDelayed(this, camRequestTime * 1000);
@@ -291,9 +292,13 @@ public class CameraActivity extends AppCompatActivity {
                             break;
                         case DONE:
                             Log.e("STAGE?", "DONE");
-                            androidResponse.Done(SettingActivity.nutriSet, retVal);
+                            camHandler.removeCallbacksAndMessages(null);
+                            String[] nutriVal = androidResponse.Done(SettingActivity.nutriSet, retVal);
+                            Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
+                            intent.putExtra("nutriVal", nutriVal);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
                             finish();
-                            break;
                         // result
                     }
 
