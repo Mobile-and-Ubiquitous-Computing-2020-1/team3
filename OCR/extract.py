@@ -86,10 +86,10 @@ def find_sameline(extlist, item):
     left = (item[1][0]['x']+item[1][3]['x'])/2
     right = (item[1][1]['x']+item[1][2]['x'])/2
     added=False
-    print(" %s : %f %f %f" % (text, left, right, low))
+    #print(" %s : %f %f %f" % (text, left, right, low))
     for wordlist in extlist:
         if abs(wordlist[0][3]- low) < low_offset:
-            print(wordlist)
+            #print(wordlist)
             for idx in range(len(wordlist)):
                 if wordlist[idx][1] >= left:
                     if wordlist[idx][1] >= right - right_offset:
