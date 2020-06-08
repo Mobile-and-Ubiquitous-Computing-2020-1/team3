@@ -2,8 +2,21 @@ import argparse
 from nutrition_dict import *
 import copy
 low_offset = 20
+right_offset = 10
+def print_all(ocrlist):
+    for item in ocrlist:
+        low = (item[1][2]['y']+item[1][3]['y'])/2
+        left = (item[1][0]['x']+item[1][3]['x'])/2
+        right = (item[1][1]['x']+item[1][2]['x'])/2
+
+        print(item[0]+": " + str(low) + " " + str(left) + " " + str(right))
 
 def preprocess(ocrlist):
+
+    for item in ocrlist:
+        text = item[0]
+        if text == "O" or text == "o":
+            item[0] = "0"
     for item in ocrlist:
         text = item[0]
         if text[0].isalpha():
@@ -54,7 +67,7 @@ def find_nutri(extlist, item):
         if find_sameline(extlist, item):
             return False
     if res != 0:
-        extlist.append([[res, left, right, low]])
+        extlist.append([[res, left, right, low], ["END", float('inf'), float('inf'), low]])
         return True
     return False
 
@@ -65,6 +78,7 @@ def update_offset(extlist):
         if ldif < min_ldif:
             min_ldif = ldif
     low_offset = ldif*0.4
+    right_offset = low_offset
 
 def find_sameline(extlist, item):
     text = item[0]
@@ -72,20 +86,18 @@ def find_sameline(extlist, item):
     left = (item[1][0]['x']+item[1][3]['x'])/2
     right = (item[1][1]['x']+item[1][2]['x'])/2
     added=False
+    print(" %s : %f %f %f" % (text, left, right, low))
     for wordlist in extlist:
         if abs(wordlist[0][3]- low) < low_offset:
+            print(wordlist)
             for idx in range(len(wordlist)):
-                if (idx == len(wordlist)-1) & (wordlist[idx][2]<=left):
-                    wordlist.append([text, left, right, low])
-                    added=True
-                    break
-                elif wordlist[idx][1] >= left:
-                    if wordlist[idx][1] >= right:
+                if wordlist[idx][1] >= left:
+                    if wordlist[idx][1] >= right - right_offset:
                         wordlist.insert(idx, [text, left, right, low])
                         added=True
                         break
                     else:
-                        #print("overlapping word: " + text)
+                        print("overlapping word: " + text)
                         break
     return added
 
@@ -97,7 +109,7 @@ def extract_nutri(resultdict, vlist):
     nutriname = ""
     values = []
 
-    #print(vlist)
+    print(vlist)
     while (idx < len(vlist)):
         val = vlist[idx][0]
         if isname:
@@ -115,12 +127,12 @@ def extract_nutri(resultdict, vlist):
                     values.append(val)
                 elif (len(values) >0):
                     prev = values.pop()
-                    if (prev.isdigit()
-                      or (prev[0] == '<' and prev[1:].isdigit())):
+                    if ((prev[0].isdigit() or (prev[0] == '<' and prev[1:].isdigit()))
+                            and not find_endswith(prev, unit_list)):
                         prev += val
                     values.append(prev)
                 idx += 1
-            elif val.isdigit():
+            elif val[0].isdigit():
                 values.append(val)
                 idx += 1
             elif val[0].isalpha():
@@ -138,7 +150,6 @@ def extract_nutri(resultdict, vlist):
 # Remove wrong fields
 def postprocess(inputdict):
 
-    print(inputdict)
     resultdict = {}
     for val in inputdict:
         for nutrival in nutri_dict:
@@ -147,7 +158,6 @@ def postprocess(inputdict):
                 break
 
 
-    print(resultdict)
     #for val in resultdict:
     #    resultdict[val] = resultdict[val][0]
 
@@ -177,6 +187,7 @@ def extract(ocrlist):
 
     #find_kcal_kor(ocrlist, extlist);
     resultdict = postprocess(resultdict)
+    print(resultdict)
     return resultdict
 
 
