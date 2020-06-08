@@ -7,10 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import java.util.Arrays;
+
 public class testActivity extends AppCompatActivity {
     private boolean[] nutriSet;
-    private String[] nutriName;
-    private String[] nutriVal;
+    private String[] nutriName = new String[MainActivity.Nutritions.values().length];
+    private String[] nutriVal = new String[MainActivity.Nutritions.values().length];
     private String[] otherName;
     private String[] otherVal;
     private int REQUEST_RESULT = 1;
@@ -24,18 +26,27 @@ public class testActivity extends AppCompatActivity {
         Intent intent = getIntent();
         nutriSet = intent.getExtras().getBooleanArray("nutriSet");
         tv_outPut = (TextView) findViewById(R.id.tv_output);
+        Arrays.fill(nutriName, "");
+        Arrays.fill(nutriVal, "");
 
-        nutriName = new String[]{"Carbohydrates", "Protein", "Fat", "Sodium", "Sugar"};
-        nutriVal = new String[]{"10g", "20g", "30g", "40g", "50g"};
+
+        nutriName[0] = "Carbohydrates";
+        nutriName[1] = "Protein";
+        nutriName[2] = "Fat";
+        nutriName[3] = "Sodium";
+        nutriName[4] = "Sugar";
+
+        nutriVal[0] = "10g";
+        nutriVal[1] = "20g";
+        nutriVal[2] = "30g";
+        nutriVal[3] = "40g";
+        nutriVal[4] = "50g";
         otherName = new String[]{"Calories", "Saturated Fat", "Fiber"};
         otherVal = new String[]{"60kcal", "70mg", "80mg"};
 
         Intent resultIntent = new Intent(getApplicationContext(), ResultActivity.class);
-        resultIntent.putExtra("nutriSet", nutriSet);
-        resultIntent.putExtra("nutriName", nutriName);
         resultIntent.putExtra("nutriVal", nutriVal);
-        resultIntent.putExtra("otherName", otherName);
-        resultIntent.putExtra("otherVal", otherVal);
+
 
         startActivityForResult(resultIntent, REQUEST_RESULT);
 

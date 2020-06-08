@@ -41,17 +41,17 @@ public class DiseaseActivity extends AppCompatActivity {
 
                 Intent intent = new Intent();
                 if (cb1.isChecked()) {
-                    intent.putExtra("Carbohydrate", true);
-                    intent.putExtra("Sugar", true);
-                    intent.putExtra("Fat", true);
+                    intent.putExtra(String.valueOf(MainActivity.Nutritions.CARBOHYDRATES), true);
+                    intent.putExtra(String.valueOf(MainActivity.Nutritions.SUGARS), true);
+                    intent.putExtra(String.valueOf(MainActivity.Nutritions.FAT), true);
                 }
                 if (cb2.isChecked()) {
-                    intent.putExtra("Carbohydrate", true);
-                    intent.putExtra("Sugar", true);
+                    intent.putExtra(String.valueOf(MainActivity.Nutritions.CARBOHYDRATES), true);
+                    intent.putExtra(String.valueOf(MainActivity.Nutritions.SUGARS), true);
                 }
                 if (cb3.isChecked()) {
-                    intent.putExtra("Fat", true);
-                    intent.putExtra("Sodium", true);
+                    intent.putExtra(String.valueOf(MainActivity.Nutritions.FAT), true);
+                    intent.putExtra(String.valueOf(MainActivity.Nutritions.SODIUM), true);
                 }
                 setResult(RESULT_OK, intent);
                 finish();

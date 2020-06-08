@@ -81,10 +81,10 @@ public class CameraActivity extends AppCompatActivity {
     private boolean mFlashSupported;
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
-    public boolean[] nutriSet;
     public int camRequestTime = 10;
     private String device_name = "";
     private String device_address = "";
+    AndroidResponse androidResponse;
 
     public enum NetworkState {
         NONE, REQUESTED, RECEIVED
@@ -136,10 +136,9 @@ public class CameraActivity extends AppCompatActivity {
         }, camRequestTime * 1000);
 
         Intent intent = getIntent();
-        nutriSet = intent.getExtras().getBooleanArray("nutriSet");
         device_name = intent.getStringExtra(MainActivity.EXTRAS_DEVICE_NAME);
         device_address = intent.getStringExtra(MainActivity.EXTRAS_DEVICE_ADDRESS);
-
+        androidResponse = new AndroidResponse(getApplicationContext());
     }
 
     TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {
@@ -292,11 +291,8 @@ public class CameraActivity extends AppCompatActivity {
                             break;
                         case DONE:
                             Log.e("STAGE?", "DONE");
-                            Intent intent = new Intent(getApplicationContext(), ResponseActivity.class);
-                            intent.putExtra("stage", "DONE")
-                            intent.putExtra("nutriSet", nutriSet);
-                            intent.putExtra("retVal", retVal);
-                            startActivity(intent);
+                            androidResponse.Done(SettingActivity.nutriSet, retVal);
+                            finish();
                             break;
                         // result
                     }

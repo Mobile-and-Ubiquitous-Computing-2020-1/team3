@@ -42,7 +42,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ResponseActivity"></activity>
         <activity android:name=".ResultActivity" />
         <activity android:name=".testActivity" />
         <activity android:name=".NutriActivity" />
