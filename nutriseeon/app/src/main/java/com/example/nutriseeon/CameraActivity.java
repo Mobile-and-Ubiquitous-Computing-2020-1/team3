@@ -253,8 +253,9 @@ public class CameraActivity extends AppCompatActivity {
                 netState = NetworkState.RECEIVED;
                 Log.d("NETSTATE RECEIVED : ", String.valueOf(netState));
 
+                String retString = response.body().string();
                 try {
-                    retVal = new JSONObject(response.body().string());
+                    retVal = new JSONObject(retString);
                     Log.e("retFeedback", (String) retVal.get("feedback"));
                     Log.e("retStage", (String) retVal.get("stage"));
 
@@ -286,6 +287,7 @@ public class CameraActivity extends AppCompatActivity {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    netState = NetworkState.NONE;
                 }
 
 }
