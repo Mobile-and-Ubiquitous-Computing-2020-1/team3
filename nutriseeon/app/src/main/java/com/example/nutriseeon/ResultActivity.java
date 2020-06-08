@@ -90,7 +90,7 @@ public class ResultActivity extends AppCompatActivity implements TextToSpeech.On
         int nutriNum = nutriSet.length;
 
         for (int i=0; i<nutriNum; i++) {
-            if (nutriVal[i] != "") {
+            if (!nutriVal[i].contentEquals("")) {
                 if (nutriSet[i]) {
                     nutriNameStr += nutritions[i].getName();
                     nutriNameStr += "\n";
@@ -126,14 +126,14 @@ public class ResultActivity extends AppCompatActivity implements TextToSpeech.On
         String utteranceId=this.hashCode() + "";
         tts.speak(tv_important.getText().toString(), TextToSpeech.QUEUE_ADD, null, utteranceId);
         for (int i=0; i<numNutri; i++) {
-            if (nutriSet[i] && nutriVal[i] != "") {
+            if (nutriSet[i] && !nutriVal[i].contentEquals("")) {
                 tts.speak(nutritions[i].getName(), TextToSpeech.QUEUE_ADD, null, utteranceId);
                 tts.speak(nutriVal[i], TextToSpeech.QUEUE_ADD, null, utteranceId);
             }
         }
         tts.speak(tv_other.getText().toString(), TextToSpeech.QUEUE_ADD, null, utteranceId);
         for (int i=0; i<numNutri; i++) {
-            if (!nutriSet[i] && nutriVal[i] != "") {
+            if (!nutriSet[i] && !nutriVal[i].contentEquals("")) {
                 tts.speak(nutritions[i].getName(), TextToSpeech.QUEUE_ADD, null, utteranceId);
                 tts.speak(nutriVal[i], TextToSpeech.QUEUE_ADD, null, utteranceId);
             }

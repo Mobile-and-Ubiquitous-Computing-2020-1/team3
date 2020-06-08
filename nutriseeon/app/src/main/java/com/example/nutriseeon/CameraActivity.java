@@ -516,6 +516,11 @@ public class CameraActivity extends AppCompatActivity {
         stopBackgroundThread();
         super.onPause();
     }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        camHandler.removeCallbacksAndMessages(null);
+    }
 
 };
 

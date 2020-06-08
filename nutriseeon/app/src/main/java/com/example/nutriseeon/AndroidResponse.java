@@ -37,7 +37,7 @@ public class AndroidResponse {
             try {
                 Log.e("LOG", retVal.getString(nutritions[i].getName()));
             } catch (JSONException e) {
-                Log.e("LOG", "Not found");
+                Log.e("LOG", "");
             }
         }
 
