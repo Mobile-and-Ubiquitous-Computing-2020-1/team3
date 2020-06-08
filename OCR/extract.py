@@ -176,7 +176,7 @@ def extract(ocrlist):
         extract_nutri(resultdict, vlist)
 
     #find_kcal_kor(ocrlist, extlist);
-    postprocess(resultdict)
+    resultdict = postprocess(resultdict)
     return resultdict
 
 
