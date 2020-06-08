@@ -1,6 +1,7 @@
 import os, json
 from pprint import pprint
 from flask import Flask, request, jsonify
+import tensorflow as tf
 
 import sys
 sys.path.append('/root/Edwin/server-android-feedback')
@@ -18,27 +19,18 @@ from ocr_server import *
 app = Flask(__name__)
 model_hand = None
 
+def load_model():
+    global model_hand
+    model_hand = load_hdmodel()
+    global graph
+    graph = tf.get_default_graph()
+    
 @app.before_first_request
 def init():
     #global model_hand
     #model_hand = load_hdmodel()
 
     # model load check code
-    '''
-    img_path = '/root/Edwin/hand-detection-YoloKeras/hand/5.jpg'
-    save_path = './result.png'
-    img=cv2.imread(img_path, cv2.IMREAD_COLOR)
-    plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-    preporcessed_img , img_cv = preprocess_img(img)
-    plt.imshow(img_cv)
-    start = time.time()
-    out2 = model_hand.predict(preporcessed_img)[0]
-    end = time.time()
-    print('prediction time:',end-start)
-    print(out2)
-    '''
-
-    load_model()
     # app.run() 실행 전에 필요한 코드 여기서 작성하기
     # 필요하다면 global variable
     return None
@@ -58,24 +50,30 @@ def init():
 
 @app.route('/detHand', methods=['POST'])
 def detHand():
+    print('here is start detHand')
     if request.method == 'POST':
-        f = request.files['files']
-        f.save('det_'+f.filename)
-
-        print('*********file type from app:',type(f))
-        print(f)
-        img = Image.open(f.stream)
-        oven_cv_image = numpy.array(img)
-        preprocessed_img , img_cv = preprocess_img(oven_cv_image)
-        out2 = model_hand.predict(preprocessed_img)[0]
+        
+        params = request.json
+        if (params == None ):
+            params = request.args
+        
+        if (params != None):
+            f = request.files['files']
+            f.save('det_'+f.filename)
+            img = Image.open(f.stream)
+            oven_cv_image = numpy.array(img)
+            preprocessed_img , img_cv = preprocess_img(oven_cv_image)
+            with graph.as_default():
+                start = time.time()
+                out2 = model_hand.predict(preprocessed_img)[0]
+                end = time.time()
+                print('prediction time:',end-start)        
+ 
         results = interpret_output_yolov2(out2, oven_cv_image.shape[1], oven_cv_image.shape[0])
         frame_size = img_cv.shape
         fb_str = generate_closeup_fb(results,frame_size)
-        print(results)
-        print('*********file type from app:',type(f))
-        print(f)
-        print(type(fb_str))
         print('fb_str:',fb_str)
+        
     retVal = {'feedback': fb_str, 'stage': 'DETECT_HAND'}
     return jsonify(retVal)
 
@@ -135,4 +133,4 @@ def flip():
 if __name__=='__main__':
     # app.run() # production
     # app.run(debug=True) # for debugging purpose
-    app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8081)), debug=True)
+    app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8080)) ,debug = False, threaded = False)
