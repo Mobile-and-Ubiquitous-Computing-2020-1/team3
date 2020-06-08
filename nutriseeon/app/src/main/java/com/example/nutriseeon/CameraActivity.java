@@ -61,12 +61,14 @@ public class CameraActivity extends AppCompatActivity {
     private Button takePictureButton;
     private TextureView textureView;
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
+
     static {
         ORIENTATIONS.append(Surface.ROTATION_0, 90);
         ORIENTATIONS.append(Surface.ROTATION_90, 0);
         ORIENTATIONS.append(Surface.ROTATION_180, 270);
         ORIENTATIONS.append(Surface.ROTATION_270, 180);
     }
+
     private String cameraId;
     protected CameraDevice cameraDevice;
     protected CameraCaptureSession cameraCaptureSessions;
@@ -83,13 +85,17 @@ public class CameraActivity extends AppCompatActivity {
     public int camRequestTime = 10;
     private String device_name = "";
     private String device_address = "";
-    public enum NetworkState{
+
+    public enum NetworkState {
         NONE, REQUESTED, RECEIVED
     }
+
     public NetworkState netState;
-    public enum ServiceState{
+
+    public enum ServiceState {
         DETECT_HAND, LOCATE_HAND, ROTATE, FLIP, DONE
     }
+
     public ServiceState stage;
     public JSONObject retVal = null;
 
@@ -105,7 +111,7 @@ public class CameraActivity extends AppCompatActivity {
         assert takePictureButton != null;
 
         netState = NetworkState.NONE;
-        stage = ServiceState.DETECT_HAND;
+        stage = ServiceState.ROTATE;
 
         takePictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,12 +126,12 @@ public class CameraActivity extends AppCompatActivity {
 
         camHandler.postDelayed(new Runnable() {
             @Override
-            public void run(){
+            public void run() {
                 Log.e("trigger", "every 1 sec");
-                if(netState == NetworkState.NONE){
+                if (netState == NetworkState.NONE) {
                     takePicture();
                 }
-                camHandler.postDelayed(this,camRequestTime * 1000);
+                camHandler.postDelayed(this, camRequestTime * 1000);
             }
         }, camRequestTime * 1000);
 
@@ -135,20 +141,24 @@ public class CameraActivity extends AppCompatActivity {
         device_address = intent.getStringExtra(MainActivity.EXTRAS_DEVICE_ADDRESS);
 
     }
+
     TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {
         @Override
         public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
             //open your camera here
             openCamera();
         }
+
         @Override
         public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
             // Transform you image captured size according to the surface width and height
         }
+
         @Override
         public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
             return false;
         }
+
         @Override
         public void onSurfaceTextureUpdated(SurfaceTexture surface) {
         }
@@ -161,10 +171,12 @@ public class CameraActivity extends AppCompatActivity {
             cameraDevice = camera;
             createCameraPreview();
         }
+
         @Override
         public void onDisconnected(CameraDevice camera) {
             cameraDevice.close();
         }
+
         @Override
         public void onError(CameraDevice camera, int error) {
             cameraDevice.close();
@@ -179,11 +191,13 @@ public class CameraActivity extends AppCompatActivity {
             createCameraPreview();
         }
     };
+
     protected void startBackgroundThread() {
         mBackgroundThread = new HandlerThread("Camera Background");
         mBackgroundThread.start();
         mBackgroundHandler = new Handler(mBackgroundThread.getLooper());
     }
+
     protected void stopBackgroundThread() {
         mBackgroundThread.quitSafely();
         try {
@@ -195,7 +209,7 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
-    private static String bodyToString(final Request request){
+    private static String bodyToString(final Request request) {
         try {
             final Request copy = request.newBuilder().build();
             final Buffer buffer = new Buffer();
@@ -213,10 +227,10 @@ public class CameraActivity extends AppCompatActivity {
                 .addFormDataPart("files", file.getName(), RequestBody.create(MultipartBody.FORM, file))
                 .build();
 
-        String BASE_URL = "http://27.96.134.241:8080/";
+        String BASE_URL = "http://27.96.134.241:8081/";
         String RequestURL = "";
 
-        switch(stage){
+        switch (stage) {
             case DETECT_HAND:
                 RequestURL = BASE_URL + "detHand";
                 break;
@@ -243,15 +257,17 @@ public class CameraActivity extends AppCompatActivity {
         Log.d("NETSTATE REQUESTED : ", String.valueOf(netState));
 
 
-
-
         client.newCall(request).enqueue(new Callback() {
-            @Override public void onFailure(Call call, IOException e) {
+            @Override
+            public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
             }
-            @Override public void onResponse(Call call, Response response) throws IOException {
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
                 netState = NetworkState.RECEIVED;
                 Log.d("NETSTATE RECEIVED : ", String.valueOf(netState));
+
 
                 try {
                     retVal = new JSONObject(response.body().string());
@@ -261,7 +277,7 @@ public class CameraActivity extends AppCompatActivity {
                     stage = ServiceState.valueOf((String) retVal.get("stage"));
                     Log.e("changedStage", String.valueOf(stage));
 
-                    switch(stage) {
+                    switch (stage) {
                         case DETECT_HAND:
                             Log.e("STAGE?", "DETECTHAND");
                             break;
@@ -276,6 +292,11 @@ public class CameraActivity extends AppCompatActivity {
                             break;
                         case DONE:
                             Log.e("STAGE?", "DONE");
+                            Intent intent = new Intent(getApplicationContext(), ResponseActivity.class);
+                            intent.putExtra("stage", "DONE")
+                            intent.putExtra("nutriSet", nutriSet);
+                            intent.putExtra("retVal", retVal);
+                            startActivity(intent);
                             break;
                         // result
                     }
@@ -288,16 +309,15 @@ public class CameraActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-}
+            }
         });
-
 
 
     }
 
 
     protected void takePicture() {
-        if(null == cameraDevice) {
+        if (null == cameraDevice) {
             Log.e(TAG, "cameraDevice is null");
             return;
         }
@@ -324,7 +344,7 @@ public class CameraActivity extends AppCompatActivity {
             // Orientation
             int rotation = getWindowManager().getDefaultDisplay().getRotation();
             captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));
-            final File file = new File(Environment.getExternalStorageDirectory()+"/pic.jpg");
+            final File file = new File(Environment.getExternalStorageDirectory() + "/pic.jpg");
             ImageReader.OnImageAvailableListener readerListener = new ImageReader.OnImageAvailableListener() {
                 @Override
                 public void onImageAvailable(ImageReader reader) {
@@ -345,6 +365,7 @@ public class CameraActivity extends AppCompatActivity {
                         }
                     }
                 }
+
                 private void save(byte[] bytes) throws IOException {
                     OutputStream output = null;
                     try {
@@ -377,6 +398,7 @@ public class CameraActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+
                 @Override
                 public void onConfigureFailed(CameraCaptureSession session) {
                 }
@@ -385,6 +407,7 @@ public class CameraActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
     protected void createCameraPreview() {
         try {
             SurfaceTexture texture = textureView.getSurfaceTexture();
@@ -393,7 +416,7 @@ public class CameraActivity extends AppCompatActivity {
             Surface surface = new Surface(texture);
             captureRequestBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
             captureRequestBuilder.addTarget(surface);
-            cameraDevice.createCaptureSession(Arrays.asList(surface), new CameraCaptureSession.StateCallback(){
+            cameraDevice.createCaptureSession(Arrays.asList(surface), new CameraCaptureSession.StateCallback() {
                 @Override
                 public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
                     //The camera is already closed
@@ -404,6 +427,7 @@ public class CameraActivity extends AppCompatActivity {
                     cameraCaptureSessions = cameraCaptureSession;
                     updatePreview();
                 }
+
                 @Override
                 public void onConfigureFailed(@NonNull CameraCaptureSession cameraCaptureSession) {
                     Toast.makeText(CameraActivity.this, "Configuration change", Toast.LENGTH_SHORT).show();
@@ -413,6 +437,7 @@ public class CameraActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
     private void openCamera() {
         CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
         Log.e(TAG, "is camera open");
@@ -433,8 +458,9 @@ public class CameraActivity extends AppCompatActivity {
         }
         Log.e(TAG, "openCamera X");
     }
+
     protected void updatePreview() {
-        if(null == cameraDevice) {
+        if (null == cameraDevice) {
             Log.e(TAG, "updatePreview error, return");
         }
         captureRequestBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
@@ -444,6 +470,7 @@ public class CameraActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
     private void closeCamera() {
         if (null != cameraDevice) {
             cameraDevice.close();
@@ -454,6 +481,7 @@ public class CameraActivity extends AppCompatActivity {
             imageReader = null;
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == REQUEST_CAMERA_PERMISSION) {
@@ -464,6 +492,7 @@ public class CameraActivity extends AppCompatActivity {
             }
         }
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -475,6 +504,7 @@ public class CameraActivity extends AppCompatActivity {
             textureView.setSurfaceTextureListener(textureListener);
         }
     }
+
     @Override
     protected void onPause() {
         Log.e(TAG, "onPause");
@@ -482,4 +512,6 @@ public class CameraActivity extends AppCompatActivity {
         stopBackgroundThread();
         super.onPause();
     }
-}
+
+};
+
