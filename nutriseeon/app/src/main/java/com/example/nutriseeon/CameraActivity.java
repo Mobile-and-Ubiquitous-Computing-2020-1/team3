@@ -163,7 +163,7 @@ public class CameraActivity extends AppCompatActivity {
         assert takePictureButton != null;
 
         netState = NetworkState.NONE;
-        stage = ServiceState.ROTATE;
+        stage = ServiceState.DETECT_HAND;
 
         takePictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,7 +192,7 @@ public class CameraActivity extends AppCompatActivity {
         device_address = intent.getStringExtra(MainActivity.EXTRAS_DEVICE_ADDRESS);
         androidResponse = new AndroidResponse(getApplicationContext());
 
-        setContentView(R.layout.gatt_services_characteristics);
+        //setContentView(R.layout.gatt_services_characteristics);
 
         Log.e("LOG", "Device Control");
 
@@ -208,55 +208,55 @@ public class CameraActivity extends AppCompatActivity {
         AudioManager volumeConfig = (AudioManager) getSystemService(AUDIO_SERVICE);
         volumeConfig.setStreamVolume(AudioManager.STREAM_MUSIC, 6, 0);
 
-        actionString = (TextView) findViewById(R.id.stateShoot);
-        timeHolding = (TextView) findViewById(R.id.timeHolding);
-        Inner_text = (TextView) findViewById(R.id.Inner_max_time);
-        Inner_text.setText(""+(INNER_MAX_TIME/1000)+"seconds");
-        timeHolding.setText("0");
+//        actionString = (TextView) findViewById(R.id.stateShoot);
+//        timeHolding = (TextView) findViewById(R.id.timeHolding);
+//        Inner_text = (TextView) findViewById(R.id.Inner_max_time);
+//        Inner_text.setText(""+(INNER_MAX_TIME/1000)+"seconds");
+//        timeHolding.setText("0");
 
         //Button configuration
-        r_btn = (Button) findViewById(R.id.right_button);
-        assert r_btn != null;
-        r_btn.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                superString = "r";
-                sendMove();
-            }
-        });
-
-        l_btn = (Button) findViewById(R.id.left_button);
-        assert l_btn != null;
-        l_btn.setOnClickListener(new Button.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                superString = "l";
-                sendMove();
-            }
-        });
-
-        u_btn = (Button) findViewById(R.id.up_button);
-        assert u_btn != null;
-        u_btn.setOnClickListener(new Button.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                superString = "u";
-                sendMove();
-            }
-        });
-
-        d_btn = (Button) findViewById(R.id.down_button);
-        assert d_btn != null;
-        d_btn.setOnClickListener(new Button.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                superString = "d";
-                sendMove();
-            }
-        });
+//        r_btn = (Button) findViewById(R.id.right_button);
+//        assert r_btn != null;
+//        r_btn.setOnClickListener(new Button.OnClickListener(){
+//            @Override
+//            public void onClick(View view) {
+//                superString = "r";
+//                sendMove();
+//            }
+//        });
+//
+//        l_btn = (Button) findViewById(R.id.left_button);
+//        assert l_btn != null;
+//        l_btn.setOnClickListener(new Button.OnClickListener(){
+//
+//            @Override
+//            public void onClick(View view) {
+//                superString = "l";
+//                sendMove();
+//            }
+//        });
+//
+//        u_btn = (Button) findViewById(R.id.up_button);
+//        assert u_btn != null;
+//        u_btn.setOnClickListener(new Button.OnClickListener(){
+//
+//            @Override
+//            public void onClick(View view) {
+//                superString = "u";
+//                sendMove();
+//            }
+//        });
+//
+//        d_btn = (Button) findViewById(R.id.down_button);
+//        assert d_btn != null;
+//        d_btn.setOnClickListener(new Button.OnClickListener(){
+//
+//            @Override
+//            public void onClick(View view) {
+//                superString = "d";
+//                sendMove();
+//            }
+//        });
 
         final int delay = 25;
     }
@@ -473,15 +473,49 @@ public class CameraActivity extends AppCompatActivity {
                     switch (stage) {
                         case DETECT_HAND:
                             Log.e("STAGE?", "DETECTHAND");
+                            String fb_str = (String) retVal.get("feedback");
+                            switch (fb_str) {
+                                case "CLOSE":
+                                    androidResponse.Close();
+                                    break;
+                                case "FAR":
+                                    androidResponse.Far();
+                                    break;
+                            }
+
                             break;
                         case LOCATE_HAND:
                             Log.e("STAGE?", "LOCATEHAND");
+                            fb_str = (String) retVal.get("feedback");
+                            switch (fb_str) {
+                                case "LEFT":
+                                    superString = "l";
+                                    sendMove();
+                                    break;
+                                case "RIGHT":
+                                    superString = "r";
+                                    sendMove();
+                                    break;
+                                case "DOWN":
+                                    superString = "d";
+                                    sendMove();
+                                    break;
+                                case "UP":
+                                    superString = "u";
+                                    sendMove();
+                                    break;
+                                case "location clear":
+                                    Log.e("Wrong", "location clear");
+                                    break;
+                            }
                             break;
                         case ROTATE:
                             Log.e("STAGE?", "ROTATE");
+                            androidResponse.Rotate();
                             break;
                         case FLIP:
                             Log.e("STAGE?", "FLIP");
+                            androidResponse.Flip();
                             break;
                         case DONE:
                             Log.e("STAGE?", "DONE");
