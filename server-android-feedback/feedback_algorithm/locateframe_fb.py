@@ -59,10 +59,10 @@ def get_NEWS_fb(handbox, targetbox:TargetBox):
 
 def get_horizontal_fb(diff_x):
     if diff_x > 0:
-        return LEFT
-    return RIGHT
+        return RIGHT
+    return LEFT
 
 def get_vertical_fb(diff_y):
     if diff_y > 0:
-        return SOUTH
-    return NORTH
+        return NORTH
+    return SOUTH
