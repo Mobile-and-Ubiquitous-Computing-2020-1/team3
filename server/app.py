@@ -65,7 +65,11 @@ def detHand():
             f = request.files['files']
             f.save('det_'+f.filename)
             img = Image.open(f.stream)
+            print('img shape: ',img.size)
             oven_cv_image = numpy.array(img)
+            print('img shape with numpy array: ',oven_cv_image.shape)
+            test_img = cv2.imread('test.png',cv2.IMREAD_COLOR)
+            print('test img shape with numpy array: ',test_img.shape)
             preprocessed_img , img_cv = preprocess_img(oven_cv_image)
             with graph.as_default():
                 start = time.time()
