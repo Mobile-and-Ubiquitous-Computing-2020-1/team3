@@ -1,8 +1,14 @@
 package com.example.nutriseeon;
 
 import android.Manifest;
+import android.bluetooth.BluetoothGattCharacteristic;
+import android.bluetooth.BluetoothGattService;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
@@ -15,22 +21,30 @@ import android.hardware.camera2.CameraMetadata;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
+import android.media.AudioManager;
 import android.media.Image;
 import android.media.ImageReader;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.Size;
 import android.util.SparseIntArray;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ExpandableListView;
+import android.widget.SimpleExpandableListAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -44,6 +58,7 @@ import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.Call;
@@ -100,6 +115,36 @@ public class CameraActivity extends AppCompatActivity {
     public JSONObject retVal = null;
     Handler camHandler;
 
+    private String fire = "-1";
+
+    public String mType = "Joystick";
+
+    public static final String EXTRAS_DEVICE_NAME = "DEVICE_NAME";
+    public static final String EXTRAS_DEVICE_ADDRESS = "DEVICE_ADDRESS";
+
+    public String mDeviceName;
+    private String mDeviceAddress;
+    private BluetoothLeService mBluetoothLeService;
+    private ArrayList<ArrayList<BluetoothGattCharacteristic>> mGattCharacteristics =
+            new ArrayList<ArrayList<BluetoothGattCharacteristic>>();
+    private boolean mConnected = false;
+    private BluetoothGattCharacteristic mNotifyCharacteristic;
+
+    public BluetoothGattCharacteristic bluetoothGattCharacteristicHM_10;
+
+    private int INNER_MAX_TIME = 6000;
+
+    private boolean shooted;
+    private boolean retry;
+
+    private String superString = "0;0;-1";
+
+    final Handler handler1 = new Handler();
+
+    private int desviationl = 100, desviationr = 100;
+    private double r = 0, l = 0;
+    private Button r_btn, l_btn, u_btn, d_btn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,6 +185,74 @@ public class CameraActivity extends AppCompatActivity {
         device_name = intent.getStringExtra(MainActivity.EXTRAS_DEVICE_NAME);
         device_address = intent.getStringExtra(MainActivity.EXTRAS_DEVICE_ADDRESS);
         androidResponse = new AndroidResponse(getApplicationContext());
+
+        setContentView(R.layout.gatt_services_characteristics);
+
+        Log.e("LOG", "Device Control");
+
+        mDeviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
+        mDeviceAddress = intent.getStringExtra(EXTRAS_DEVICE_ADDRESS);
+
+        // Sets up UI references.
+        Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
+        bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
+
+        //FEEL FREE TO DELETE
+
+        AudioManager volumeConfig = (AudioManager) getSystemService(AUDIO_SERVICE);
+        volumeConfig.setStreamVolume(AudioManager.STREAM_MUSIC, 6, 0);
+
+//        actionString = (TextView) findViewById(R.id.stateShoot);
+//        timeHolding = (TextView) findViewById(R.id.timeHolding);
+//        Inner_text = (TextView) findViewById(R.id.Inner_max_time);
+//        Inner_text.setText(""+(INNER_MAX_TIME/1000)+"seconds");
+//        timeHolding.setText("0");
+
+        //Button configuration
+//        r_btn = (Button) findViewById(R.id.right_button);
+//        assert r_btn != null;
+//        r_btn.setOnClickListener(new Button.OnClickListener(){
+//            @Override
+//            public void onClick(View view) {
+//                superString = "r";
+//                sendMove();
+//            }
+//        });
+//
+//        l_btn = (Button) findViewById(R.id.left_button);
+//        assert l_btn != null;
+//        l_btn.setOnClickListener(new Button.OnClickListener(){
+//
+//            @Override
+//            public void onClick(View view) {
+//                superString = "l";
+//                sendMove();
+//            }
+//        });
+//
+//        u_btn = (Button) findViewById(R.id.up_button);
+//        assert u_btn != null;
+//        u_btn.setOnClickListener(new Button.OnClickListener(){
+//
+//            @Override
+//            public void onClick(View view) {
+//                superString = "u";
+//                sendMove();
+//            }
+//        });
+//
+//        d_btn = (Button) findViewById(R.id.down_button);
+//        assert d_btn != null;
+//        d_btn.setOnClickListener(new Button.OnClickListener(){
+//
+//            @Override
+//            public void onClick(View view) {
+//                superString = "d";
+//                sendMove();
+//            }
+//        });
+
+        final int delay = 25;
     }
 
     TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {
@@ -191,6 +304,79 @@ public class CameraActivity extends AppCompatActivity {
             createCameraPreview();
         }
     };
+
+    private final ServiceConnection mServiceConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder service) {
+            mBluetoothLeService = ((BluetoothLeService.LocalBinder) service).getService();
+            if (!mBluetoothLeService.initialize()) {
+                Log.e(TAG, "Unable to initialize Bluetooth");
+                finish();
+            }
+            mBluetoothLeService.connect(mDeviceAddress);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            mBluetoothLeService = null;
+        }
+    };
+
+    public final BroadcastReceiver mGattUpdateReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final String action = intent.getAction();
+            if (BluetoothLeService.ACTION_GATT_CONNECTED.equals(action)) {
+                transmit();
+                mConnected = true;
+                invalidateOptionsMenu();
+
+            } else if (BluetoothLeService.ACTION_GATT_DISCONNECTED.equals(action)) {
+                mConnected = false;
+                invalidateOptionsMenu();
+            } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
+                displayGattServices(mBluetoothLeService.getSupportedGattServices());
+
+            } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
+
+            }
+        }
+
+    };
+
+    private final ExpandableListView.OnChildClickListener servicesListClickListner =
+            new ExpandableListView.OnChildClickListener() {
+                @Override
+                public boolean onChildClick(ExpandableListView parent, View v, int groupPosition,
+                                            int childPosition, long id) {
+                    if (mGattCharacteristics != null) {
+                        final BluetoothGattCharacteristic characteristic =
+                                mGattCharacteristics.get(groupPosition).get(childPosition);
+                        final int charaProp = characteristic.getProperties();
+                        if ((charaProp | BluetoothGattCharacteristic.PROPERTY_READ) > 0) {
+                            // If there is an active notification on a characteristic, clear
+                            // it first so it doesn't update the data field on the user interface.
+                            if (mNotifyCharacteristic != null) {
+                                mBluetoothLeService.setCharacteristicNotification(
+                                        mNotifyCharacteristic, false);
+                                mNotifyCharacteristic = null;
+                            }
+                            mBluetoothLeService.readCharacteristic(characteristic);
+                        }
+                        if ((charaProp | BluetoothGattCharacteristic.PROPERTY_NOTIFY) > 0) {
+                            mNotifyCharacteristic = characteristic;
+                            mBluetoothLeService.setCharacteristicNotification(
+                                    characteristic, true);
+                        }
+                        return true;
+                    }
+                    return false;
+                }
+            };
+
+
 
     protected void startBackgroundThread() {
         mBackgroundThread = new HandlerThread("Camera Background");
@@ -267,6 +453,7 @@ public class CameraActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 netState = NetworkState.RECEIVED;
                 Log.d("NETSTATE RECEIVED : ", String.valueOf(netState));
+
 
                 String retString = response.body().string();
                 try {
@@ -507,6 +694,11 @@ public class CameraActivity extends AppCompatActivity {
         } else {
             textureView.setSurfaceTextureListener(textureListener);
         }
+        registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
+        if (mBluetoothLeService != null) {
+            final boolean result = mBluetoothLeService.connect(mDeviceAddress);
+            Log.d(TAG, "Connect request result=" + result);
+        }
     }
 
     @Override
@@ -515,11 +707,229 @@ public class CameraActivity extends AppCompatActivity {
         //closeCamera();
         stopBackgroundThread();
         super.onPause();
+        unregisterReceiver(mGattUpdateReceiver);
+
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbindService(mServiceConnection);
+        mBluetoothLeService = null;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.gatt_services, menu);
+
+        if (mConnected) {
+            menu.findItem(R.id.menu_connect).setVisible(false);
+            menu.findItem(R.id.menu_disconnect).setVisible(true);
+        } else {
+            menu.findItem(R.id.menu_connect).setVisible(true);
+            menu.findItem(R.id.menu_disconnect).setVisible(false);
+        }
+        return true;
+    }
+
     @Override
     protected void onStop() {
         super.onStop();
         camHandler.removeCallbacksAndMessages(null);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_connect:
+                mBluetoothLeService.connect(mDeviceAddress);
+                return true;
+            case R.id.menu_disconnect:
+                mBluetoothLeService.disconnect();
+                return true;
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void displayGattServices(List<BluetoothGattService> gattServices) {
+        if (gattServices == null) return;
+        String uuid = null;
+        String unknownServiceString = getResources().getString(R.string.unknown_service);
+        String unknownCharaString = getResources().getString(R.string.unknown_characteristic);
+        ArrayList<HashMap<String, String>> gattServiceData = new ArrayList<HashMap<String, String>>();
+        ArrayList<ArrayList<HashMap<String, String>>> gattCharacteristicData
+                = new ArrayList<ArrayList<HashMap<String, String>>>();
+        mGattCharacteristics = new ArrayList<ArrayList<BluetoothGattCharacteristic>>();
+
+        // Loops through available GATT Services.
+        String LIST_NAME = "NAME";
+        String LIST_UUID = "UUID";
+        for (BluetoothGattService gattService : gattServices) {
+            HashMap<String, String> currentServiceData = new HashMap<String, String>();
+            uuid = gattService.getUuid().toString();
+            currentServiceData.put(
+                    LIST_NAME, SampleGattAttributes.lookup(uuid, unknownServiceString));
+            currentServiceData.put(LIST_UUID, uuid);
+            gattServiceData.add(currentServiceData);
+
+            ArrayList<HashMap<String, String>> gattCharacteristicGroupData =
+                    new ArrayList<HashMap<String, String>>();
+            List<BluetoothGattCharacteristic> gattCharacteristics =
+                    gattService.getCharacteristics();
+            ArrayList<BluetoothGattCharacteristic> charas =
+                    new ArrayList<BluetoothGattCharacteristic>();
+
+            for (BluetoothGattCharacteristic gattCharacteristic : gattCharacteristics) {
+                charas.add(gattCharacteristic);
+                HashMap<String, String> currentCharaData = new HashMap<String, String>();
+                uuid = gattCharacteristic.getUuid().toString();
+                currentCharaData.put(
+                        LIST_NAME, SampleGattAttributes.lookup(uuid, unknownCharaString));
+                currentCharaData.put(LIST_UUID, uuid);
+                gattCharacteristicGroupData.add(currentCharaData);
+
+                bluetoothGattCharacteristicHM_10 = gattService.getCharacteristic(BluetoothLeService.UUID_HM_10);
+
+
+            }
+            mGattCharacteristics.add(charas);
+            gattCharacteristicData.add(gattCharacteristicGroupData);
+        }
+
+        SimpleExpandableListAdapter gattServiceAdapter = new SimpleExpandableListAdapter(
+                this,
+                gattServiceData,
+                android.R.layout.simple_expandable_list_item_2,
+                new String[]{LIST_NAME, LIST_UUID},
+                new int[]{android.R.id.text1, android.R.id.text2},
+                gattCharacteristicData,
+                android.R.layout.simple_expandable_list_item_2,
+                new String[]{LIST_NAME, LIST_UUID},
+                new int[]{android.R.id.text1, android.R.id.text2}
+        );
+    }
+
+    private static IntentFilter makeGattUpdateIntentFilter() {
+        final IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(BluetoothLeService.ACTION_GATT_CONNECTED);
+        intentFilter.addAction(BluetoothLeService.ACTION_GATT_DISCONNECTED);
+        intentFilter.addAction(BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED);
+        intentFilter.addAction(BluetoothLeService.ACTION_DATA_AVAILABLE);
+        return intentFilter;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
+            event.startTracking();
+            actionString.setText(R.string.shooting);
+            fire = "1";
+            sendMove();
+            return true;
+        } else if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
+            event.startTracking();
+            actionString.setText(R.string.recovery);
+            fire = "0";
+            sendMove();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
+            setNormal();
+            shooted = true;
+            return true;
+        } else if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
+            shooted = false;
+            fire = "-1";
+            retry = true;
+            maxHolder();
+            return true;
+        }
+        return super.onKeyUp(keyCode, event);
+    }
+
+    public void setNormal() {
+        final Handler handler = new Handler();
+        int delay = 2000;
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                timeHolding.setText("0");
+                fire = "-1";
+                sendMove();
+                actionString.setText(R.string.no_action);
+            }
+        }, delay);
+    }
+
+    private void maxHolder(){
+        final int[] t = {0};
+        handler1.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(!shooted) {
+                    t[0]++;
+                    timeHolding.setText(getString(
+                            R.string.timeHolding, t[0]));
+                    if ((t[0] == (INNER_MAX_TIME / 1000)) && !retry) {
+                        actionString.setText(R.string.shooting);
+                        fire = "1";
+                        shooted = true;
+                        sendMove();
+                        setNormal();
+                    } else if (t[0] < INNER_MAX_TIME / 1000 && !retry) {
+                        handler1.postDelayed(this, 1000);
+                    }else if(retry){
+                        t[0] = 0;
+                        retry = false;
+                        maxHolder();
+                    }
+                }
+            }
+        }, 1000);
+    }
+
+    //UNTIL HERE
+
+    //Feel Free to MODIFY
+
+    private void sendMove() {
+
+        int ll = (int) (l * 2.55 * ((double) desviationl / 100));
+        int rr = (int) (r * 2.55 * ((double) desviationr / 100));
+
+        //superString = "25" ;//rr + ";" + ll + ";" + fire + "\n";
+        Log.d("BtConnet", superString);
+    }
+
+    private void transmit(){
+        final Handler mHandler = new Handler();
+
+        Toast.makeText(this, "Wait for the connection to stablish", Toast.LENGTH_LONG).show();
+
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                //Log.d("BtSending", "run: Sending..");
+
+
+                mBluetoothLeService.writeCharacteristic(superString,bluetoothGattCharacteristicHM_10);
+
+                mHandler.postDelayed(this,250);
+
+            }
+        },1000);
+
     }
 
 };
