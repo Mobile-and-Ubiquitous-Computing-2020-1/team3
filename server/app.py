@@ -66,17 +66,8 @@ def detHand():
             f = request.files['files']
             f.save('det_'+f.filename)
             img = Image.open(f.stream)
-            img.save('original.jpg')
-            #img = img.rotate(-90)
-            #img.save('rotate.jpg')
-            print('img shape: ',img.size)
             oven_cv_image = numpy.array(img)
             oven_cv_image = np.rot90(oven_cv_image,3)
-            
-            print('img shape with numpy array: ',oven_cv_image.shape)
-            test_img = cv2.imread('test.png',cv2.IMREAD_COLOR)
-            print('test img shape with numpy array: ',test_img.shape)
-            matplotlib.image.imsave('roated ovencv.jpg', oven_cv_image)
             preprocessed_img , img_cv = preprocess_img(oven_cv_image)
             with graph.as_default():
                 start = time.time()
