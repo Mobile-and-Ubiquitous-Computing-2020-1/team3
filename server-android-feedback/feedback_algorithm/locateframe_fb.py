@@ -47,11 +47,11 @@ def generate_locateframe_fb(results, frame_size):
         return get_NEWS_fb(hand_box, TARGET_BOX)
 
 def islocate(handbox, targetbox:TargetBox):
-    hb_center = Point( (handbox[1] + handbox[3]/2), (handbox[2] + handbox[4]/2 ) )
+    hb_center = Point( handbox[1], handbox[2] )
     return targetbox.is_contain(hb_center)
 
 def get_NEWS_fb(handbox, targetbox:TargetBox):
-        hb_center = Point( (handbox[1] + handbox[3]/2), (handbox[2] + handbox[4]/2 ) )
+        hb_center = Point( handbox[1], handbox[2])
         diff = targetbox.get_diff(hb_center)
         if abs(diff.x) > abs(diff.y):
             return get_horizontal_fb(diff.x)
