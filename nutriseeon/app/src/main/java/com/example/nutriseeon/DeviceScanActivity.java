@@ -127,6 +127,7 @@ public class DeviceScanActivity extends ListActivity {
             finish();
             return;
         }
+        Log.e("TEST", "onActivityResult");
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -281,7 +282,6 @@ public class DeviceScanActivity extends ListActivity {
             });
         }
     };
-
 
 
     static class ViewHolder {

@@ -25,8 +25,6 @@ import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.erz.joysticklibrary.JoyStick;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -64,12 +62,11 @@ public class DeviceControlActivity extends Activity {
 
     final Handler handler1 = new Handler();
 
-    private TextView ltxt, rtxt, rrtxt, rltxt;
-    private double rr = 1.0d, rl = 1.0d;
     private int desviationl = 100, desviationr = 100;
-    private JoyStick ljoyStick, rjoyStick;
     private double r = 0, l = 0;
     private Button r_btn, l_btn, u_btn, d_btn;
+
+    public static Context mContext;
 
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
@@ -218,6 +215,8 @@ public class DeviceControlActivity extends Activity {
 
         final int delay = 25;
 
+        mContext = this;
+
         //UNTIL HERE
     }
 
@@ -275,6 +274,17 @@ public class DeviceControlActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void testFunction(){
+        Log.e("test", "fucntion CALLED --------");
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 2){
+            Log.e("TEST", "onActivityResult");
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     //UNTIL HERE
