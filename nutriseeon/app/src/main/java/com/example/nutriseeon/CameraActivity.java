@@ -134,6 +134,10 @@ public class CameraActivity extends AppCompatActivity {
 
     private int INNER_MAX_TIME = 6000;
 
+    private TextView actionString;
+    private TextView timeHolding;
+    private TextView Inner_text;
+
     private boolean shooted;
     private boolean retry;
 
@@ -141,6 +145,8 @@ public class CameraActivity extends AppCompatActivity {
 
     final Handler handler1 = new Handler();
 
+    private TextView ltxt, rtxt, rrtxt, rltxt;
+    private double rr = 1.0d, rl = 1.0d;
     private int desviationl = 100, desviationr = 100;
     private double r = 0, l = 0;
     private Button r_btn, l_btn, u_btn, d_btn;
@@ -202,55 +208,55 @@ public class CameraActivity extends AppCompatActivity {
         AudioManager volumeConfig = (AudioManager) getSystemService(AUDIO_SERVICE);
         volumeConfig.setStreamVolume(AudioManager.STREAM_MUSIC, 6, 0);
 
-//        actionString = (TextView) findViewById(R.id.stateShoot);
-//        timeHolding = (TextView) findViewById(R.id.timeHolding);
-//        Inner_text = (TextView) findViewById(R.id.Inner_max_time);
-//        Inner_text.setText(""+(INNER_MAX_TIME/1000)+"seconds");
-//        timeHolding.setText("0");
+        actionString = (TextView) findViewById(R.id.stateShoot);
+        timeHolding = (TextView) findViewById(R.id.timeHolding);
+        Inner_text = (TextView) findViewById(R.id.Inner_max_time);
+        Inner_text.setText(""+(INNER_MAX_TIME/1000)+"seconds");
+        timeHolding.setText("0");
 
         //Button configuration
-//        r_btn = (Button) findViewById(R.id.right_button);
-//        assert r_btn != null;
-//        r_btn.setOnClickListener(new Button.OnClickListener(){
-//            @Override
-//            public void onClick(View view) {
-//                superString = "r";
-//                sendMove();
-//            }
-//        });
-//
-//        l_btn = (Button) findViewById(R.id.left_button);
-//        assert l_btn != null;
-//        l_btn.setOnClickListener(new Button.OnClickListener(){
-//
-//            @Override
-//            public void onClick(View view) {
-//                superString = "l";
-//                sendMove();
-//            }
-//        });
-//
-//        u_btn = (Button) findViewById(R.id.up_button);
-//        assert u_btn != null;
-//        u_btn.setOnClickListener(new Button.OnClickListener(){
-//
-//            @Override
-//            public void onClick(View view) {
-//                superString = "u";
-//                sendMove();
-//            }
-//        });
-//
-//        d_btn = (Button) findViewById(R.id.down_button);
-//        assert d_btn != null;
-//        d_btn.setOnClickListener(new Button.OnClickListener(){
-//
-//            @Override
-//            public void onClick(View view) {
-//                superString = "d";
-//                sendMove();
-//            }
-//        });
+        r_btn = (Button) findViewById(R.id.right_button);
+        assert r_btn != null;
+        r_btn.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                superString = "r";
+                sendMove();
+            }
+        });
+
+        l_btn = (Button) findViewById(R.id.left_button);
+        assert l_btn != null;
+        l_btn.setOnClickListener(new Button.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                superString = "l";
+                sendMove();
+            }
+        });
+
+        u_btn = (Button) findViewById(R.id.up_button);
+        assert u_btn != null;
+        u_btn.setOnClickListener(new Button.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                superString = "u";
+                sendMove();
+            }
+        });
+
+        d_btn = (Button) findViewById(R.id.down_button);
+        assert d_btn != null;
+        d_btn.setOnClickListener(new Button.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                superString = "d";
+                sendMove();
+            }
+        });
 
         final int delay = 25;
     }
