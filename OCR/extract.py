@@ -3,6 +3,7 @@ from nutrition_dict import *
 import copy
 low_offset = 20
 right_offset = 10
+MinNutri = 3
 def print_all(ocrlist):
     for item in ocrlist:
         low = (item[1][2]['y']+item[1][3]['y'])/2
@@ -109,7 +110,7 @@ def extract_nutri(resultdict, vlist):
     nutriname = ""
     values = []
 
-    print(vlist)
+    #print(vlist)
     while (idx < len(vlist)):
         val = vlist[idx][0]
         if isname:
@@ -163,6 +164,11 @@ def postprocess(inputdict):
 
     return resultdict
 
+def validate(resultdict):
+    if len(resultdict) < MinNutri:
+        return False
+    else:
+        return True
 
 def extract(ocrlist):
     extlist = []
@@ -172,7 +178,8 @@ def extract(ocrlist):
     for item in ocrlist:
         if find_nutri(extlist, item):
             ocrlist.remove(item)
-
+    if len(extlist) == 0:
+        return False, resultdict
     update_offset(extlist)
 
 
@@ -188,7 +195,8 @@ def extract(ocrlist):
     #find_kcal_kor(ocrlist, extlist);
     resultdict = postprocess(resultdict)
     print(resultdict)
-    return resultdict
+    sucess = validate(resultdict)
+    return sucess, resultdict
 
 
 
