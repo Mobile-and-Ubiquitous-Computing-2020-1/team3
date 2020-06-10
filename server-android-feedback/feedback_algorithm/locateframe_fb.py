@@ -13,8 +13,8 @@ from Box.targetbox import TargetBox
 CONFIDENCE_HAND = 0.6 # 데이터 실험해보고 바꿔야 함.
 
 X_UPPER_BOUND = 0.5
-X_LOWER_BOUND = 0.17
-Y_UPPER_BOUND = 0.8
+X_LOWER_BOUND = 0.1
+Y_UPPER_BOUND = 0.9
 Y_LOWER_BOUND = 0.6
 
 STAGE_CLEAR = 'location clear'
