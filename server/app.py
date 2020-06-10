@@ -144,7 +144,7 @@ def getNutrition(image, curr_state):
         feedback_string = "No table"
         stage_name = "ROTATE"
         retVal = {'feedback': feedback_string, 'stage': stage_name}
-        return jsonify(retVal)
+        return retVal
 
     print("Found table")
     cropped_path = 'crop.jpg' # TODO: random name
