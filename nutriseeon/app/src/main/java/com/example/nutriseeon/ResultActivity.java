@@ -1,9 +1,10 @@
 package com.example.nutriseeon;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +35,15 @@ public class ResultActivity extends AppCompatActivity implements TextToSpeech.On
         initialize();
         nutriText();
 
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                nutriTTS();
+            }
+        }, 1000);
+
+
         Button ttsButton = (Button) findViewById(R.id.ttsButton);
         ttsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,10 +60,13 @@ public class ResultActivity extends AppCompatActivity implements TextToSpeech.On
         if (initStatus == TextToSpeech.SUCCESS) {
             if (tts.isLanguageAvailable(Locale.US) == TextToSpeech.LANG_AVAILABLE)
                 tts.setLanguage(Locale.US);
+                nutriTTS();
         } else if (initStatus == TextToSpeech.ERROR) {
             Toast.makeText(this, "Sorry! Text To Speech failed...",
                     Toast.LENGTH_LONG).show();
         }
+
+
     }
     @Override
     protected void onDestroy() {
