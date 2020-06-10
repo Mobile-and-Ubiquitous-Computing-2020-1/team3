@@ -4,3 +4,10 @@ Link list of experiment result with images( no time to lable it)
 * stable results of hand detection and far close fb : https://drive.google.com/drive/u/0/folders/1PWba2Zv0GoURAxRndV2xLm8qWHzX-9lz
 * stable results and far close fb results with specified hold grip : https://drive.google.com/open?id=1chQ-mxeuACaotY5PZwsIuDDKUTQI0mCt
 * locate frame fb (after closeup fb) : https://drive.google.com/drive/u/0/folders/1Cun8YAD1tuq86Mb8Y4nK2eODits_CElv
+
+* latency breakdown(second) for 295 images ( 1.73MB for each )
+'preprocessing': 0.2872566651489775,
+'prediction': 0.10912356134188378,
+'interpretation': 0.0071342629901433394, 
+'closeup': 1.656241336111295e-05,
+'locateframe': 3.645022710164388e-05
