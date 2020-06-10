@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -107,14 +109,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), CameraActivity.class);
-                if (device_name == "" | device_address == "") {
-                    Log.e("LOG", "device_address: null");
-                    Toast.makeText(MainActivity.this, "No connected device!", Toast.LENGTH_LONG).show();
-                } else {
-                    intent.putExtra(EXTRAS_DEVICE_NAME, device_name);
-                    intent.putExtra(EXTRAS_DEVICE_ADDRESS, device_address);
+                if (isNetworkConnected()){
+                    if (device_name == "" | device_address == "") {
+                        Log.e("LOG", "device_address: null");
+                        Toast.makeText(MainActivity.this, "No connected device!", Toast.LENGTH_LONG).show();
+                    } else {
+                        intent.putExtra(EXTRAS_DEVICE_NAME, device_name);
+                        intent.putExtra(EXTRAS_DEVICE_ADDRESS, device_address);
+                    }
+                    startActivity(intent);
                 }
-                startActivity(intent);
+                else
+                {
+                    Toast.makeText(MainActivity.this, "No network Connection", Toast.LENGTH_LONG).show();
+                }
             }
         });
         Button testButton = (Button) findViewById(R.id.testButton);
@@ -145,6 +153,13 @@ public class MainActivity extends AppCompatActivity {
                 device_address = data.getStringExtra(this.EXTRAS_DEVICE_ADDRESS);
             }
         }
+    }
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm. getActiveNetworkInfo();
+
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
     }
 
 
