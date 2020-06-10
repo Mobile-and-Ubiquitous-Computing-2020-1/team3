@@ -4,7 +4,7 @@ from ocr import *
 from extract import *
 import time
 import cv2
-import numpy
+import numpy as np
 
 def ocr_server(img_path):
     count = 0
