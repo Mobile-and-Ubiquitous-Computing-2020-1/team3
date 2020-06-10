@@ -85,10 +85,12 @@ def detHand():
         
         if (params != None):
             f = request.files['files']
-            f.save('det_'+f.filename)
+            img_path = 'captured_img/det_'+str(time.time())+f.filename 
+            f.save(img_path)
             img = Image.open(f.stream)
             open_cv_image = numpy.array(img)
             open_cv_image = np.rot90(open_cv_image,3)
+            open_cv_image = cv2.imread(img_path, cv2.IMREAD_COLOR)
             retVal = get_controlHand(open_cv_image,retVal)
             if retVal['stage'] == 'ROTATE':
                 opencv_img = cv2.cvtColor(numpy.array(img), cv2.COLOR_RGB2BGR)
