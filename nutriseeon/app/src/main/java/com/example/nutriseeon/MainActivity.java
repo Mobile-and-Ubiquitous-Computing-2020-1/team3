@@ -26,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.BLUETOOTH,
             Manifest.permission.BLUETOOTH_ADMIN,
-            Manifest.permission.CAMERA
+            Manifest.permission.CAMERA,
+            Manifest.permission.BLUETOOTH_PRIVILEGED,
+            Manifest.permission.ACCESS_FINE_LOCATION
     };
 
 

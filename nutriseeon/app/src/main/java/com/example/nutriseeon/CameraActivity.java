@@ -96,7 +96,7 @@ public class CameraActivity extends AppCompatActivity {
     private boolean mFlashSupported;
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
-    public int camRequestTime = 10;
+    public int camRequestTime = 1;
     private String device_name = "";
     private String device_address = "";
     AndroidResponse androidResponse;
@@ -150,6 +150,7 @@ public class CameraActivity extends AppCompatActivity {
     private int desviationl = 100, desviationr = 100;
     private double r = 0, l = 0;
     private Button r_btn, l_btn, u_btn, d_btn;
+    private int rotateCount;
 
 
     @Override
@@ -259,6 +260,7 @@ public class CameraActivity extends AppCompatActivity {
 //        });
 
         final int delay = 25;
+        rotateCount = 0;
     }
 
     TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {
@@ -512,6 +514,10 @@ public class CameraActivity extends AppCompatActivity {
                         case ROTATE:
                             Log.e("STAGE?", "ROTATE");
                             androidResponse.Rotate();
+                            if (++rotateCount > 15){
+                                stage = ServiceState.FLIP;
+                            };
+
                             break;
                         case FLIP:
                             Log.e("STAGE?", "FLIP");

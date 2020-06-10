@@ -148,9 +148,9 @@ public class DeviceScanActivity extends ListActivity {
 
         Log.e("LOG", "Device Clicked!");
 
-        final Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra(MainActivity.EXTRAS_DEVICE_NAME, device.getName());
-        intent.putExtra(MainActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
+        final Intent intent = new Intent(this, CameraActivity.class);
+        intent.putExtra(CameraActivity.EXTRAS_DEVICE_NAME, device.getName());
+        intent.putExtra(CameraActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         if (mScanning) {
