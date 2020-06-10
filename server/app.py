@@ -76,7 +76,6 @@ def get_controlHand(open_cv_image,retVal):
 def detHand():
     print('here is start detHand')
     
-    location_clear_img = cv2.imread('location_clear.jpg', cv2.IMREAD_COLOR)
     retVal = {'feedback': 'NONE', 'stage': 'DETECT_HAND'}
     if request.method == 'POST':
         
@@ -89,8 +88,7 @@ def detHand():
             f.save('det_'+f.filename)
             img = Image.open(f.stream)
             open_cv_image = numpy.array(img)
-            #open_cv_image = np.rot90(open_cv_image,3)
-            open_cv_image = location_clear_img
+            open_cv_image = np.rot90(open_cv_image,3)
             retVal = get_controlHand(open_cv_image,retVal)
             if retVal['stage'] == 'ROTATE':
                 opencv_img = cv2.cvtColor(numpy.array(img), cv2.COLOR_RGB2BGR)
