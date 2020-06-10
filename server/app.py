@@ -40,6 +40,25 @@ def init():
 
     return None
 
+def get_controlHand(open_cv_image,retVal):
+    preprocessed_img , img_cv = preprocess_img(open_cv_image)
+    with graph.as_default():
+        start = time.time()
+        out2 = model_hand.predict(preprocessed_img)[0]
+        end = time.time()
+        print('prediction time:',end-start)        
+    results = interpret_output_yolov2(out2, open_cv_image.shape[1], open_cv_image.shape[0])
+    frame_size = img_cv.shape
+    fb_str = generate_closeup_fb(results,frame_size) # 'CLOSE', 'FAR' 
+    if fb_str == 'Stage 1 clear':
+        fb_str = generate_locateframe_fb(results,frame_size) # 'LEFT', 'RIGHT' , 'DOWN' ,'UP', 'location clear'
+    print('stage 1 fb_str:',fb_str)        
+    retVal = {'feedback': fb_str, 'stage': 'DETECT_HAND'}
+    if fb_str == 'location clear':
+        retVal['stage'] = "ROTATE"
+    print('final response in contorl Hand:',retVal)
+    return retVal
+    
 # @app.route('/image', methods=['POST'])
 # def image():
 #     if request.method == 'POST':
@@ -56,6 +75,8 @@ def init():
 @app.route('/detHand', methods=['POST'])
 def detHand():
     print('here is start detHand')
+    
+    retVal = {'feedback': 'NONE', 'stage': 'DETECT_HAND'}
     if request.method == 'POST':
         
         params = request.json
@@ -66,40 +87,53 @@ def detHand():
             f = request.files['files']
             f.save('det_'+f.filename)
             img = Image.open(f.stream)
-            oven_cv_image = numpy.array(img)
-            oven_cv_image = np.rot90(oven_cv_image,3)
-            preprocessed_img , img_cv = preprocess_img(oven_cv_image)
-            with graph.as_default():
-                start = time.time()
-                out2 = model_hand.predict(preprocessed_img)[0]
-                end = time.time()
-                print('prediction time:',end-start)        
- 
-        results = interpret_output_yolov2(out2, oven_cv_image.shape[1], oven_cv_image.shape[0])
-        frame_size = img_cv.shape
-        fb_str = generate_closeup_fb(results,frame_size) # 'CLOSE', 'FAR' 
-        if fb_str == 'Stage 1 clear':
-            fb_str = generate_locateframe_fb(results,frame_size) # 'LEFT', 'RIGHT' , 'DOWN' ,'UP', 'location clear'
-        print('fb_str:',fb_str)
-        
-    retVal = {'feedback': fb_str, 'stage': 'DETECT_HAND'}
-    if fb_str == 'location clear':
-        retVal['stage'] = "ROTATE"
-    print(retVal)
+            open_cv_image = numpy.array(img)
+            open_cv_image = np.rot90(open_cv_image,3)
+            retVal = get_controlHand(open_cv_image,retVal)
+            if retVal['stage'] == 'ROTATE':
+                opencv_img = cv2.cvtColor(numpy.array(img), cv2.COLOR_RGB2BGR)
+                retVal = getNutrition(opencv_img)
+    print('final response in detHand:',retVal)
     return jsonify(retVal)
 
 @app.route('/rotate', methods=['POST'])
 def rotate():
 
+    request_start = time.time()
     f = request.files['files']
     img = Image.open(f.stream)
     img = img.rotate(-90)
     img.save('pic.jpg')
     opencv_img = cv2.cvtColor(numpy.array(img), cv2.COLOR_RGB2BGR)
-    cv2.imwrite('opencv.jpg', opencv_img)
+    
+    retVal = getNutrition(opencv_img)
+    request_end = time.time()
+    print('request time:', request_end - request_start)
+    return retVal
+
+@app.route('/flip', methods=['POST'])
+def flip():
+    request_start = time.time()
+    f = request.files['files']
+    img = Image.open(f.stream)
+    img = img.rotate(-90)
+    img.save('pic.jpg')
+    opencv_img = cv2.cvtColor(numpy.array(img), cv2.COLOR_RGB2BGR)
+    
+    retVal = getNutrition(opencv_img)
+    request_end = time.time()
+    print('request time:', request_end-request_start)
+
+    return retVal
+
+def getNutrition(image):
     feedback_string = ""
     stage_name = ""
-    found, cropped_image = detect_server(opencv_img)
+    start = time.time()
+    found, cropped_image = detect_server(image)
+    end = time.time()
+    print('table detection time:', end-start)
+
     if not found:
         print("No table")
         feedback_string = "No table"
@@ -112,33 +146,13 @@ def rotate():
     cropped_path = 'crop.jpg' # TODO: random name
     cv2.imwrite(cropped_path, cropped_image)
     
+    start = time.time()
     resdict = ocr_server(cropped_path)
+    end = time.time()
+    print('OCR time:', end-start)
     print(resdict)
     retVal = {'feedback': json.dumps(resdict), 'stage': stage_name}
 
-    return jsonify(retVal)
-
-@app.route('/flip', methods=['POST'])
-def flip():
-    f = request.files['files']
-    img = Image.open(f.stream)
-    opencv_img = numpy.array(img)
-    
-    feedback_string = ""
-    stage_name = ""
-    found, cropped_image = detect_server(image)
-    if not found:
-        print("No table")
-        feedback_string = "No table"
-        stage_name = "FLIP"
-        retVal = {'feedback': feedback_string, 'stage': stage_name}
-        return jsonify(retVal)
-
-    print("Found table")
-    stage_name = "DONE"
-
-    resdict = ocr_server(cropped_image)
-    retVal = {'feedback': json.dumps(resdict), 'stage': stage_name}
     return jsonify(retVal)
 
 if __name__=='__main__':
