@@ -112,7 +112,7 @@ def rotate():
     img.save('pic.jpg')
     opencv_img = cv2.cvtColor(numpy.array(img), cv2.COLOR_RGB2BGR)
     
-    retVal = getNutrition(opencv_img, 'FLIP')
+    retVal = getNutrition(opencv_img, 'ROTATE')
     request_end = time.time()
     print('request time:\t', round(request_end - request_start, 3))
     return jsonify(retVal)
@@ -145,8 +145,7 @@ def getNutrition(image, curr_state):
     if not found:
         print("No table")
         feedback_string = "No table"
-        stage_name = "ROTATE"
-        retVal = {'feedback': feedback_string, 'stage': stage_name}
+        retVal = {'feedback': feedback_string, 'stage': curr_state}
         return retVal
 
     print("Found Table ---------")
@@ -163,7 +162,7 @@ def getNutrition(image, curr_state):
         retVal = {'feedback': json.dumps(resdict), 'stage': "DONE"}
     else:
         print("No nutrition facts table")
-        retVal = {'feedback': "No nutrition facts table", 'stage': curr_stage} 
+        retVal = {'feedback': "No nutrition facts table", 'stage': curr_state} 
     return retVal
 
 if __name__=='__main__':
