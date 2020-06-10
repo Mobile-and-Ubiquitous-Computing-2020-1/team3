@@ -151,6 +151,9 @@ public class CameraActivity extends AppCompatActivity {
     private double r = 0, l = 0;
     private Button r_btn, l_btn, u_btn, d_btn;
     private int rotateCount;
+    private int flipCount;
+    private int ROTATE_LIMIT = 10;
+    private int FLIP_LIMIT = 5;
 
 
     @Override
@@ -180,9 +183,13 @@ public class CameraActivity extends AppCompatActivity {
         camHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Log.e("trigger", "every 1 sec");
+                Log.e("TRIGGER", "ATTEMPT");
                 if (netState == NetworkState.NONE ) {
+                    Log.e("PICTURE", "TAKING");
                     takePicture();
+                }
+                else{
+                    Log.e("NETWORK USING", "NOT TRIGGERED");
                 }
                 camHandler.postDelayed(this, camRequestTime * 1000);
             }
@@ -261,6 +268,7 @@ public class CameraActivity extends AppCompatActivity {
 
         final int delay = 25;
         rotateCount = 0;
+        flipCount = 0;
     }
 
     TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {
@@ -424,6 +432,17 @@ public class CameraActivity extends AppCompatActivity {
         String BASE_URL = "http://27.96.134.241:8080/";
         String RequestURL = "";
 
+        if (stage == ServiceState.ROTATE && ++rotateCount > ROTATE_LIMIT){
+            stage = ServiceState.FLIP;
+            rotateCount = 0;
+        };
+
+        if (stage == ServiceState.FLIP && ++flipCount > FLIP_LIMIT){
+            stage = ServiceState.DETECT_HAND;
+            flipCount = 0;
+        }
+
+
         switch (stage) {
             case DETECT_HAND:
                 RequestURL = BASE_URL + "detHand";
@@ -514,10 +533,6 @@ public class CameraActivity extends AppCompatActivity {
                         case ROTATE:
                             Log.e("STAGE?", "ROTATE");
                             androidResponse.Rotate();
-                            if (++rotateCount > 15){
-                                stage = ServiceState.FLIP;
-                            };
-
                             break;
                         case FLIP:
                             Log.e("STAGE?", "FLIP");
