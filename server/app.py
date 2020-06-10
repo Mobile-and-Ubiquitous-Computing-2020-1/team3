@@ -10,6 +10,9 @@ from feedback_algorithm.locateframe_fb import *
 sys.path.append('/root/Edwin/hand-detection-YoloKeras')
 from load_hdmodel import *
 from get_interpretation import *
+from feedback_algorithm.closeup_fb import *
+sys.path.append('/root/Edwin/server')
+from server_breakdown import *
 import cv2
 
 sys.path.append('/root/team3/off-nutrition-table-extractor/nutrition_extractor')
@@ -40,8 +43,7 @@ def init():
 
     return None
 
-def get_controlHand(open_cv_image,retVal):
-    preprocessed_img , img_cv = preprocess_img(open_cv_image)
+def get_controlHand(preprocessed_img,retVal,open_cv_image, img_cv):
     with graph.as_default():
         start = time.time()
         out2 = model_hand.predict(preprocessed_img)[0]
@@ -74,9 +76,11 @@ def get_controlHand(open_cv_image,retVal):
 
 @app.route('/detHand', methods=['POST'])
 def detHand():
+    bd = ServerBreakDown()
+    bd.start_preprocessing()
     print('DETECT HAND ---------------------')
-    request_start = time.time()
-    retVal = {'feedback': 'NONE', 'stage': 'DETECT_HAND'}
+    retVal = {'feedback': 'NONE', 'stage': 'DETECT_HAND' , 'breakdown_dict': bd}
+    start =0
     if request.method == 'POST':
         
         params = request.json
@@ -91,18 +95,28 @@ def detHand():
             open_cv_image = numpy.array(img)
             open_cv_image = np.rot90(open_cv_image,3)
             open_cv_image = cv2.imread(img_path, cv2.IMREAD_COLOR)
-            retVal = get_controlHand(open_cv_image,retVal)
+            preprocessed_img , img_cv = preprocess_img(open_cv_image)
+            bd.end_preprocessing()
+            bd.start_detHand()
+            retVal = get_controlHand(preprocessed_img,retVal, open_cv_image, img_cv)
+            bd.end_detHand()
             if retVal['stage'] == 'ROTATE':
+                bd.start_getNutrition()
                 opencv_img = cv2.cvtColor(numpy.array(img), cv2.COLOR_RGB2BGR)
                 print('final response in detHand:\t',retVal)
                 retVal = getNutrition(opencv_img, 'ROTATE')
-    request_end = time.time()
-    print('request time:\t', round(request_end - request_start, 3))
+                bd.end_getNutrition()
+    bd.end_request()
+    retVal['breakdown_dict'] = json.dumps(bd.breakdown_dict)
+    print(bd.breakdown_dict)
     print('final response in detHand:\t',retVal)
+    
     return jsonify(retVal)
 
 @app.route('/rotate', methods=['POST'])
 def rotate():
+    bd = ServerBreakDown()
+    bd.start_preprocessing()
     print("ROTATE ---------------------")
 
     request_start = time.time()
@@ -111,14 +125,22 @@ def rotate():
     img = img.rotate(-90)
     img.save('pic.jpg')
     opencv_img = cv2.cvtColor(numpy.array(img), cv2.COLOR_RGB2BGR)
+    bd.end_preprocessing()
     
+    bd.start_getNutrition()
     retVal = getNutrition(opencv_img, 'ROTATE')
-    request_end = time.time()
-    print('request time:\t', round(request_end - request_start, 3))
+    bd.end_getNutrition()
+    
+    bd.end_request()
+    retVal['breakdown_dict'] = json.dumps(bd.breakdown_dict)
+    print(bd.breakdown_dict)    
+    
     return jsonify(retVal)
 
 @app.route('/flip', methods=['POST'])
 def flip():
+    bd = ServerBreakDown()
+    bd.start_preprocessing()
     print("FLIP ---------------------")
     request_start = time.time()
     f = request.files['files']
@@ -126,11 +148,16 @@ def flip():
     img = img.rotate(-90)
     img.save('pic.jpg')
     opencv_img = cv2.cvtColor(numpy.array(img), cv2.COLOR_RGB2BGR)
+    bd.end_preprocessing()
     
+    bd.start_getNutrition()
     retVal = getNutrition(opencv_img, 'FLIP')
-    request_end = time.time()
-    print('request time:\t', round(request_end-request_start, 3))
-
+    bd.end_getNutrition()
+    
+    bd.end_request()
+    retVal['breakdown_dict'] = json.dumps(bd.breakdown_dict)
+    print(bd.breakdown_dict)
+    
     return jsonify(retVal)
 
 def getNutrition(image, curr_state):
