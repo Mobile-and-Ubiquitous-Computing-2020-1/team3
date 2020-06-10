@@ -154,6 +154,12 @@ public class CameraActivity extends AppCompatActivity {
     private int flipCount;
     private int ROTATE_LIMIT = 10;
     private int FLIP_LIMIT = 5;
+    ArrayList<Double> elapsedTimes;
+    ArrayList<Double> elapsedRealTimes;
+    ArrayList<String> elapsedTexts;
+    long tStart, tEnd, tDelta;
+    Handler mHandler;
+    double initTime;
 
 
     @Override
@@ -168,6 +174,14 @@ public class CameraActivity extends AppCompatActivity {
 
         netState = NetworkState.NONE;
         stage = ServiceState.DETECT_HAND;
+//
+        elapsedTimes = new ArrayList<Double>();
+        elapsedRealTimes = new ArrayList<Double>();
+        elapsedTexts = new ArrayList<String>();
+
+        camHandler = new Handler();
+
+        mHandler = new Handler();
 
         takePictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,14 +192,14 @@ public class CameraActivity extends AppCompatActivity {
             }
         });
 
-        camHandler = new Handler();
 
         camHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 Log.e("TRIGGER", "ATTEMPT");
-                if (netState == NetworkState.NONE ) {
+                if (netState == NetworkState.NONE) {
                     Log.e("PICTURE", "TAKING");
+                    addElapsedtime("TAKING PICTURE");
                     takePicture();
                 }
                 else{
@@ -210,6 +224,7 @@ public class CameraActivity extends AppCompatActivity {
         // Sets up UI references.
         Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
         bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
+
 
         //FEEL FREE TO DELETE
 
@@ -269,6 +284,25 @@ public class CameraActivity extends AppCompatActivity {
         final int delay = 25;
         rotateCount = 0;
         flipCount = 0;
+
+        initTime = (double)System.currentTimeMillis()/1000.0;
+
+
+    }
+    public void addElapsedtime(String str){
+        elapsedTexts.add(str);
+        double nowTime = (double)System.currentTimeMillis()/1000.0;
+        if (elapsedTimes.size() == 0){
+            double diffTime = nowTime - initTime;
+            elapsedTimes.add(Math.round(diffTime * 1000d)/1000d);
+        }
+        else {
+            double diffTime = nowTime - elapsedRealTimes.get(elapsedTimes.size()-1);
+            elapsedTimes.add(Math.round(diffTime * 1000d)/1000d);
+
+        }
+        elapsedRealTimes.add(nowTime);
+        Log.d("added elapsed time", str+": "+String.valueOf(elapsedTimes.get(elapsedTimes.size()-1)));
     }
 
     TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {
@@ -299,6 +333,7 @@ public class CameraActivity extends AppCompatActivity {
             Log.e(TAG, "onOpened");
             cameraDevice = camera;
             createCameraPreview();
+            netState = NetworkState.NONE;
         }
 
         @Override
@@ -316,7 +351,7 @@ public class CameraActivity extends AppCompatActivity {
         @Override
         public void onCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result) {
             super.onCaptureCompleted(session, request, result);
-            Toast.makeText(CameraActivity.this, "Saved:" + file, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(CameraActivity.this, "Saved:" + file, Toast.LENGTH_SHORT).show();
             createCameraPreview();
         }
     };
@@ -466,6 +501,9 @@ public class CameraActivity extends AppCompatActivity {
         netState = NetworkState.REQUESTED;
         Log.d("NETSTATE REQUESTED : ", String.valueOf(netState));
 
+        addElapsedtime("REQUEST SENT");
+
+
 
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -477,6 +515,8 @@ public class CameraActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 netState = NetworkState.RECEIVED;
                 Log.d("NETSTATE RECEIVED : ", String.valueOf(netState));
+                addElapsedtime("GOT RESPONSE");
+
 
 
                 String retString = response.body().string();
@@ -488,6 +528,17 @@ public class CameraActivity extends AppCompatActivity {
                     stage = ServiceState.valueOf((String) retVal.get("stage"));
                     Log.e("changedStage", String.valueOf(stage));
 
+
+
+                    try {
+                        JSONObject elapsedTimeInfo = new JSONObject((String) retVal.get("breakdown_dict"));
+                        Log.e("ELAPSED_TIME_INFO", (String) elapsedTimeInfo.toString());
+
+                    } catch (JSONException e) {
+                        Log.e("MY HEART SAYS", "I WANNA GO HOME");
+                    }
+
+
                     switch (stage) {
                         case DETECT_HAND:
                             Log.e("STAGE?", "DETECTHAND");
@@ -495,9 +546,13 @@ public class CameraActivity extends AppCompatActivity {
                             switch (fb_str) {
                                 case "CLOSE":
                                     androidResponse.Close();
+                                    superString = "C";
+                                    sendMove();
                                     break;
                                 case "FAR":
                                     androidResponse.Far();
+                                    superString = "F";
+                                    sendMove();
                                     break;
                                 case "LEFT":
                                     superString = "l";
@@ -531,19 +586,36 @@ public class CameraActivity extends AppCompatActivity {
                             break;
                         case DONE:
                             Log.e("STAGE?", "DONE");
+
+
                             
                             JSONObject nutriObj = new JSONObject((String) retVal.get("feedback"));
+
+
+                            addElapsedtime("END OF TASK");
+
+                            for (int i = 0; i < elapsedTexts.size(); i++){
+                                Log.e("ElapsedTexts", elapsedTexts.get(i));
+                                Log.e("Elapsedtime", String.valueOf(elapsedTimes.get(i)));
+                            }
+                            Log.e("DONE", "DONE");
+
+
                             camHandler.removeCallbacksAndMessages(null);
                             String[] nutriVal = androidResponse.Done(SettingActivity.nutriSet, nutriObj);
                             Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
                             intent.putExtra("nutriVal", nutriVal);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
+
+
                             finish();
+
                         // result
                     }
 
                     netState = NetworkState.NONE;
+                    addElapsedtime("NETWORK SET NONE");
                     Log.d("NETSTATE RESETED : ", String.valueOf(netState));
 
 
@@ -628,7 +700,7 @@ public class CameraActivity extends AppCompatActivity {
                 @Override
                 public void onCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result) {
                     super.onCaptureCompleted(session, request, result);
-                    Toast.makeText(CameraActivity.this, "Saved:" + file, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(CameraActivity.this, "Saved:" + file, Toast.LENGTH_SHORT).show();
                     createCameraPreview();
                 }
             };
@@ -964,7 +1036,6 @@ public class CameraActivity extends AppCompatActivity {
     }
 
     private void transmit(){
-        final Handler mHandler = new Handler();
 
         Toast.makeText(this, "Wait for the connection to stablish", Toast.LENGTH_LONG).show();
 
@@ -974,8 +1045,9 @@ public class CameraActivity extends AppCompatActivity {
 
                 //Log.d("BtSending", "run: Sending..");
 
-
-                mBluetoothLeService.writeCharacteristic(superString,bluetoothGattCharacteristicHM_10);
+                if (mBluetoothLeService != null){
+                    mBluetoothLeService.writeCharacteristic(superString,bluetoothGattCharacteristicHM_10);
+                }
 
                 mHandler.postDelayed(this,250);
 
