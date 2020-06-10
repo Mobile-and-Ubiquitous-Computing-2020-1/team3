@@ -148,9 +148,9 @@ public class DeviceScanActivity extends ListActivity {
 
         Log.e("LOG", "Device Clicked!");
 
-        final Intent intent = new Intent(this, DeviceControlActivity.class);
-        intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, device.getName());
-        intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
+        final Intent intent = new Intent(this, CameraActivity.class);
+        intent.putExtra(CameraActivity.EXTRAS_DEVICE_NAME, device.getName());
+        intent.putExtra(CameraActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
 
         if (mScanning) {
             mBLEScanner.stopScan(mScanCallback);
