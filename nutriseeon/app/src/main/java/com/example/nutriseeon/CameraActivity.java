@@ -447,9 +447,6 @@ public class CameraActivity extends AppCompatActivity {
             case DETECT_HAND:
                 RequestURL = BASE_URL + "detHand";
                 break;
-            case LOCATE_HAND:
-                RequestURL = BASE_URL + "locHand";
-                break;
             case ROTATE:
                 RequestURL = BASE_URL + "rotate";
                 break;
