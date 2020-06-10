@@ -46,17 +46,17 @@ def get_controlHand(open_cv_image,retVal):
         start = time.time()
         out2 = model_hand.predict(preprocessed_img)[0]
         end = time.time()
-        print('prediction time:',end-start)        
+        print('prediction time:\t', round(end-start, 3))
     results = interpret_output_yolov2(out2, open_cv_image.shape[1], open_cv_image.shape[0])
     frame_size = img_cv.shape
     fb_str = generate_closeup_fb(results,frame_size) # 'CLOSE', 'FAR' 
     if fb_str == 'Stage 1 clear':
         fb_str = generate_locateframe_fb(results,frame_size) # 'LEFT', 'RIGHT' , 'DOWN' ,'UP', 'location clear'
-    print('stage 1 fb_str:',fb_str)        
+    print('stage 1 fb_str:\t',fb_str)        
     retVal = {'feedback': fb_str, 'stage': 'DETECT_HAND'}
     if fb_str == 'location clear':
         retVal['stage'] = "ROTATE"
-    print('final response in contorl Hand:',retVal)
+    print('Final response in contorl Hand:\t',retVal)
     return retVal
     
 # @app.route('/image', methods=['POST'])
@@ -74,7 +74,7 @@ def get_controlHand(open_cv_image,retVal):
 
 @app.route('/detHand', methods=['POST'])
 def detHand():
-    print('here is start detHand')
+    print('DETECT HAND ---------------------')
     request_start = time.time()
     retVal = {'feedback': 'NONE', 'stage': 'DETECT_HAND'}
     if request.method == 'POST':
@@ -94,15 +94,16 @@ def detHand():
             retVal = get_controlHand(open_cv_image,retVal)
             if retVal['stage'] == 'ROTATE':
                 opencv_img = cv2.cvtColor(numpy.array(img), cv2.COLOR_RGB2BGR)
-                print('final response in detHand:',retVal)
+                print('final response in detHand:\t',retVal)
                 retVal = getNutrition(opencv_img, 'ROTATE')
     request_end = time.time()
-    print('request time:', request_end - request_start)
-    print('final response in detHand:',retVal)
+    print('request time:\t', round(request_end - request_start, 3))
+    print('final response in detHand:\t',retVal)
     return jsonify(retVal)
 
 @app.route('/rotate', methods=['POST'])
 def rotate():
+    print("ROTATE ---------------------")
 
     request_start = time.time()
     f = request.files['files']
@@ -113,11 +114,12 @@ def rotate():
     
     retVal = getNutrition(opencv_img, 'FLIP')
     request_end = time.time()
-    print('request time:', request_end - request_start)
+    print('request time:\t', round(request_end - request_start, 3))
     return jsonify(retVal)
 
 @app.route('/flip', methods=['POST'])
 def flip():
+    print("FLIP ---------------------")
     request_start = time.time()
     f = request.files['files']
     img = Image.open(f.stream)
@@ -127,17 +129,18 @@ def flip():
     
     retVal = getNutrition(opencv_img, 'FLIP')
     request_end = time.time()
-    print('request time:', request_end-request_start)
+    print('request time:\t', round(request_end-request_start, 3))
 
     return jsonify(retVal)
 
 def getNutrition(image, curr_state):
+    print("GET NUTRITION ---------------------")
     feedback_string = ""
     stage_name = ""
     start = time.time()
     found, cropped_image = detect_server(image)
     end = time.time()
-    print('table detection time:', end-start)
+    print('table detection time:\t', round(end-start, 3))
 
     if not found:
         print("No table")
@@ -146,7 +149,7 @@ def getNutrition(image, curr_state):
         retVal = {'feedback': feedback_string, 'stage': stage_name}
         return jsonify(retVal)
 
-    print("Found table")
+    print("Found Table ---------")
     cropped_path = 'crop.jpg' # TODO: random name
     cv2.imwrite(cropped_path, cropped_image)
     
@@ -154,7 +157,7 @@ def getNutrition(image, curr_state):
     success, resdict = ocr_server(cropped_path)
     end = time.time()
     
-    print('OCR time:', end-start)
+    print('OCR time:\t', round(end-start, 3))
     if success:
         print(resdict)
         retVal = {'feedback': json.dumps(resdict), 'stage': "DONE"}
