@@ -75,7 +75,7 @@ def get_controlHand(open_cv_image,retVal):
 @app.route('/detHand', methods=['POST'])
 def detHand():
     print('here is start detHand')
-    
+    request_start = time.time()
     retVal = {'feedback': 'NONE', 'stage': 'DETECT_HAND'}
     if request.method == 'POST':
         
@@ -95,7 +95,9 @@ def detHand():
             if retVal['stage'] == 'ROTATE':
                 opencv_img = cv2.cvtColor(numpy.array(img), cv2.COLOR_RGB2BGR)
                 print('final response in detHand:',retVal)
-                return getNutrition(opencv_img)
+                retVal = getNutrition(opencv_img, 'ROTATE')
+    request_end = time.time()
+    print('request time:', request_end - request_start)
     print('final response in detHand:',retVal)
     return jsonify(retVal)
 
@@ -109,10 +111,10 @@ def rotate():
     img.save('pic.jpg')
     opencv_img = cv2.cvtColor(numpy.array(img), cv2.COLOR_RGB2BGR)
     
-    retVal = getNutrition(opencv_img)
+    retVal = getNutrition(opencv_img, 'FLIP')
     request_end = time.time()
     print('request time:', request_end - request_start)
-    return retVal
+    return jsonify(retVal)
 
 @app.route('/flip', methods=['POST'])
 def flip():
@@ -123,13 +125,13 @@ def flip():
     img.save('pic.jpg')
     opencv_img = cv2.cvtColor(numpy.array(img), cv2.COLOR_RGB2BGR)
     
-    retVal = getNutrition(opencv_img)
+    retVal = getNutrition(opencv_img, 'FLIP')
     request_end = time.time()
     print('request time:', request_end-request_start)
 
-    return retVal
+    return jsonify(retVal)
 
-def getNutrition(image):
+def getNutrition(image, curr_state):
     feedback_string = ""
     stage_name = ""
     start = time.time()
@@ -145,18 +147,21 @@ def getNutrition(image):
         return jsonify(retVal)
 
     print("Found table")
-    stage_name = "DONE"
     cropped_path = 'crop.jpg' # TODO: random name
     cv2.imwrite(cropped_path, cropped_image)
     
     start = time.time()
-    resdict = ocr_server(cropped_path)
+    success, resdict = ocr_server(cropped_path)
     end = time.time()
+    
     print('OCR time:', end-start)
-    print(resdict)
-    retVal = {'feedback': json.dumps(resdict), 'stage': stage_name}
-
-    return jsonify(retVal)
+    if success:
+        print(resdict)
+        retVal = {'feedback': json.dumps(resdict), 'stage': "DONE"}
+    else:
+        print("No nutrition facts table")
+        retVal = {'feedback': "No nutrition facts table", 'stage': curr_stage} 
+    return retVal
 
 if __name__=='__main__':
     # app.run() # production
