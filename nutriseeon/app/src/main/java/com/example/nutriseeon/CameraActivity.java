@@ -108,7 +108,7 @@ public class CameraActivity extends AppCompatActivity {
     public NetworkState netState;
 
     public enum ServiceState {
-        DETECT_HAND, LOCATE_HAND, ROTATE, FLIP, DONE
+        DETECT_HAND, ROTATE, FLIP, DONE
     }
 
     public ServiceState stage;
@@ -502,13 +502,6 @@ public class CameraActivity extends AppCompatActivity {
                                 case "FAR":
                                     androidResponse.Far();
                                     break;
-                            }
-
-                            break;
-                        case LOCATE_HAND:
-                            Log.e("STAGE?", "LOCATEHAND");
-                            fb_str = (String) retVal.get("feedback");
-                            switch (fb_str) {
                                 case "LEFT":
                                     superString = "l";
                                     sendMove();
@@ -529,6 +522,7 @@ public class CameraActivity extends AppCompatActivity {
                                     Log.e("Wrong", "location clear");
                                     break;
                             }
+
                             break;
                         case ROTATE:
                             Log.e("STAGE?", "ROTATE");
